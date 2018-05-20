@@ -1,0 +1,7 @@
+.component-searchbox {
+    float: right;
+}
+.component-searchbox input{
+    font-size: 14px;
+    border-radius: 5px;
+}

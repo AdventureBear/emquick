@@ -1,0 +1,125 @@
+import React, { Component } from 'react'
+import App from './Article'
+import Navbar from './Navbar'
+import resources from './data/resources.json'
+// import route Components here
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+
+
+import './Root.css'
+
+class Root extends Component {
+    constructor(props){
+        super(props) 
+        this.state = {
+        }
+    }
+
+    render(){
+
+
+      const BaseLayout = () => (
+        <div className="base">
+          <header>
+            <p>React Router v4 Browser Example</p>
+            <nav>
+              <ul>
+                <li><Link to='/'>Home</Link></li>
+                <li><Link to ='/topics'>Topics</Link></li>
+
+              </ul>
+            </nav>
+          </header>
+          <div className="container">
+            <Route path="/" exact component={HomePage} />
+            <Route path="/topics" component={Topics} />
+          </div>
+          <footer>
+            React Router v4 Browser Example (c) 2017
+          </footer>
+        </div>
+      )
+
+      const HomePage = () => <div>This is a Home Page</div>
+      const Topics = ({match}) => {
+
+        return (
+        <div>
+        <h1>Topics</h1>
+        <ul>
+          {resources.map(({ name, id }) => (
+            <li key={id}>
+              <Link to={`${match.url}/${id}`}>{name}</Link>
+            </li>
+          ))}
+        </ul>
+          <Route path={`${match.path}/:resourceId`} component={Topic}/>
+      </div>
+
+      )
+      }
+
+      const Topic = ({match}) => {
+        const topic = resources.find(({id}) => id === match.params.resourceID)
+        return (
+          <div>
+            <h2>{topic.name}</h2>
+            <p>{topic.description}</p>
+
+            <ul>
+              {topic.resources.map((sub) => (
+                <li key={sub.id}>
+                  <Link to={`${match.url}/${sub.id}`}>{sub.name}</Link>
+                </li>
+              ))}
+            </ul>
+
+            <hr />
+
+            <Route path={`${match.path}/:subId`} component={Resource} />
+          </div>
+        )
+      }
+
+      function Resource ({ match }) {
+        const topic = resources.find(({ id }) => id === match.params.resourceId)
+          .resources.find(({ id }) => id === match.params.subId)
+
+        return (
+          <div>
+            <h3>{topic.name}</h3>
+            <p>{topic.description}</p>
+            <a href={topic.url}>More info.</a>
+          </div>
+        )
+      }
+      // const allResources = resources.map((resource, i) => {
+      //   return (
+      //     <li key={i}><a href="">{resource.name} </a></li>
+      //   )
+      // })
+        return (
+          <Router>
+            <div className='component-root'>
+                <Navbar/>
+                <ul>
+                    <BaseLayout />
+                </ul>
+            </div>
+          </Router>
+        )
+    }
+}
+
+Root.propTypes = {
+
+};
+
+export default Root

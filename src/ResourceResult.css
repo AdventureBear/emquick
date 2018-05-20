@@ -1,0 +1,18 @@
+.component-resourceresult {
+    background-color: #FAF3CE;
+    color: #0b0e21;
+    letter-spacing: 1px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.component-resourceresult li {
+   color: #DE8A6A;
+}
+
+.component-resourceresult small {
+
+}
+
+

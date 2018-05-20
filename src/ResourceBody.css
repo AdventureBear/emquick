@@ -1,0 +1,60 @@
+
+.component-resourcebody ul {
+    list-style-type: none;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.component-resourcebody li {
+    border-radius: 5px;
+    border: 2px solid #061019;
+    min-height: 30px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    transition: color .3s ease, border-color .3s ease, transform .3s ease;
+    cursor: pointer;
+}
+
+.component-resourcebody li span {
+    background-color: #ACC5A7;
+    color: #fff;
+    font-size: 20px;
+    flex: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .3s ease;
+}
+
+.component-resourcebody li span.desc {
+    border-radius: 0 5px 5px 0;
+    font-size: 16px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #0b0e21;
+    flex-grow: 7;
+}
+
+.component-resourcebody li span.val {
+    border-radius: 5px 0 0 5px;
+    border-right: 2px #0b0e21 solid;
+}
+
+.component-resource li:hover {
+    transform: scale(1.03);
+}
+
+.component-resource li p {
+    color: #0b0e21;
+    font-size: 16px;
+    font-weight: 600;
+    flex: calc(100% - 75px);
+    margin: auto 20px;
+    transition: color .3s ease;
+}

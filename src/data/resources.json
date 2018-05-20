@@ -1,0 +1,441 @@
+[
+  {
+  "id": 1,
+  "name": "NIH Stroke Scale",
+  "friendly": "nih-stroke-scale",
+  "description": "The National Institutes of Health Stroke Scale, or NIH Stroke Scale (NIHSS) is a tool used by healthcare providers to objectively quantify the impairment caused by a stroke. The NIHSS is composed of 11 items, each of which scores a specific ability between a 0 and 4. For each item, a score of 0 typically indicates normal function in that specific ability, while a higher score is indicative of some level of impairment.[1] The individual scores from each item are summed in order to calculate a patient's total NIHSS score. The maximum possible score is 42, with the minimum score being a 0",
+  "type": "Calculator",
+  "field": "Neurology",
+  "condition": "Stroke",
+  "references": [
+    "https://stroke.nih.gov/resources/scale.htm",
+    "https://en.wikipedia.org/wiki/National_Institutes_of_Health_Stroke_Scale"
+  ],
+  "questions": [{
+    "title": "1A: Level of Consciousness",
+    "description": "The investigator must choose a response if a full evaluation is prevented by such obstacles as an endotracheal tube, language barrier, orotracheal trauma/bandages. A 3 is scored only if the patient makes no movement (other than reflexive posturing) in response to noxious stimulation. ",
+    "options": [
+      {
+        "value": 0,
+        "description": "Alert; keenly responsive."
+      },
+      {
+        "value": 1,
+        "description": "Not alert; but arousable by minor stimulation to obey, answer, or respond."
+      },
+      {
+        "value": 2,
+        "description": "Not alert; requires repeated stimulation to attend, or is obtunded and requires strong or painful stimulation to make movements (not stereotyped)."
+      },
+      {
+        "value": 3,
+        "description": "Responds only with reflex motor or autonomic effects, or totally unresponsive, flaccid, and areflexic."
+      }
+    ]
+  },
+    {
+      "title": "1B: LOC Questions",
+      "description": "The patient is asked the month and his/her age. The answer must be correct - there is no partial credit for being close. Aphasic and stuporous patients who do not comprehend the questions will score 2. Patients unable to speak because of endotracheal intubation, orotracheal trauma, severe dysarthria from any cause, language barrier, or any other problem not secondary to aphasia are given a 1. It is important that only the initial answer be graded and that the examiner not 'help' the patient with verbal or non-verbal cues.",
+      "options": [
+        {
+          "value": 0,
+          "description": "Answers both questions correctly."
+        },
+        {
+          "value": 1,
+          "description": "Answers one question correctly."
+        },
+        {
+          "value": 2,
+          "description": "Answers neither question correctly."
+        }
+      ]
+    },
+    {
+      "title": "1C: LOC Commands",
+      "description": "The patient is asked to open and close the eyes and then to grip and release the non-paretic hand. Substitute another one step command if the hands cannot be used. Credit is given if an unequivocal attempt is made but not completed due to weakness. If the patient does not respond to command, the task should be demonstrated to him or her (pantomime), and the result scored (i.e., follows none, one or two commands). Patients with trauma, amputation, or other physical impediments should be given suitable one-step commands. Only the first attempt is scored.",
+      "options": [
+        {
+          "value": 0,
+          "description": "Performs both tasks correctly."
+        },
+        {
+          "value": 1,
+          "description": "Performs one task correctly."
+        },
+        {
+          "value": 2,
+          "description": "Performs neither task correctly."
+        }
+      ]
+    }, {
+      "title": "2: Best Gaze",
+      "description": "Only horizontal eye movements will be tested. Voluntary or reflexive (oculocephalic) eye movements will be scored, but caloric testing is not done. If the patient has a conjugate deviation of the eyes that can be overcome by voluntary or reflexive activity, the score will be 1. If a patient has an isolated peripheral nerve paresis (CN III, IV or VI), score a 1. Gaze is testable in all aphasic patients. Patients with ocular trauma, bandages, pre-existing blindness, or other disorder of visual acuity or fields should be tested with reflexive movements, and a choice made by the investigator. Establishing eye contact and then moving about the patient from side to side will occasionally clarify the presence of a partial gaze palsy.",
+      "options": [
+        {
+          "value": 0,
+          "description": "Normal"
+        },
+        {
+          "value": 1,
+          "description": "Partial gaze palsy; gaze is abnormal in one or both eyes, but forced deviation or total gaze paresis is not present."
+        },
+        {
+          "value": 2,
+          "description": "Forced deviation, or total gaze paresis not overcome by the oculocephalic maneuver."
+        }
+      ]
+    }, {
+      "title": "3: Visual",
+      "description": "Visual fields (upper and lower quadrants) are tested by confrontation, using finger counting or visual threat, as appropriate. Patients may be encouraged, but if they look at the side of the moving fingers appropriately, this can be scored as normal. If there is unilateral blindness or enucleation, visual fields in the remaining eye are scored. Score 1 only if a clear-cut asymmetry, including quadrantanopia, is found. If patient is blind from any cause, score 3. Double simultaneous stimulation is performed at this point. If there is extinction, patient receives a 1, and the results are used to respond to item 11.",
+      "options": [
+        {
+          "value": 0,
+          "description": "No visual loss"
+        },
+        {
+          "value": 1,
+          "description": "Partial hemianopia."
+        },
+        {
+          "value": 2,
+          "description": "Complete hemianopia."
+        },
+        {
+          "value": 3,
+          "description": "Bilateral hemianopia (blind including cortical blindness)."
+        }
+      ]
+    }, {
+      "title": "4: Facial Palsy",
+      "description": "Ask – or use pantomime to encourage – the patient to show teeth or raise eyebrows and close eyes. Score symmetry of grimace in response to noxious stimuli in the poorly responsive or non-comprehending patient. If facial trauma/bandages, orotracheal tube, tape or other physical barriers obscure the face, these should be removed to the extent possible.",
+      "options": [
+        {
+          "value": 0,
+          "description": "Normal (symmetrical movements)."
+        },
+        {
+          "value": 1,
+          "description": "Minor paralysis (flattened nasolabial fold, asymmetry on smiling)."
+        },
+        {
+          "value": 2,
+          "description": "Partial paralysis (total or near-total paralysis of lower face)."
+        },
+        {
+          "value": 3,
+          "description": " Complete paralysis of one or both sides (absence of facial movement in the upper and lower face). "
+        }
+      ]
+    }, {
+      "title": "5a:  Motor Arm, Right",
+      "description" : "The limb is placed in the appropriate position: extend the arms (palms down) 90 degrees (if sitting) or 45 degrees (if supine). Drift is scored if the arm falls before 10 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic arm. Only in the case of amputation or joint fusion at the shoulder, the examiner should record the score as untestable (UN), and clearly write the explanation for this choice.",
+      "options": [
+        {
+          "value": 0,
+          "description": "No drift; limb holds 90 (or 45) degrees for full 10 seconds."
+        },
+        {
+          "value": 1,
+          "description": " Drift; limb holds 90 (or 45) degrees, but drifts down before full 10 seconds; does not hit bed or other support. "
+        },
+        {
+          "value": 2,
+          "description": "Some effort against gravity; limb cannot get to or maintain (if cued) 90 (or 45) degrees, drifts down to bed, but has some effort against gravity."
+        },
+        {
+          "value": 3,
+          "description": "No effort against gravity; limb falls"
+        },
+        {
+          "value": 4,
+          "description": "No movement."
+        }
+      ]
+    }, {
+      "title": "5a:  Motor Arm, Left",
+      "description" : "The limb is placed in the appropriate position: extend the arms (palms down) 90 degrees (if sitting) or 45 degrees (if supine). Drift is scored if the arm falls before 10 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic arm. Only in the case of amputation or joint fusion at the shoulder, the examiner should record the score as untestable (UN), and clearly write the explanation for this choice.",
+      "options": [
+        {
+          "value": 0,
+          "description": "No drift; limb holds 90 (or 45) degrees for full 10 seconds."
+        },
+        {
+          "value": 1,
+          "description": "Drift; limb holds 90 (or 45) degrees, but drifts down before full 10 seconds; does not hit bed or other support. "
+        },
+        {
+          "value": 2,
+          "description": "Some effort against gravity; limb cannot get to or maintain (if cued) 90 (or 45) degrees, drifts down to bed, but has some effort against gravity."
+        },
+        {
+          "value": 3,
+          "description": "No effort against gravity; limb falls"
+        },
+        {
+          "value": 4,
+          "description": "No movement."
+        }
+      ]
+    }, {
+      "title": "6a:  Motor Leg, Left",
+      "description" : "The limb is placed in the appropriate position: hold the leg at 30 degrees (always tested supine). Drift is scored if the leg falls before 5 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic leg. Only in the case of amputation or joint fusion at the hip, the examiner should record the score as untestable (UN), and clearly write the explanation for this choice.",
+      "options": [
+        {
+          "value": 0,
+          "description": "No drift; leg holds 30-degree position for full 5 seconds."
+        },
+        {
+          "value": 1,
+          "description": "Drift;  leg falls by the end of the 5-second period but does not hit bed. "
+        },
+        {
+          "value": 2,
+          "description": "Some effort against gravity; leg falls to bed by 5 seconds, but has some effort against gravity"
+        },
+        {
+          "value": 3,
+          "description": "No effort. leg falls to bed immediately."
+        },
+        {
+          "value": 4,
+          "description": "No movement."
+        }
+      ]
+    }, {
+      "title": "6b:  Motor Leg, Right",
+      "description" : "The limb is placed in the appropriate position: hold the leg at 30 degrees (always tested supine). Drift is scored if the leg falls before 5 seconds. The aphasic patient is encouraged using urgency in the voice and pantomime, but not noxious stimulation. Each limb is tested in turn, beginning with the non-paretic leg. Only in the case of amputation or joint fusion at the hip, the examiner should record the score as untestable (UN), and clearly write the explanation for this choice.",
+      "options": [
+        {
+          "value": 0,
+          "description": "No drift; leg holds 30-degree position for full 5 seconds."
+        },
+        {
+          "value": 1,
+          "description": "Drift;  leg falls by the end of the 5-second period but does not hit bed. "
+        },
+        {
+          "value": 2,
+          "description": "Some effort against gravity; leg falls to bed by 5 seconds, but has some effort against gravity"
+        },
+        {
+          "value": 3,
+          "description": "No effort. leg falls to bed immediately."
+        },
+        {
+          "value": 4,
+          "description": "No movement."
+        }
+      ]
+    }, {
+      "title": "7:  Limb Ataxia",
+      "description" : "This item is aimed at finding evidence of a unilateral cerebellar lesion. Test with eyes open. In case of visual defect, ensure testing is done in intact visual field. The finger-nose-finger and heel-shin tests are performed on both sides, and ataxia is scored only if present out of proportion to weakness. Ataxia is absent in the patient who cannot understand or is paralyzed. Only in the case of amputation or joint fusion, the examiner should record the score as untestable (UN), and clearly write the explanation for this choice. In case of blindness, test by having the patient touch nose from extended arm position.",
+      "options": [
+        {
+          "value": 0,
+          "description": "Absent."
+        },
+        {
+          "value": 1,
+          "description": "Present in one limb."
+        },
+        {
+          "value": 2,
+          "description": "Present in two limbs."
+        }
+      ]
+    }, {
+      "title": "8:  Sensory",
+      "description" : "Sensation or grimace to pinprick when tested, or withdrawal from noxious stimulus in the obtunded or aphasic patient. Only sensory loss attributed to stroke is scored as abnormal and the examiner should test as many body areas (arms [not hands], legs, trunk, face) as needed to accurately check for hemisensory loss. A score of 2, “severe or total sensory loss,” should only be given when a severe or total loss of sensation can be clearly demonstrated. Stuporous and aphasic patients will, therefore, probably score 1 or 0. The patient with brainstem stroke who has bilateral loss of sensation is scored 2. If the patient does not respond and is quadriplegic, score 2. Patients in a coma (item 1a=3) are automatically given a 2 on this item.",
+      "options": [
+        {
+          "value": 0,
+          "description": "Normal; no sensory loss."
+        },
+        {
+          "value": 1,
+          "description": "Mild-to-moderate sensory loss; patient feels pinprick is less sharp or is dull on the affected side; or there is a loss of superficial pain with pinprick, but patient is aware of being touched."
+        },
+        {
+          "value": 2,
+          "description": "Severe to total sensory loss; patient is not aware of being touched in the face, arm, and leg. "
+        }
+      ]
+    }, {
+      "title": "9:  Best Language",
+      "description" : "A great deal of information about comprehension will be obtained during the preceding sections of the examination. For this scale item, the patient is asked to describe what is happening in the attached picture, to name the items on the attached naming sheet and to read from the attached list of sentences. Comprehension is judged from responses here, as well as to all of the commands in the preceding general neurological exam. If visual loss interferes with the tests, ask the patient to identify objects placed in the hand, repeat, and produce speech. The intubated patient should be asked to write. The patient in a coma (item 1a=3) will automatically score 3 on this item. The examiner must choose a score for the patient with stupor or limited cooperation, but a score of 3 should be used only if the patient is mute and follows no one-step commands.",
+      "options": [
+        {
+          "value": 0,
+          "description": "No aphasia; normal."
+        },
+        {
+          "value": 1,
+          "description": "Mild-to-moderate aphasia; some obvious loss of fluency or facility of comprehension, without significant limitation on ideas expressed or form of expression. Reduction of speech and/or comprehension, however, makes conversation about provided materials difficult or impossible. For example, in conversation about provided materials, examiner can identify picture or naming card content from patient’s response"
+        },
+        {
+          "value": 2,
+          "description": "Severe aphasia; all communication is through fragmentary expression; great need for inference, questioning, and guessing by the listener. Range of information that can be exchanged is limited; listener carries burden of communication. Examiner cannot identify materials provided from patient response. "
+        },
+        {
+          "value": 3,
+          "description": "Mute, global aphasia; no usable speech or auditory comprehension."
+        }
+      ]
+    }, {
+      "title": "10:  Dysarthria",
+      "description" : "Dysarthria: If patient is thought to be normal, an adequate sample of speech must be obtained by asking patient to read or repeat words from the attached list. If the patient has severe aphasia, the clarity of articulation of spontaneous speech can be rated. Only if the patient is intubated or has other physical barriers to producing speech, the examiner should record the score as untestable (UN), and clearly write an explanation for this choice. Do not tell the patient why he or she is being tested." ,
+      "options": [
+        {
+          "value": 0,
+          "description": "Normal."
+        },
+        {
+          "value": 1,
+          "description": "Mild-to-moderate dysarthria; patient slurs at least some words and, at worst, can be understood with some difficulty"
+        },
+        {
+          "value": 2,
+          "description": "Severe dysarthria; patient's speech is so slurred as to be unintelligible in the absence of or out of proportion to any dysphasia, or is mute/anarthric. "
+        }
+      ]
+    }, {
+      "title": "11:  Extinction (Neglect)",
+      "description" : "Sufficient information to identify neglect may be obtained during the prior testing. If the patient has a severe visual loss preventing visual double simultaneous stimulation, and the cutaneous stimuli are normal, the score is normal. If the patient has aphasia but does appear to attend to both sides, the score is normal. The presence of visual spatial neglect or anosagnosia may also be taken as evidence of abnormality. Since the abnormality is scored only if present, the item is never untestable." ,
+      "options": [
+        {
+          "value": 0,
+          "description": "No abnormality."
+        },
+        {
+          "value": 1,
+          "description": "Visual, tactile, auditory, spatial, or personal inattention or extinction to bilateral simultaneous stimulation in one of the sensory modalities."
+        },
+        {
+          "value": 2,
+          "description": "Profound hemi-inattention or extinction to more than one modality; does not recognize own hand or orients to only one side of space."
+        }
+      ]
+    }
+
+  ]
+},
+  {
+    "id": 2,
+    "name": "HEART Score",
+    "friendly": "heart-score",
+    "description": "The HEART Score is a tool used by physicians to determine the future risk of adverse cardiac events based on five risk factors: History, EKG Findings, Age, Risk Factors and Troponin.",
+    "type": "Calculator",
+    "field": "Cardiology",
+    "condition": "ACS",
+    "references": [
+      "http://annals.org/aim/article-abstract/2622872/effect-using-heart-score-patients-chest-pain-emergency-department-stepped",
+      "https://dspace.library.uu.nl/handle/1874/242266"
+    ],
+    "questions": [
+      {
+        "title": "History",
+        "description": "How Suspicious is the history?",
+        "options": [
+          {
+            "value": 0,
+            "description": "Slightly Suspicious"
+          },
+          {
+            "value": 1,
+            "description": "Moderately Suspicous"
+          },
+          {
+            "value": 2,
+            "description": "Highly Suspcious"
+          }
+        ]
+      } ,
+      {
+        "title": "EKG Findings",
+        "description": "Do EKG findings suggest ischemia?",
+        "options": [
+          {
+            "value": 0,
+            "description": "Normal"
+          },
+          {
+            "value": 1,
+            "description": "Non-specific repolarization disturbance / LBBB / PM"
+          },
+          {
+            "value": 2,
+            "description": "Significant ST deviation"
+          }
+        ]
+      } ,
+      {
+        "title": "Age",
+        "description": "Age increases risk",
+        "options": [
+          {
+            "value": 0,
+            "description": "<= 45 years"
+          },
+          {
+            "value": 1,
+            "description": "45-65 years"
+          },
+          {
+            "value": 2,
+            "description": ">= 65 years"
+          }
+        ]
+      } ,
+      {
+        "title": "Risk Factors",
+        "description": "Hypercholesterolemia, Hypertension, Diabetis Melitis, Cigarette Smoking, Positivec Family History, Obesity(BMI>30)",
+        "options": [
+          {
+            "value": 0,
+            "description": "No Risk Factors Known"
+          },
+          {
+            "value": 1,
+            "description": "1 or 2 Risk Factors"
+          },
+          {
+            "value": 2,
+            "description": ">=3 or history of atherosclerotic disease"
+          }
+        ]
+      },
+      {
+        "title": "Troponin",
+        "description": "Cardiac Enzyme Leak",
+        "options": [
+          {
+            "value": 0,
+            "description": "<= normal limit"
+          },
+          {
+            "value": 1,
+            "description": "1-3x normal limit"
+          },
+          {
+            "value": 2,
+            "description": ">= 3 times normal limit"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "TPA Contraindications",
+    "friendly": "tpa-contraindications",
+    "description": "Most of the contraindications to the administration of intravenous (IV) recombinant tissue plasminogen activator (rtPA) originated as exclusion criteria in major stroke trials. These were derived from expert consensus for the National Institute of Neurological Disorders and Stroke (NINDS) trial. ",
+    "type": "Reference",
+    "field": "Neurology",
+    "condition": "Stroke",
+    "references": [
+      "http://stroke.ahajournals.org/content/early/2015/12/22/STR.0000000000000086"
+    ],
+    "pagebody":"<div><h1>TPA Indications</h1><p>Inclusion and Exclusion Characteristics of Patients With Ischemic Stroke Who Could Be Treated With Intravenous rtPA Within 3 Hours From Symptom Onset</p><h3>Inclusion criteria</h3><ul><li>Diagnosis of ischemic stroke causing measurable neurological deficit</li><li>Onset of symptoms &lt;3 h before treatment begins</li><li>Age &ge;18 y</li></ul><h3>Exclusion criteria</h3><ul><li>Significant head trauma or prior stroke in the previous 3 mo</li><li>Symptoms suggest SAH</li><li>Arterial puncture at noncompressible site in previous 7 d</li><li>History of previous intracranial hemorrhage</li><li>Intracranial neoplasm, AVM, or aneurysm Recent intracranial or intraspinal surgery</li><li>Elevated blood pressure (systolic &gt;185 mmHg or diastolic &gt;110 mmHg)</li><li>Active internal bleeding</li><li>Acute bleeding diathesis, including but not limited to<ul><li>Platelet count &lt;100 000/mm3</li><li>Heparin received within 48 h resulting in abnormally elevated aPTT above the upper limit of normal</li><li>Current use of anticoagulant with INR &gt;1.7 or PT &gt;15 s</li><li>Current use of direct thrombin inhibitors or direct factor Xa inhibitors with elevated sensitive laboratory tests (eg, aPTT, INR, platelet count, ECT, TT, or appropriate factor Xa activity assays)</li></ul></li><li>Blood glucose concentration &lt;50 mg/dL (2.7 mmol/L)</li><li>CT demonstrates multilobar infarction (hypodensity &gt;1/3 cerebral hemisphere)</li></ul><h3>Relative exclusion criteria</h3><p>Recent experience suggests that under some circumstances, with careful consideration and weighting of risk to benefit, patients may receive fibrinolytic therapy despite &ge;1 relative contraindications. Consider risk to benefit of intravenous rtPA administration carefully if any of these relative contraindications is present</p><ul><li>Only minor or rapidly improving stroke symptoms (clearing spontaneously)</li><li>Pregnancy Seizure at onset with postictal residual neurological impairments</li><li>Major surgery or serious trauma within previous 14 d</li><li>Recent gastrointestinal or urinary tract hemorrhage (within previous 21 d)</li><li>Recent acute myocardial infarction (within previous 3 mo)</li></ul></div>"
+  }
+]

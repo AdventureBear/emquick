@@ -1,0 +1,28 @@
+.component-resourcecontrol {
+    /*background-color: #fdefde;*/
+    /*color: #321321;*/
+    display: flex;
+    justify-content: center;
+}
+
+.component-resourcecontrol button {
+    border: 1px solid #0b0e21;
+    border-radius: 5px;
+    background-color: #ACC5A7;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 5px;
+    padding: 14px 50px;
+    text-transform: uppercase;
+    transition: color .3s ease, background-color .3s ease;
+}
+
+button.disabled {
+    opacity: 0.4;
+}
+
+button:hover {
+    background-color: #fff;
+    color: #0b0e21;
+}
