@@ -4,7 +4,7 @@
 import React, {Component} from 'react'
 import Article from './Article'
 import { Container, Header } from 'semantic-ui-react'
-import resources from './data/resources.json'
+import resources from '../data/resources.json'
 
 
 class FindArticle extends Component {

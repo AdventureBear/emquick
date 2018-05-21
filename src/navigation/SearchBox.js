@@ -1,27 +1,22 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types' //ES6
-
+import {Input, Button, Form} from 'semantic-ui-react'
 
 import './SearchBox.css'
 
 class SearchBox extends Component {
-    // constructor(props){
-    //     super(props)
-    //     this.state = {
-    //
-    //     }
-    // }
 
     render(){
         return (
-            <form className='component-searchbox'>
-                <input
-                  placeholder="Enter Search..."
+            <Form className='component-searchbox'>
+                <Input
+                  placeholder="Enter Topic..."
                   type="text"
                   name="search-text"
+                  icon='search'
                   />
-                <button>Search</button>
-            </form>
+                <Button>Search</Button>
+            </Form>
         )
     }
 }

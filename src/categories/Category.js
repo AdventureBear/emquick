@@ -2,7 +2,7 @@
  * Created by suzanne on 5/20/18.
  */
 import React from 'react'
-import resources from './data/resources.json'
+import resources from '../data/resources.json'
 
 
 import {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReferencePage from './ReferencePage'
+import ReferencePage from '../articles/ReferencePage'
 import ResourceDescription from './ResourceDescription'
 import ResourceBody from './ResourceBody'
 import ResourceControl from './ResourceControl'

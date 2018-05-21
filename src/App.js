@@ -4,12 +4,12 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
 import resources from './data/resources.json'
-import FindArticle from './FindArticle'
-import Navbar from './Navbar'
-import Home from './Home'
-import Categories from './Categories'
-import Topics from './Topics'
-import About from './About'
+import FindArticle from './articles/FindArticle'
+import Navbar from './navigation/Navbar'
+import Home from './pages/Home'
+import Categories from './categories/Categories'
+import Topics from './topics/Topics'
+import About from './pages/About'
 // import Article from './Article'
 
 import {

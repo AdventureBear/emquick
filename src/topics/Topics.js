@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import Topic from './Topic'
-import topics from './data/resources.json'
+import topics from '../data/resources.json'
 import { Container, Header } from 'semantic-ui-react'
 import {
   Route,

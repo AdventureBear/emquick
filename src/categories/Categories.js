@@ -5,8 +5,8 @@
 import React from 'react'
 import Category from './Category'
 import { Container, Header } from 'semantic-ui-react'
-import categories from './data/categories.json'
-import resources from './data/resources.json'
+import categories from '../data/categories.json'
+import resources from '../data/resources.json'
 import {
   Route,
   Link,

@@ -2,8 +2,8 @@
  * Created by suzanne on 5/19/18.
  */
 import React from 'react'
-import Article from './Article'
-import resources from './data/resources.json'
+import Article from '../articles/Article'
+import resources from '../data/resources.json'
 import { Container } from 'semantic-ui-react'
 
 const Topic =({match})=> {

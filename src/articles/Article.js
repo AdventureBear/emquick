@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Resource from './Resource'
+import Resource from '../calculators/Resource'
 import PropTypes from 'prop-types' //ES6
 import './Article.css';
 import { Container } from 'semantic-ui-react'
