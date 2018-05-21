@@ -6,72 +6,7 @@ import ResourceControl from './ResourceControl'
 import ResourceResult from './ResourceResult'
 import PropTypes from 'prop-types' //ES6
 
-
 import './Resource.css'
-
-// let resource = {
-//   name: "NIH Stroke Scale",
-//   type: "Calculator",
-//   field: "Neurology",
-//   condition: "Stroke",
-//   questions: [{
-//     title: "1A: Level of Consciousness",
-//     options: [
-//       {
-//         value: 0,
-//         description: "Alert; keenly responsive."
-//       },
-//       {
-//         value: 1,
-//         description: "Not alert; but arousable by minor stimulation to obey, answer, or respond."
-//       },
-//       {
-//         value: 2,
-//         description: "Not alert; requires repeated stimulation to attend, or is obtunded and requires strong or painful stimulation to make movements (not stereotyped)."
-//       },
-//       {
-//         value: 3,
-//         description: "Responds only with reflex motor or autonomic effects, or totally unresponsive, flaccid, and areflexic."
-//       }
-//     ]
-//   },
-//     {
-//       title: "1B: LOC Questions",
-//       options: [
-//         {
-//           value: 0,
-//           description: "Answers both questions correctly."
-//         },
-//         {
-//           value: 1,
-//           description: "Answers one question correctly."
-//         },
-//         {
-//           value: 2,
-//           description: "Answers neither question correctly."
-//         }
-//       ]
-//     },
-//     {
-//       title: "1C: LOC Commands",
-//       options: [
-//         {
-//           value: 0,
-//           description: "Performs both tasks correctly."
-//         },
-//         {
-//           value: 1,
-//           description: "Performs one task correctly."
-//         },
-//         {
-//           value: 2,
-//           description: "Performs neither task correctly."
-//         }
-//       ]
-//     }
-//
-//   ]
-// }
 
 class Resource extends Component {
   constructor(props){

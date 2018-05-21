@@ -3,11 +3,9 @@
  */
 import React from 'react'
 import resources from './data/resources.json'
-import Article from './Article'
 
 
 import {
-  Route,
   Link,
 } from 'react-router-dom'
 
@@ -19,13 +17,13 @@ const Category = ({match}) => {
 
   const articleList = articles.map((article, i) => {
       return <li key={i}>
-        <Link to={`../topics/${article.friendly}`}>{article.name}</Link>
+        <Link to={`../${article.friendly}`}>{article.name}</Link>
       </li>
     }
  )
   return (
     <div>
-      <h2>{articleList.length} Articles</h2>
+      <h2>{articleList.length}Articles</h2>
       <ul>
         {articleList}
       </ul>

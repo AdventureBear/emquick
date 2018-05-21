@@ -3,11 +3,14 @@
  */
 import React from 'react'
 import { Container } from 'semantic-ui-react'
+import resources from './data/resources.json'
+import FindArticle from './FindArticle'
 import Navbar from './Navbar'
 import Home from './Home'
 import Categories from './Categories'
 import Topics from './Topics'
 import About from './About'
+// import Article from './Article'
 
 import {
   Route,
@@ -23,6 +26,8 @@ const App =()=> {
         <Route path='/categories' component={Categories} />
         <Route path='/topics' component={Topics} />
         <Route path='/about' component={About} />
+        {console.log(resources)}
+        <Route path='/:articleName' resources={resources} component={FindArticle} />
       </Switch>
     </Container>
   )
