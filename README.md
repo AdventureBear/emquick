@@ -1,4 +1,4 @@
-#EM Quick
+## EM Quick
 This is a resource to quickly look up reference information for emergnecy mediciner students, residents, attendings, PA-C & NPs while working in the ER. 
 
 The developers and contributors make no guarantees and take no responsibility for the accuracy of this information.  References are provided for every resource, but there is always the possibiliyt of typos or database errors. 
@@ -6,7 +6,7 @@ The developers and contributors make no guarantees and take no responsibility fo
 THis is for reference only. The practitioner is responsible for making sure the information they use to care for patients is accurate and uptodate. 
 
 
-#Getting started
+## Getting started
 
     npm install
     npm run server //runs node server on port 3001 (or PORT set in .env)
