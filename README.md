@@ -1,4 +1,3 @@
-
 #EM Quick
 This is a resource to quickly look up reference information for emergnecy mediciner students, residents, attendings, PA-C & NPs while working in the ER. 
 
