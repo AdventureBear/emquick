@@ -10,6 +10,7 @@ import ReferencePage from './ReferencePage'
 class Article extends Component {
 
   render() {
+    console.log(this.props.resource.name)
     const page = (this.props.resource.type==="Reference") ?
       <ReferencePage resource={this.props.resource}/>
       :

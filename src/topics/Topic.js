@@ -1,22 +1,49 @@
 /**
  * Created by suzanne on 5/19/18.
  */
-import React from 'react'
+import React, { Component } from 'react'
+import * as apiCalls from '../api'
 import Article from '../articles/Article'
-import resources from '../data/resources.json'
 import { Container } from 'semantic-ui-react'
+import ReferencePage from '../articles/ReferencePage'
+import Resource from '../calculators/Resource'
 
-const Topic =({match})=> {
-  console.log(match.params.friendlyId)
 
-  const resource = resources.find(({ friendly }) => friendly === match.params.friendlyId)
+class Topic extends Component  {
+  constructor (props){
+    super(props)
+    this.state = {
+      resource: {}
+    }
+  }
+  componentWillMount () {
+    this.loadResource()
+    console.log("Hello from will mount")
+  }
 
-    console.log(resource)
-  return (
-    <Container text style={{ marginTop: '7em' }}>
-      <Article resource={resource} />
-    </Container>
-  )
+  async loadResource () {
+
+    let resource = await apiCalls.getOneResource(this.props.match.params.id)
+    console.log(resource.name)
+    this.setState({resource})
+
+  }
+
+
+  render () {
+
+    console.log(this.state.resource.type)
+    const page = (this.state.resource.type==="Reference") ?
+      <ReferencePage resource={this.state.resource}/>
+      :
+      <Resource resource={this.state.resource} />
+
+    return (
+      <Container text style={{marginTop: '7em'}}>
+        {page}
+      </Container>
+    )
+  }
 }
 
 export default Topic

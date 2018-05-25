@@ -27,7 +27,7 @@ class Navbar extends Component {
           </Menu.Item>
 
           <Menu.Item position="right" href="/" >Login</Menu.Item>
-          <Menu.Item position="" href="/" >Signup</Menu.Item>
+          <Menu.Item href="/" >Signup</Menu.Item>
         </Container>
 
       </Menu>

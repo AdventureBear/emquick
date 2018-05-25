@@ -26,7 +26,6 @@ const App =()=> {
         <Route path='/categories' component={Categories} />
         <Route path='/topics' component={Topics} />
         <Route path='/about' component={About} />
-        {console.log(resources)}
         <Route path='/:articleName' resources={resources} component={FindArticle} />
       </Switch>
     </Container>

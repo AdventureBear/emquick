@@ -30,7 +30,7 @@ class FindArticle extends Component {
 
     return (
       <Container text style={{ marginTop: '7em' }}>
-        <Article resource={article} />
+        <Article resource={body} />
       </Container>
     )
 

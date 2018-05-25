@@ -12,5 +12,15 @@ router.get('/', function(req,res){
   })
 })
 
+router.get('/:id', function(req,res){
+  Resource.findById( req.params.id, function (err, resources){
+    if (err) console.log(err)
+    res.json({resources})
+  })
+})
+
+
+
+
 
 module.exports =router

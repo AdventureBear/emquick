@@ -2,12 +2,14 @@
  * Created by suzanne on 5/21/18.
  */
 
-const passport = require('passport'),
+const bodyParser = require('body-parser'),
+      passport = require('passport'),
       mongoose = require('mongoose'),
       express = require('express'),
       dotenv = require('dotenv'),
       morgan = require('morgan'),
       seedDB = require('./seed'),
+      cors = require('cors'),
       app = express()
 
 const Resource  = require('./models/resource'),
@@ -18,7 +20,10 @@ const resourceRoutes = require('./routes/resources')
 
 //Setup app
 dotenv.config()
-//app.use(express.static('public'))
+app.use(cors())
+app.use(express.static('public'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 
 
@@ -32,7 +37,7 @@ mongoose.connect(mongo_url)
 //ROUTES
 app.use('/api/resources/', resourceRoutes)
 
-//seedDB()
+seedDB()
 
 
 
