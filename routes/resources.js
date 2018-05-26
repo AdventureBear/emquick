@@ -13,9 +13,11 @@ router.get('/', function(req,res){
 })
 
 router.get('/:id', function(req,res){
-  Resource.findById( req.params.id, function (err, resources){
+  console.log("Im here in the backend API getting" + req.params.id)
+  Resource.findById( req.params.id, function (err, resource){
     if (err) console.log(err)
-    res.json({resources})
+    console.log("returning" + resource.name )
+    res.json({resource})
   })
 })
 

@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react'
 import * as apiCalls from '../api'
-import Article from '../articles/Article'
+// import Article from '../articles/Article'
 import { Container } from 'semantic-ui-react'
 import ReferencePage from '../articles/ReferencePage'
 import Resource from '../calculators/Resource'
@@ -19,12 +19,12 @@ class Topic extends Component  {
   componentWillMount () {
     this.loadResource()
     console.log("Hello from will mount")
+    console.log(this.state.resource.name)
   }
 
   async loadResource () {
-
     let resource = await apiCalls.getOneResource(this.props.match.params.id)
-    console.log(resource.name)
+    console.log("Loading resoruce: " + resource.name)
     this.setState({resource})
 
   }

@@ -29,15 +29,16 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 //SERVER
 const port = process.env.PORT || 8080
-const mongo_url = process.env.MONGO_URI
-mongoose.connect(mongo_url)
+//const mongo_url = process.env.MONGO_URI
+const mlab_url = 'mongodb://emquickadmin:quickfacts123@ds135750.mlab.com:35750/emquick'
+mongoose.connect(mlab_url)
 
 
 
 //ROUTES
 app.use('/api/resources/', resourceRoutes)
 
-seedDB()
+//seedDB()
 
 
 
