@@ -36,6 +36,14 @@ class Topics extends Component  {
 
 
   render () {
+    const ThisTopic = (props) => {
+      return (
+        <Topic resources={this.state.resources}
+          {...props}
+        />
+      )
+    }
+
     const resources = this.state.resources
     const resourceListing = resources.map(({name, friendly, _id}) => (
       <li key={_id}>
@@ -50,7 +58,7 @@ class Topics extends Component  {
           {resourceListing}
         </ul>
 
-          <Route path={`${this.props.match.path}/:id`}  component={Topic}/>
+          <Route path={`${this.props.match.path}/:id`}  render={ThisTopic} />
 
       </Container>
     )

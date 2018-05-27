@@ -2,6 +2,7 @@
   "name": "emquick",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://locahost:3001",
   "dependencies": {
     "ajv": "^6.5.0",
     "body-parser": "^1.18.3",

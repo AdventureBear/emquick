@@ -10,36 +10,44 @@ import Resource from '../calculators/Resource'
 
 
 class Topic extends Component  {
-  constructor (props){
-    super(props)
-    this.state = {
-      resource: {}
-    }
+
+  filterResources (id) {
+    console.log(id)
+    console.log(this.props.resources[0]['_id'])
+
+    return this.props.resources.filter(_id => _id===id)
   }
+
   componentWillMount () {
-    this.loadResource()
-    console.log("Hello from will mount")
-    console.log(this.state.resource.name)
+
   }
 
-  async loadResource () {
-    let resource = await apiCalls.getOneResource(this.props.match.params.id)
-    console.log("Loading resoruce: " + resource.name)
-    this.setState({resource})
-
+  componentDidMount() {
+    // this.loadResource(this.props.match.params.id)
+    // const API_URL = 'http://localhost:3001/api/resources/' + this.props.match.params.id
+    // fetch(API_URL)
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ resources: data.resources }));
   }
 
 
   render () {
 
-    console.log(this.state.resource.type)
-    const page = (this.state.resource.type==="Reference") ?
-      <ReferencePage resource={this.state.resource}/>
+    const id = this.props.match.params.id
+    const resource = this.props.resources.find(({ _id }) => _id === id)
+
+
+    console.log(resource.type)
+
+    const page = (resource.type==="Reference") ?
+      <ReferencePage resource={resource}/>
       :
-      <Resource resource={this.state.resource} />
+      <Resource resource={resource} />
 
     return (
       <Container text style={{marginTop: '7em'}}>
+        <h1>{resource.name}</h1>
+
         {page}
       </Container>
     )
