@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReferencePage from '../articles/ReferencePage'
+// import ReferencePage from '../articles/ReferencePage'
 import ResourceDescription from './ResourceDescription'
 import ResourceBody from './ResourceBody'
 import ResourceControl from './ResourceControl'
@@ -67,14 +67,8 @@ class Resource extends Component {
   }
 
   render(){
-    const resourceType = this.props.resource.type
-    const page = (resourceType ==="Reference")  ?  (
-      <ReferencePage
-        name={this.props.resource.name}
-        body={this.props.resource.pagebody}
-      />
-
-    ) : (
+    // const resourceType = this.props.resource.type
+    const page = (
       <div className='component-resource'>
         <ResourceDescription
           name={this.props.resource.name}

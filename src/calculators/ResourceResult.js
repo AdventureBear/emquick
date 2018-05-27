@@ -5,16 +5,10 @@ import PropTypes from 'prop-types' //ES6
 import './ResourceResult.css'
 
 class ResourceResult extends Component {
-    constructor(props){
-        super(props) 
-        this.state = {
-        
-        }
-    }
 
     render(){
         const references = this.props.references.map((ref, i) => {
-            return (<li key={i}>{ref}</li>)
+            return (<li key={i}>{ref.name}</li>)
         })
         return (
             <div className='component-resourceresult'>

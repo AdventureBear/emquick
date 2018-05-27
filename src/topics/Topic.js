@@ -2,7 +2,7 @@
  * Created by suzanne on 5/19/18.
  */
 import React, { Component } from 'react'
-import * as apiCalls from '../api'
+// import * as apiCalls from '../api'
 // import Article from '../articles/Article'
 import { Container } from 'semantic-ui-react'
 import ReferencePage from '../articles/ReferencePage'
