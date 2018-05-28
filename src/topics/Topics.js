@@ -13,9 +13,6 @@ import {
 import * as apiCalls from '../api'
 
 
-
-
-
 class Topics extends Component  {
   constructor (props) {
     super(props)
@@ -47,7 +44,7 @@ class Topics extends Component  {
     const resources = this.state.resources
     const resourceListing = resources.map(({name, friendly, _id}) => (
       <li key={_id}>
-        <Link to={`${this.props.match.url}/${_id}`}>{name}</Link>
+        <Link to={`${this.props.match.url}/${friendly}`}>{name}</Link>
       </li>
     ))
 
@@ -58,7 +55,7 @@ class Topics extends Component  {
           {resourceListing}
         </ul>
 
-          <Route path={`${this.props.match.path}/:id`}  render={ThisTopic} />
+          <Route path={`${this.props.match.path}/:friendly`}  render={ThisTopic} />
 
       </Container>
     )

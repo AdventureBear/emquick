@@ -5,13 +5,6 @@ import PropTypes from 'prop-types' //ES6
 import './ResourceDescription.css'
 
 class ResourceDescription extends Component {
-    constructor(props){
-        super(props) 
-        this.state = {
-        
-        }
-    }
-
     render(){
         return (
             <div className='component-resourcedescription'>

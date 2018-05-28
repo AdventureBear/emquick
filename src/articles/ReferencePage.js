@@ -5,13 +5,6 @@ import React, { Component } from 'react'
 import './ReferencePage.css'
 
 class ReferencePage extends Component {
-    constructor(props){
-        super(props) 
-        this.state = {
-        
-        }
-    }
-
     render(){
 
         return (
@@ -22,8 +15,6 @@ class ReferencePage extends Component {
     }
 }
 
-// ReferencePage.propTypes = {
-//     resource: PropTypes.Types.object
-// };
+
 
 export default ReferencePage

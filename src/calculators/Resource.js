@@ -17,7 +17,7 @@ class Resource extends Component {
       scores: arr,
       question: 0
     }
-    console.log("Scores length: ", this.state.scores.length)
+    //console.log("Scores length: ", this.state.scores.length)
     this.handleNext = this.handleNext.bind(this)
     this.handlePrev = this.handlePrev.bind(this)
     this.handleReset = this.handleReset.bind(this)

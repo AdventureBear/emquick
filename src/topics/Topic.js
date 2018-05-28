@@ -10,34 +10,14 @@ import Resource from '../calculators/Resource'
 
 
 class Topic extends Component  {
-
-  filterResources (id) {
-    console.log(id)
-    console.log(this.props.resources[0]['_id'])
-
-    return this.props.resources.filter(_id => _id===id)
-  }
-
-  componentWillMount () {
-
-  }
-
-  componentDidMount() {
-    // this.loadResource(this.props.match.params.id)
-    // const API_URL = 'http://localhost:3001/api/resources/' + this.props.match.params.id
-    // fetch(API_URL)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ resources: data.resources }));
-  }
-
-
   render () {
-
-    const id = this.props.match.params.id
-    const resource = this.props.resources.find(({ _id }) => _id === id)
-
-
-    console.log(resource.type)
+    const val = this.props.match.params.friendly
+    console.log(val)
+    const resource = this.props.resources.find(({ friendly}) => friendly === val)
+    // const resource = this.props.resources.find(({ _id }) => _id === id)
+    if (resource === undefined) {
+      console.log("No match found for id: " + val)
+    }
 
     const page = (resource.type==="Reference") ?
       <ReferencePage resource={resource}/>
@@ -45,9 +25,7 @@ class Topic extends Component  {
       <Resource resource={resource} />
 
     return (
-      <Container text style={{marginTop: '7em'}}>
-        <h1>{resource.name}</h1>
-
+      <Container>
         {page}
       </Container>
     )

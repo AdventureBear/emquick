@@ -8,17 +8,20 @@ class ResourceResult extends Component {
 
     render(){
         const references = this.props.references.map((ref, i) => {
-            return (<li key={i}>{ref.name}</li>)
+          return (<li key={i}><a href={ref.name}>{ref.name}</a></li>)
         })
         return (
-            <div className='component-resourceresult'>
-                <h2>Result</h2>
+            <div className="Container" >
+              <div className='component-resourceresult'>
+
                 <h3>Score: {this.props.score}</h3>
-                <p>Interpretation: </p>
-                 <p className="small">References:</p>
+              </div>
+              <div>
+                 <h3>References:</h3>
                     <ul>
                       {references}
                     </ul>
+              </div>
 
             </div>
         )

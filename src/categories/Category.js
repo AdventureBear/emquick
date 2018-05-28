@@ -17,7 +17,7 @@ const Category = ({match}) => {
 
   const articleList = articles.map((article, i) => {
       return <li key={i}>
-        <Link to={`../${article.friendly}`}>{article.name}</Link>
+        <Link to={`../topics/${article.friendly}`}>{article.name}</Link>
       </li>
     }
  )

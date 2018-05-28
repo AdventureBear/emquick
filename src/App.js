@@ -1,37 +1,69 @@
 /**
  * Created by suzanne on 5/19/18.
  */
-import React from 'react'
+import React, {Component} from 'react'
 import { Container } from 'semantic-ui-react'
-//import resources from './data/resources.json'
-// import FindArticle from './articles/FindArticle'
 import Navbar from './navigation/Navbar'
 import Home from './pages/Home'
 import Categories from './categories/Categories'
 import Topics from './topics/Topics'
-// import Topic from './topics/Topic'
+import Topic from './topics/Topic'
 import About from './pages/About'
-// import Article from './Article'
+import * as apiCalls from './api'
+
 
 import {
   Route,
   Switch
 } from 'react-router-dom'
+import FindArticle from './articles/FindArticle'
 
-const App =()=> {
-  return (
-    <Container >
-      <Navbar />
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/categories' component={Categories} />
-        <Route path='/about' component={About} />
-        {/*<Route path='/:articleName' resources={resources} component={FindArticle} />*/}
-        {/*<Route path='/topics/:id'  component={Topic} />*/}
-        <Route path='/topics' component={Topics} />
-      </Switch>
-    </Container>
-  )
+class App extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      resources: []
+    }
+  }
+
+  componentWillMount () {
+    this.loadResources()
+  }
+
+  async loadResources () {
+    let resources = await apiCalls.getResources()
+    this.setState(resources)
+  }
+
+  render () {
+    const FindTopic = (props) => {
+      return (
+        <Topic resources={this.state.resources}
+               {...props}
+        />
+      )
+    }
+
+    return (
+      <Container >
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/categories' component={Categories}/>
+          <Route path='/about'
+                 render={(props) => <About resources={this.state.resources} {...props} />}/>
+          <Route path='/topics'
+                 render={(props) => <Topics resources={this.state.resources} {...props} />}
+          >
+            {/*<Route path='/topics/:friendly'*/}
+                 {/*render={(props) => <Topic resources={this.state.resources} {...props} />}/>*/}
+          </Route>
+        </Switch>
+      </Container>
+    )
+  }
 }
+
 
 export default App
