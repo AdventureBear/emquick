@@ -19,7 +19,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-semantic-ui": "^0.2.0",
-    "semantic-ui-react": "^0.80.0"
+    "semantic-ui-react": "^0.80.0",
+    "slugify": "^1.3.0"
   },
   "scripts": {
     "client": "PORT=3000 react-scripts start",

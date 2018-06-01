@@ -16,7 +16,7 @@ class Navbar extends Component {
       <Menu fixed='top' inverted>
         <Container>
           <Menu.Item as='a' href="/" header>
-            EM Quickg
+            EM Quick
           </Menu.Item>
 
           <Menu.Item href = "/about" as='a'>About</Menu.Item>
@@ -25,8 +25,10 @@ class Navbar extends Component {
             <Icon name='heartbeat' />
             Topics
           </Menu.Item>
+          <Menu.Item href = "/new" as='a'>New</Menu.Item>
 
-          <Menu.Item position="right" href="/" >Login</Menu.Item>
+          <Menu.Item position="right"><SearchBox /></Menu.Item>
+          <Menu.Item  href="/" >Login</Menu.Item>
           <Menu.Item href="/" >Signup</Menu.Item>
         </Container>
 

@@ -10,12 +10,14 @@ class SearchBox extends Component {
         return (
             <Form className='component-searchbox'>
                 <Input
-                  placeholder="Enter Topic..."
+                  id="search"
+                  placeholder="Search Topics"
                   type="text"
                   name="search-text"
                   icon='search'
+                  autocomplete='off'
                   />
-                <Button>Search</Button>
+                {/*<Button>Search</Button>*/}
             </Form>
         )
     }
