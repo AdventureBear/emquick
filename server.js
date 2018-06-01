@@ -33,6 +33,9 @@ const port = process.env.PORT || 8080
 const mlab_url = 'mongodb://emquickadmin:quickfacts123@ds135750.mlab.com:35750/emquick'
 mongoose.connect(mlab_url)
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('build'));
+}
 
 
 //ROUTES
