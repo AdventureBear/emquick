@@ -37,6 +37,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('build'));
 }
 
+console.log(process.env.NODE_ENV)
+
 
 //ROUTES
 app.use('/api/resources/', resourceRoutes)
