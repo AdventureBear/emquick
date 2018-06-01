@@ -45,9 +45,9 @@ app.use('/api/resources/', resourceRoutes)
 
 
 
-app.get("/", function (req,res){
-  res.send("Hello from ROOT route")
-})
+// app.get("/", function (req,res){
+//   res.send("Hello from ROOT route")
+// })
 
 app.get("/api", function (req,res){
   res.json({api: "This is your api"})
