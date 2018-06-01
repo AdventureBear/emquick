@@ -33,11 +33,7 @@ const port = process.env.PORT || 8080
 const mlab_url = 'mongodb://emquickadmin:quickfacts123@ds135750.mlab.com:35750/emquick'
 mongoose.connect(mlab_url)
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('build'));
-}
 
-console.log(process.env.NODE_ENV)
 
 
 //ROUTES
@@ -48,7 +44,7 @@ app.use('/api/resources/', resourceRoutes)
 
 
 app.get("/", function (req,res){
-  res.send("Hello from ROOT route")
+  res.send("Hello from the server")
 })
 
 app.get("/api", function (req,res){
@@ -58,6 +54,8 @@ app.get("/api", function (req,res){
 
 const server = app.listen(port, function(req,res){
   console.log("EMQuick server started on port " + port + "...")
+  console.log(process.env.NODE_ENV)
+
 })
 
 
