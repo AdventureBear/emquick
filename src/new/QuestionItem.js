@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react'
 import OptionItem from './OptionItem'
-import {Item, Header, Accordion, Icon} from 'semantic-ui-react'
+import {Accordion, Icon, Button} from 'semantic-ui-react'
 
 
 
@@ -14,6 +14,8 @@ class QuestionItem extends Component {
     this.state = {
       isEditing: false
     }
+    this.toggleEdit = this.toggleEdit.bind(this)
+    this.handleSaveClick = this.toggleEdit.bind(this)
   }
 
   getOptions(questionNum) {
@@ -23,18 +25,28 @@ class QuestionItem extends Component {
         key={`option-${j}`}
       >
         <OptionItem
+          isEditing = {this.state.isEditing}
           key= {`${questionNum+1}-${j}`}
           questionNum = {questionNum}
           option={opt}
           optionNum={j} />
+
       </div>
     ))
     return options
   }
 
-  newOption(){
 
+  toggleEdit(){
+    console.log("Changing question items editing state to true")
+    this.setState({isEditing: true})
   }
+
+  handleSaveClick(){
+    console.log('Save Button Clicked, ' + this.props.question.name)
+    this.setState({isEditing: false})
+  }
+
 
   handleClick = (e, titleProps) =>{
     console.log("clicked title")
@@ -53,7 +65,6 @@ class QuestionItem extends Component {
   renderDisplay () {
     return(
       <div>
-        {console.log(this.props.activeIndex.activeIndex, this.props.QuestionNum)}
         <Accordion.Title
           active={this.props.activeIndex.activeIndex  === this.props.QuestionNum}
           index={this.props.QuestionNum}
@@ -67,6 +78,9 @@ class QuestionItem extends Component {
 
           <h3>Options</h3>
           {this.getOptions(this.props.QuestionNum)}
+
+          <Button className="blue" onClick={this.toggleEdit}>Edit</Button>
+          <Button className="red">Delete</Button>
         </Accordion.Content>
       </div>
     )
@@ -75,24 +89,28 @@ class QuestionItem extends Component {
   renderEdit(){
     return (
       <div key={this.props.QuestionNum}>
-        <p>Question {this.props.QuestionNum + 1}
-          <button type="button" className="btn right red"> Remove Question </button>
-          <button type="button" className="btn right green"> Edit Question</button>
-        </p>
-        <div>
-          <label>Title</label>
+        <Accordion.Title
+          active={this.props.activeIndex.activeIndex  === this.props.QuestionNum}
+          index={this.props.QuestionNum}
+          onClick={this.handleClick}>
+          <Icon name='dropdown' />
+          Question {this.props.QuestionNum + 1}: {this.props.question.title}
+
+        </Accordion.Title>
+
+
+        <Accordion.Content active={this.props.activeIndex.activeIndex === this.props.QuestionNum}>
+          <h3>Title</h3>
           <input
-            className="right"
+            className=""
             type="text"
             placeholder={`Title #${this.props.QuestionNum + 1}`}
             name="title"
             defaultValue={this.props.question.title}
             onChange={this.props.handleQuestion(this.props.QuestionNum)}
           />
-        </div>
 
-        <div>
-          <label>Description</label>
+          <h3>Description</h3>
           <input
             type="text"
             placeholder={`Description #${this.props.QuestionNum + 1}`}
@@ -101,11 +119,13 @@ class QuestionItem extends Component {
             defaultValue={this.props.question.description}
             onChange={this.props.handleQuestion}
           />
-        </div>
 
-        <h3>Options</h3>
+          <h3>Options</h3>
+          {this.getOptions(this.props.QuestionNum)}
 
-        {this.getOptions(this.props.QuestionNum)}
+          <Button className="green" onClick={this.handleSaveClick}>Save</Button>
+        </Accordion.Content>
+
       </div>
     )
   }

@@ -2,23 +2,39 @@
  * Created by suzanne on 5/31/18.
  */
 import React, {Component} from 'react'
-import {Segment, Item} from 'semantic-ui-react'
+import {Segment, Item,Button} from 'semantic-ui-react'
 
 class ResourceInfo extends Component {
+
+
   constructor (props) {
     super(props)
     this.state = {
       isEditing: false
     }
+    this.handleSaveClick = this.handleSaveClick.bind(this)
+    this.toggleEdit = this.toggleEdit.bind(this)
   }
 
-      render () {
+  toggleEdit(){
+    console.log("Changing editing state to true")
+    this.setState({isEditing: true})
+  }
+
+  handleSaveClick(){
+    console.log('Save Button Clicked, ' + this.props.resource.name)
+    this.setState({isEditing: false})
+  }
+
+  render () {
       if (this.state.isEditing) {
         return this.renderEdit()
       } else {
         return this.renderDisplay()
       }
     }
+
+
 
   renderDisplay () {
     return (
@@ -66,6 +82,7 @@ class ResourceInfo extends Component {
             </Item.Content>
           </Item>
         </Item.Group>
+        <Button className="ui button blue" onClick={this.toggleEdit}>Edit</Button>
       </Segment>
     )
   }
@@ -73,44 +90,71 @@ class ResourceInfo extends Component {
 
   renderEdit () {
     return (
-      <div>
+      <Segment  attached='top'>
 
-        <div >
-          <label>Name</label>
-          <input name="name" type="text" value={this.props.resource.name} size={80} onChange={this.props.handleChange} onBlur ={this.props.slugify} />
-        </div>
-        <p>{this.props.resource.friendly}</p>
-        <div >
-          <label>URL Friendly</label>
-          <input name="friendly" type="text" value={this.props.resource.friendly} size={80} onChange={this.props.handleChange}/>
-        </div>
+        <Item.Group>
+          <Item>
+            <Item.Content>
+              <Item.Header>Name</Item.Header>
+              <Item.Meta>
+                <input name="name" type="text" value={this.props.resource.name} size={80} onChange={this.props.handleChange} onBlur ={this.props.slugify} />
+              </Item.Meta>
+            </Item.Content>
+          </Item>
 
-        <div >
-          <label>Type (Calculator or Reference)</label>
-          <input name="type" type="text" value={this.props.resource.type} size={80} onChange={this.props.handleChange}/>
-        </div>
+          <Item>
+            <Item.Content>
+              <Item.Header>URL Friendly</Item.Header>
+              <Item.Meta>
+                {this.props.resource.friendly}
+              </Item.Meta>
+            </Item.Content>
+          </Item>
 
-        <div >
-          <label>Field</label>
-          <input name="field" type="text" value={this.props.resource.field} size={80} onChange={this.props.handleChange}/>
-        </div>
 
-        <div >
-          <label>Disease or Condition</label>
-          <input name="condition" type="text" value={this.props.resource.condition} size={80} onChange={this.props.handleChange}/>
-        </div>
+          <Item>
+            <Item.Content>
+              <Item.Header>Type (Calculator or Reference)</Item.Header>
+              <Item.Meta>
+                <input name="type" type="text" value={this.props.resource.type} size={80} onChange={this.props.handleChange}/>
+              </Item.Meta>
+            </Item.Content>
+          </Item>
 
-        <div>
-          <label>Brief Description</label>
-          <textarea
-            name="description"
-            rows="2"
-            cols="80"
-            value={this.props.resource.description}
-            onChange={this.props.handleChange}
-          />
-        </div>
-      </div>
+          <Item>
+            <Item.Content>
+              <Item.Header>Field</Item.Header>
+              <Item.Meta>
+                <input name="field" type="text" value={this.props.resource.field} size={80} onChange={this.props.handleChange}/>
+              </Item.Meta>
+            </Item.Content>
+          </Item>
+
+          <Item>
+            <Item.Content>
+              <Item.Header>Disease or Condition</Item.Header>
+              <Item.Meta>
+                <input name="condition" type="text" value={this.props.resource.condition} size={80} onChange={this.props.handleChange}/>
+              </Item.Meta>
+            </Item.Content>
+          </Item>
+
+          <Item >
+            <Item.Content>
+              <Item.Header>Brief Description</Item.Header>
+              <Item.Description><textarea
+                name="description"
+                rows="2"
+                cols="80"
+                value={this.props.resource.description}
+                onChange={this.props.handleChange}
+              /></Item.Description>
+            </Item.Content>
+          </Item>
+
+        <Button onClick={this.handleSaveClick} className="ui button green">Save</Button>
+        </Item.Group>
+      </Segment>
     )
   }
 }

@@ -121,6 +121,7 @@ class NewResourceForm extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
+
     // this.handleNewOption = this.handleNewOption(this)
     // this.handleOptionChange = this.handleOptionChange(this)
     // this.handleQuestionChange = this.handleQuestionChange(this)
@@ -151,6 +152,8 @@ class NewResourceForm extends Component {
   }
 
 
+
+
   handleNewOption(j) {
     let stateCopy = Object.assign({}, this.state)
     stateCopy.questions[j].options = [...stateCopy.questions[j].options, '']
@@ -178,14 +181,16 @@ class NewResourceForm extends Component {
     console.log(resource)
 
     return(
-      <Container text style={{ marginTop: '7em' }}>
+      <Container text style={{ marginTop: '5em' }}>
         <Header as='h1'>Add New Resource</Header>
         <form className="resource-form" autoComplete="off" onSubmit={()=>{}}>
 
           <ResourceInfo
             resource = {this.state}
             handleChange = {this.handleChange}
-            slugify = {this.slugifyTitle}/>
+            slugify = {this.slugifyTitle}
+            handleSave={this.handleSaveClick}
+          />
 
           <Question
             questions = {this.state.questions}

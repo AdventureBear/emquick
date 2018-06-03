@@ -2,17 +2,29 @@ label { display: block; }
 
 input[type=text], textarea {
     width: 100%;
-    padding: 12px 20px;
-    margin: 2px 0 24px 0px;
+    padding: 4px 4px;
+    margin: 0px 0 0px 0px;
     display: inline-block;
+    background-color: rgba(192, 198, 255, 0.36);
     border: 1px solid #ccc;
-    border-radius: 8px;
+    /*border-top: 0px;*/
+    /*border-right: 0px;*/
+    /*border-left: 0px;*/
+
+    border-radius: 4px;
     box-sizing: border-box;
 }
 
 input:focus {
     /*border: 1px #555 solid;*/
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: 2px solid #4CAF50;
+}
+
+input.title {
+    width: 70%;
+    float: right;
+    display: inline-block;
 }
 
 button.right {

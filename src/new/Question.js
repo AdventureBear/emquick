@@ -2,7 +2,7 @@
  * Created by suzanne on 5/31/18.
  */
 import React, {Component} from 'react'
-import {Segment, Header, Accordion} from 'semantic-ui-react'
+import {Segment, Header, Accordion, Button} from 'semantic-ui-react'
 
 import QuestionItem from './QuestionItem'
 
@@ -14,11 +14,8 @@ class Question extends Component {
   }
 
   handleClick = (e, titleProps) => {
-    console.log("passed to parent")
-    //console.log(e, titleProps)
     const { index } = titleProps
     const { activeIndex } = this.state
-    console.log("Active Index: " + activeIndex, "Index: " + index)
     const newIndex = activeIndex === index ? -1 : index
     this.setState({ activeIndex: newIndex })
   }
@@ -28,30 +25,28 @@ class Question extends Component {
     return (
       <Segment attached>
       <Header>Questions</Header>
-        <Accordion styled>
+        <Accordion styled exclusive={false} fluid >
 
         {this.props.questions.map((q, i) => (
-
+          <div key={i}>
             <QuestionItem
               activeIndex = {activeIndex}
               key = {i}
               QuestionNum = {i}
               question = {q}
               handleClick = {this.handleClick}
-              handleQuestion={this.handleQuestionChange}
-              // resource = {...this.state}
+              handleQuestion={this.props.handleQuestion}
             />
-
+          </div>
           )
         )}
       </Accordion>
-        <button style={{marginBottom: '15px' }}
-                type="button"
+        <Button style={{marginTop: '15px' }}
                 onClick={this.handleNewQuestion}
                 className="btn green"
         >
           Add Question
-        </button>
+        </Button>
       </Segment>
 
     )

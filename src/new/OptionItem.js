@@ -7,13 +7,10 @@ import './OptionItem.css'
 class OptionItem extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      isEditing: false
-    }
   }
 
   render() {
-    if (this.state.isEditing) {
+    if (this.props.isEditing) {
       return this.renderEdit()
     } else {
       return this.renderDisplay()

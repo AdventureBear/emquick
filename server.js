@@ -9,13 +9,14 @@ const bodyParser = require('body-parser'),
       dotenv = require('dotenv'),
       morgan = require('morgan'),
       seedDB = require('./seed'),
+      path = require('path'),
       cors = require('cors'),
       app = express()
 
 const Resource  = require('./models/resource'),
 resources = require('./src/data/resources.json')
 
-//Routes
+//Rxcoutes
 const resourceRoutes = require('./routes/resources')
 
 //Setup app
@@ -25,6 +26,9 @@ app.use(cors())
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+
+
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('build'));
@@ -45,7 +49,12 @@ app.use('/api/resources/', resourceRoutes)
 
 //seedDB()
 
+app.use(express.static(path.join(__dirname, 'build')));
 
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 
 app.get("/", function (req,res){
   res.send("Hello from the server")
