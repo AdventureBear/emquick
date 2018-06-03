@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === 'production') {
 //SERVER
 const port = process.env.PORT || 8080
 //const mongo_url = process.env.MONGO_URI
-const mlab_url = 'mongodb://emquickadmin:quickfacts123@ds135750.mlab.com:35750/emquick'
+const mlab_url = process.env.MLAB_URI
 mongoose.connect(mlab_url)
 
 
