@@ -9,7 +9,9 @@ import QuestionItem from './QuestionItem'
 class Question extends Component {
   constructor(props){
     super(props)
-    this.state = { activeIndex: 0 }
+    this.state = {
+      activeIndex: 0
+    }
   }
 
   handleClick = (e, titleProps) => {
@@ -19,7 +21,12 @@ class Question extends Component {
     this.setState({ activeIndex: newIndex })
   }
 
-
+  async addQuestion () {
+    await this.props.addQuestion()
+    this.setState({
+      activeIndex: this.props.questions.length
+    })
+  }
 
   render (){
     const  activeIndex  = this.state
@@ -31,6 +38,7 @@ class Question extends Component {
         {this.props.questions.map((q, i) => (
           <div key={i}>
             <QuestionItem
+              isEditing = {this.props.isEditing}
               activeIndex = {activeIndex}
               key = {i}
               questionNum = {i}
@@ -38,18 +46,22 @@ class Question extends Component {
               handleClick = {this.handleClick}
               handleQuestion={this.props.handleQuestion}
               handleOption = {this.props.handleOption}
+              addOption = {this.props.addOption}
             />
           </div>
           )
         )}
       </Accordion>
-
-        <button style={{marginTop: '15px' }}
+        <div>
+        <button
+          type="button"
+                style={{marginTop: '15px' }}
                 onClick={this.props.addQuestion}
                 className="ui button basic green"
         >
           Add Question
         </button>
+        </div>
       </Segment>
 
     )

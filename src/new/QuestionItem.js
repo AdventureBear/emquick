@@ -5,6 +5,7 @@
 import React, {Component} from 'react'
 import Options from './Options'
 import {Accordion, Icon, Button} from 'semantic-ui-react'
+import './QuestionItem.css'
 
 
 
@@ -16,6 +17,11 @@ class QuestionItem extends Component {
     }
     this.toggleEdit = this.toggleEdit.bind(this)
     this.handleSaveClick = this.handleSaveClick.bind(this)
+    this.handleOptionClick = this.handleOptionClick.bind(this)
+  }
+
+  async handleOptionClick () {
+    await this.props.addOption(this.props.questionNum)
   }
 
   toggleEdit(){
@@ -57,14 +63,15 @@ class QuestionItem extends Component {
         <Accordion.Content active={this.props.activeIndex.activeIndex === this.props.questionNum}>
           <p>{this.props.question.description}</p>
 
-          <h3>Options</h3>
-
+          <h3 className="inline">Options</h3> <span onClick={this.handleOptionClick} className="new">New Option</span>
+              <div  className = "options">
               <Options
                 isEditing = {this.state.isEditing}
                 question = {this.props.question}
                 questionNum = {this.props.questionNum}
                 handleOption = {this.props.handleOption}
               />
+              </div>
 
           <Button className="ui basic button blue" onClick={this.toggleEdit}>Edit</Button>
           <Button className="ui basic button red">Delete</Button>
