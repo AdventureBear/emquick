@@ -10,7 +10,6 @@ class Question extends Component {
   constructor(props){
     super(props)
     this.state = { activeIndex: 0 }
-
   }
 
   handleClick = (e, titleProps) => {
@@ -19,6 +18,8 @@ class Question extends Component {
     const newIndex = activeIndex === index ? -1 : index
     this.setState({ activeIndex: newIndex })
   }
+
+
 
   render (){
     const  activeIndex  = this.state
@@ -42,12 +43,13 @@ class Question extends Component {
           )
         )}
       </Accordion>
-        <Button style={{marginTop: '15px' }}
-                onClick={this.handleNewQuestion}
+
+        <button style={{marginTop: '15px' }}
+                onClick={this.props.addQuestion}
                 className="ui button basic green"
         >
           Add Question
-        </Button>
+        </button>
       </Segment>
 
     )

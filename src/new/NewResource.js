@@ -124,47 +124,55 @@ class NewResourceForm extends Component {
 
     // this.handleNewOption = this.handleNewOption(this)
     // this.handleOptionChange = this.handleOptionChange(this)
-    // this.handleNewQuestion = this.handleNewQuestion(this)
+    this.addNewQuestion = this.addNewQuestion.bind(this)
   }
 
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
 
+
+
   handleQuestionChange = (i) => (e) => {
-    let stateCopy = Object.assign({}, this.state)
     const name = e.target.name
     const questions = this.state.questions.map((question, j) => {
       if (j === i ) question[name] = e.target.value;
       return question;
     })
-    stateCopy.questions = questions
-    this.setState({questions: stateCopy.questions})
+    this.setState({questions})
   }
 
   handleOptionChange = (qIndex,optIndex) =>  (e) => {
-    console.log("updating an option")
-    console.log(e.target.name, e.target.value)
-    // let stateCopy = Object.assign({}, this.state)
-    const deconstructed = e.target.name.split('-')
-    console.log(deconstructed)
     const index = Number(e.target.name.split('-')[1]);
     const name = e.target.name.split('-')[0];
-    console.log(qIndex,optIndex, name,index, e.target.value)
     const options = this.state.questions[qIndex].options.map((option, j) => {
       if (j === index) option[name] = e.target.value
       return option
     })
-    console.log(options)
-    // stateCopy.questions[j].options = options
     this.setState({options})
   }
 
   slugifyTitle =(e) => {
     const slug = slugify(e.target.value).toLowerCase()
     this.setState({friendly: slug})
-      console.log("Slugging: ", slug)
+
   }
+
+  addNewQuestion()  {
+    const newQuestion =  {"title": "",
+      "description": "",
+      "options": [
+      {
+        "value": "",
+        "description": ""
+      }]}
+    console.log([...this.state.questions, newQuestion])
+    this.setState((prevState) => {
+      return {questions: [...prevState.questions, newQuestion]};
+    });
+
+  }
+
 
   handleNewOption(j) {
     let stateCopy = Object.assign({}, this.state)
@@ -180,19 +188,19 @@ class NewResourceForm extends Component {
     return(
       <Container text style={{ marginTop: '5em' }}>
         <Header as='h1'>Add New Resource</Header>
-        <form className="resource-form" autoComplete="off" onSubmit={()=>{}}>
+        <form className="resource-form" autoComplete="off" >
 
           <ResourceInfo
             resource = {this.state}
             handleChange = {this.handleChange}
             slugify = {this.slugifyTitle}
-            handleSave={this.handleSaveClick}
           />
 
           <Question
             questions = {this.state.questions}
             handleQuestion = {this.handleQuestionChange}
             handleOption = {this.handleOptionChange}
+            addQuestion = {this.addNewQuestion}
             />
 
           <PageContent
