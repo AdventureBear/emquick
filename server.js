@@ -57,8 +57,9 @@ app.use(express.static('build'));
 //   });
 
 app.get("/", function (req,res){
-  res.sendFile('index.html')
-})
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
 
 app.get("/api", function (req,res){
   res.json({api: "This is your api"})
