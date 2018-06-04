@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react'
-import OptionItem from './OptionItem'
+import Options from './Options'
 import {Accordion, Icon, Button} from 'semantic-ui-react'
 
 
@@ -15,27 +15,8 @@ class QuestionItem extends Component {
       isEditing: false
     }
     this.toggleEdit = this.toggleEdit.bind(this)
-    this.handleSaveClick = this.toggleEdit.bind(this)
+    this.handleSaveClick = this.handleSaveClick.bind(this)
   }
-
-  getOptions(questionNum) {
-    const resource = this.props
-    let options =  resource.question.options.map((opt,j) => (
-      <div
-        key={`option-${j}`}
-      >
-        <OptionItem
-          isEditing = {this.state.isEditing}
-          key= {`${questionNum+1}-${j}`}
-          questionNum = {questionNum}
-          option={opt}
-          optionNum={j} />
-
-      </div>
-    ))
-    return options
-  }
-
 
   toggleEdit(){
     console.log("Changing question items editing state to true")
@@ -66,21 +47,27 @@ class QuestionItem extends Component {
     return(
       <div>
         <Accordion.Title
-          active={this.props.activeIndex.activeIndex  === this.props.QuestionNum}
-          index={this.props.QuestionNum}
+          active={this.props.activeIndex.activeIndex  === this.props.questionNum}
+          index={this.props.questionNum}
           onClick={this.handleClick}>
           <Icon name='dropdown' />
-          Question {this.props.QuestionNum + 1} {this.props.question.title}
+          Question {this.props.questionNum + 1} {this.props.question.title}
         </Accordion.Title>
 
-        <Accordion.Content active={this.props.activeIndex.activeIndex === this.props.QuestionNum}>
+        <Accordion.Content active={this.props.activeIndex.activeIndex === this.props.questionNum}>
           <p>{this.props.question.description}</p>
 
           <h3>Options</h3>
-          {this.getOptions(this.props.QuestionNum)}
 
-          <Button className="blue" onClick={this.toggleEdit}>Edit</Button>
-          <Button className="red">Delete</Button>
+              <Options
+                isEditing = {this.state.isEditing}
+                question = {this.props.question}
+                questionNum = {this.props.questionNum}
+                handleOption = {this.props.handleOption}
+              />
+
+          <Button className="ui basic button blue" onClick={this.toggleEdit}>Edit</Button>
+          <Button className="ui basic button red">Delete</Button>
         </Accordion.Content>
       </div>
     )
@@ -88,42 +75,47 @@ class QuestionItem extends Component {
 
   renderEdit(){
     return (
-      <div key={this.props.QuestionNum}>
+      <div key={this.props.questionNum}>
         <Accordion.Title
-          active={this.props.activeIndex.activeIndex  === this.props.QuestionNum}
-          index={this.props.QuestionNum}
+          active={this.props.activeIndex.activeIndex  === this.props.questionNum}
+          index={this.props.questionNum}
           onClick={this.handleClick}>
           <Icon name='dropdown' />
-          Question {this.props.QuestionNum + 1}: {this.props.question.title}
+          Question {this.props.questionNum + 1}: {this.props.question.title}
 
         </Accordion.Title>
 
 
-        <Accordion.Content active={this.props.activeIndex.activeIndex === this.props.QuestionNum}>
+        <Accordion.Content active={this.props.activeIndex.activeIndex === this.props.questionNum}>
           <h3>Title</h3>
           <input
             className=""
             type="text"
-            placeholder={`Title #${this.props.QuestionNum + 1}`}
+            placeholder={`Title #${this.props.questionNum + 1}`}
             name="title"
             defaultValue={this.props.question.title}
-            onChange={this.props.handleQuestion(this.props.QuestionNum)}
+            onChange={this.props.handleQuestion(this.props.questionNum)}
           />
 
           <h3>Description</h3>
           <input
             type="text"
-            placeholder={`Description #${this.props.QuestionNum + 1}`}
+            placeholder={`Description #${this.props.questionNum + 1}`}
             name="description"
             width="80"
             defaultValue={this.props.question.description}
-            onChange={this.props.handleQuestion}
+            onChange={this.props.handleQuestion(this.props.questionNum)}
           />
 
           <h3>Options</h3>
-          {this.getOptions(this.props.QuestionNum)}
+          <Options
+            isEditing = {this.state.isEditing}
+            question = {this.props.question}
+            questionNum = {this.props.questionNum}
+            handleOption = {this.props.handleOption}
+          />
 
-          <Button className="green" onClick={this.handleSaveClick}>Save</Button>
+          <Button className="ui basic green button" onClick={this.handleSaveClick}>Save</Button>
         </Accordion.Content>
 
       </div>

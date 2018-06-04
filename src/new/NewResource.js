@@ -124,7 +124,6 @@ class NewResourceForm extends Component {
 
     // this.handleNewOption = this.handleNewOption(this)
     // this.handleOptionChange = this.handleOptionChange(this)
-    // this.handleQuestionChange = this.handleQuestionChange(this)
     // this.handleNewQuestion = this.handleNewQuestion(this)
   }
 
@@ -135,14 +134,30 @@ class NewResourceForm extends Component {
   handleQuestionChange = (i) => (e) => {
     let stateCopy = Object.assign({}, this.state)
     const name = e.target.name
-
-    const questions = stateCopy.questions.map((question, j) => {
+    const questions = this.state.questions.map((question, j) => {
       if (j === i ) question[name] = e.target.value;
       return question;
     })
-
     stateCopy.questions = questions
     this.setState({questions: stateCopy.questions})
+  }
+
+  handleOptionChange = (qIndex,optIndex) =>  (e) => {
+    console.log("updating an option")
+    console.log(e.target.name, e.target.value)
+    // let stateCopy = Object.assign({}, this.state)
+    const deconstructed = e.target.name.split('-')
+    console.log(deconstructed)
+    const index = Number(e.target.name.split('-')[1]);
+    const name = e.target.name.split('-')[0];
+    console.log(qIndex,optIndex, name,index, e.target.value)
+    const options = this.state.questions[qIndex].options.map((option, j) => {
+      if (j === index) option[name] = e.target.value
+      return option
+    })
+    console.log(options)
+    // stateCopy.questions[j].options = options
+    this.setState({options})
   }
 
   slugifyTitle =(e) => {
@@ -151,29 +166,11 @@ class NewResourceForm extends Component {
       console.log("Slugging: ", slug)
   }
 
-
-
-
   handleNewOption(j) {
     let stateCopy = Object.assign({}, this.state)
     stateCopy.questions[j].options = [...stateCopy.questions[j].options, '']
     this.setState({stateCopy})
   }
-
-  // handleOptionChange = (j) =>  (e) => {
-  //   let stateCopy = Object.assign({}, this.state)
-  //   const index = Number(e.target.name.split('-')[1]);
-  //   const options = this.state.questions[j].options.map((opt, i) => (
-  //     i === index ? e.target.value : opt
-  //   ));
-  //   stateCopy.questions[j].options = options
-  //   this.setState({stateCopy})
-  // }
-
-
-
-
-
 
   render () {
 
@@ -195,6 +192,7 @@ class NewResourceForm extends Component {
           <Question
             questions = {this.state.questions}
             handleQuestion = {this.handleQuestionChange}
+            handleOption = {this.handleOptionChange}
             />
 
           <PageContent
@@ -205,7 +203,7 @@ class NewResourceForm extends Component {
           <Segment attached='bottom'>
           <button
             type="submit"
-            className="btn green"
+            className="ui basic button green"
             style={{alignSelf: 'flex-end', marginRight: 0}}
           >
             SAVE

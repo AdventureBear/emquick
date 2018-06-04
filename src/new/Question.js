@@ -32,10 +32,11 @@ class Question extends Component {
             <QuestionItem
               activeIndex = {activeIndex}
               key = {i}
-              QuestionNum = {i}
+              questionNum = {i}
               question = {q}
               handleClick = {this.handleClick}
               handleQuestion={this.props.handleQuestion}
+              handleOption = {this.props.handleOption}
             />
           </div>
           )
@@ -43,7 +44,7 @@ class Question extends Component {
       </Accordion>
         <Button style={{marginTop: '15px' }}
                 onClick={this.handleNewQuestion}
-                className="btn green"
+                className="ui button basic green"
         >
           Add Question
         </Button>

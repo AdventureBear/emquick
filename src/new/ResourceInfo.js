@@ -82,7 +82,7 @@ class ResourceInfo extends Component {
             </Item.Content>
           </Item>
         </Item.Group>
-        <Button className="ui button blue" onClick={this.toggleEdit}>Edit</Button>
+        <Button className="ui basic button blue" onClick={this.toggleEdit}>Edit</Button>
       </Segment>
     )
   }
@@ -152,7 +152,7 @@ class ResourceInfo extends Component {
             </Item.Content>
           </Item>
 
-        <Button onClick={this.handleSaveClick} className="ui button green">Save</Button>
+        <Button onClick={this.handleSaveClick} className="ui basic button green">Save</Button>
         </Item.Group>
       </Segment>
     )
