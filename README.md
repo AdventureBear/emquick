@@ -1,5 +1,5 @@
 ## EM Quick
-This is a resource to quickly look up reference information for emergnecy mediciner students, residents, attendings, PA-C & NPs while working in the ER. 
+This is a resource to quickly look up reference information for emergency medicine students, residents, attendings, PA-C & NPs while working in the ER. 
 
 The developers and contributors make no guarantees and take no responsibility for the accuracy of this information.  References are provided for every resource, but there is always the possibiliyt of typos or database errors. 
 
@@ -19,7 +19,7 @@ Browse the halls of any medical school or hospital floor and you'll see students
 
 As an example the use of Vasopressin in cardiac arrest as gone in and out of favor with changes in the official Americal Heart Association guidelines every couple of years since the early 2000s. If you're actively training, you may have learned the most current recommendation, but if you've been out of training for awhile, it's possible the removal of vasopression may have slipped past you. 
 
-Alternatively other information remainse mostly static such as the number of teeth in the maxilla and mandible or the distribution of senosory and motor nerves. 
+Alternatively other information remains mostly static such as the number of teeth in the maxilla and mandible or the distribution of senosory and motor nerves. 
 
 Finally, today's practitioner has to keep in mind a multitude of 'calculators' and scores such as PERC, HEART, NIH, Well's Criteria (for DVT & for PE) and the list goes on and on.  ABCD2, CHADS, Sepsis, etc etc.  There are several excellent websites for calculator use such as MDCalc.com started by Graham Walker, MD when he was a medical student, however, EM Quick combines both common EM calculators as well as static and dynamically changing reference information for those actively caring for patients. 
 
