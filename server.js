@@ -57,7 +57,7 @@ app.use(express.static('build'));
 //   });
 
 app.get("/", function (req,res){
-  res.send("Hello from the server")
+  res.sendFile('index.html')
 })
 
 app.get("/api", function (req,res){
