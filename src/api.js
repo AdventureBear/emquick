@@ -4,6 +4,7 @@
 
 const API_URL = 'http://localhost:3001/api/resources/' //this could be an env variable as well
 
+// const API_URL = '/api/resources/' //this could be an env variable as well
 
 
 export async function getResources () {

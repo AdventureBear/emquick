@@ -16,7 +16,7 @@ const bodyParser = require('body-parser'),
 const Resource  = require('./models/resource'),
 resources = require('./src/data/resources.json')
 
-//Rxcoutes
+//Routes
 const resourceRoutes = require('./routes/resources')
 
 //Setup app
@@ -27,21 +27,18 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-
-
-
+//SET STATIC ROUTE
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('build'));
+} else {
+  app.use(express.static('public'))
 }
 
-
-//SERVER
+//SERVER & DB
 const port = process.env.PORT || 8080
 //const mongo_url = process.env.MONGO_URI
 const mlab_url = process.env.MLAB_URI
 mongoose.connect(mlab_url)
-
-
 
 
 //ROUTES
@@ -49,12 +46,6 @@ app.use('/api/resources/', resourceRoutes)
 
 //seedDB()
 
-app.use(express.static('build'));
-
-
-// app.get('/*', function (req, res) {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-//   });
 
 app.get("/*", function (req,res){
   res.render('index.html');

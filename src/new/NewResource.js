@@ -227,7 +227,9 @@ class NewResourceForm extends Component {
       {
         "value": "",
         "description": ""
-      }]}
+      }],
+      "edit": true,
+    }
     console.log([...this.state.questions, newQuestion])
     this.setState((prevState) => {
       return {questions: [...prevState.questions, newQuestion]};
@@ -237,7 +239,8 @@ class NewResourceForm extends Component {
   addNewOption(questionNum)  {
     const newOption =   {
       "value": "Value",
-      "description": "Description"
+      "description": "Description",
+      "edit": true
     }
     console.log("Before: " + this.state.questions)
     console.log([...this.state.questions[questionNum].options, newOption])

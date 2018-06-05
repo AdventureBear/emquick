@@ -41,7 +41,7 @@ class QuestionItem extends Component {
   }
 
   render () {
-        if (this.state.isEditing) {
+        if (this.state.isEditing || this.props.question.edit) {
           return this.renderEdit()
         } else {
           return this.renderDisplay()

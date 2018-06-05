@@ -16,7 +16,7 @@ class OptionItem extends Component {
   }
 
   render() {
-    if (this.props.isEditing || this.state.editingOption) {
+    if (this.props.isEditing || this.state.editingOption || this.props.option.edit) {
       return this.renderEdit()
     } else {
       return this.renderDisplay()
