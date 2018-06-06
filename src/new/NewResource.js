@@ -230,7 +230,6 @@ class NewResourceForm extends Component {
       }],
       "edit": true,
     }
-    console.log([...this.state.questions, newQuestion])
     this.setState((prevState) => {
       return {questions: [...prevState.questions, newQuestion]};
     });
@@ -242,20 +241,13 @@ class NewResourceForm extends Component {
       "description": "Description",
       "edit": true
     }
-    console.log("Before: " + this.state.questions)
-    console.log([...this.state.questions[questionNum].options, newOption])
+
     const questions = this.state.questions.map((question, i) => {
-      console.log(questionNum, i)
       if (i===questionNum) {
-        console.log("match")
         question.options = [...this.state.questions[questionNum].options, newOption]
       }
-      console.log(question)
       return question
     })
-
-    console.log("After: " + questions)
-
     this.setState({questions});
   }
 
