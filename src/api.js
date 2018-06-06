@@ -1,13 +1,14 @@
 /**
  * Created by suzanne on 5/22/18.
  */
-
+let API_URL = ''
 //this could be an env variable as well
 if (process.env.NODE_ENV === 'production' ){
-  const API_URL = '/api/resources/'
+   API_URL = '/api/resources/'
 } else {
-  const API_URL = 'http://localhost:3001/api/resources/'
+   API_URL = 'http://localhost:3001/api/resources/'
 }
+
 
 
 export async function getResources () {
