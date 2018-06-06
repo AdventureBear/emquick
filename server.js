@@ -28,11 +28,17 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 //SET STATIC ROUTE
+
+// Priority serve any static files.
+
+
+
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('build'));
+  app.use(express.static(path.resolve(__dirname, 'build')));
 } else {
   app.use(express.static('public'))
 }
+
 //SERVER & DB
 const port = process.env.PORT || 8080
 //const mongo_url = process.env.MONGO_URI
@@ -45,15 +51,17 @@ app.use('/api/resources/', resourceRoutes)
 
 //seedDB()
 
-
-app.get("/*", function (req,res){
-  res.render('index.html');
-  });
-
-
 app.get("/api", function (req,res){
   res.json({api: "This is your api"})
 })
+
+
+app.get("/*", function (req,res){
+  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+  });
+
+
+
 
 
 const server = app.listen(port, function(req,res){
