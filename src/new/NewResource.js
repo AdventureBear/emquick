@@ -184,6 +184,7 @@ class NewResourceForm extends Component {
       }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleTypeChange = this.handleTypeChange.bind(this)
 
     // this.handleNewOption = this.handleNewOption(this)
     // this.handleOptionChange = this.handleOptionChange(this)
@@ -195,7 +196,10 @@ class NewResourceForm extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-
+  handleTypeChange = (e, { value }) => {
+    console.log(value)
+    this.setState({ type: value })
+  }
 
   handleQuestionChange = (i) => (e) => {
     const name = e.target.name
@@ -262,7 +266,21 @@ class NewResourceForm extends Component {
   render () {
 
     const resource = {...this.state}
-    console.log(resource)
+    // console.log(resource)
+    const resourceData =  (this.state.type==="Calculator") ?
+        <Question
+          questions = {this.state.questions}
+          handleQuestion = {this.handleQuestionChange}
+          handleOption = {this.handleOptionChange}
+          addQuestion = {this.addNewQuestion}
+          addOption = {this.addNewOption}
+           />
+          :
+          <PageContent
+            pagebody = {this.state.pagebody}
+            handleChange = {this.handleChange}
+          />
+
 
     return(
       <Container text style={{ marginTop: '5em' }}>
@@ -273,20 +291,10 @@ class NewResourceForm extends Component {
             resource = {this.state}
             handleChange = {this.handleChange}
             slugify = {this.slugifyTitle}
+            handleType = {this.handleTypeChange}
           />
 
-          <Question
-            questions = {this.state.questions}
-            handleQuestion = {this.handleQuestionChange}
-            handleOption = {this.handleOptionChange}
-            addQuestion = {this.addNewQuestion}
-            addOption = {this.addNewOption}
-            />
-
-          <PageContent
-            pagebody = {this.state.pagebody}
-            handleChange = {this.handleChange}
-          />
+          {resourceData}
 
           <Segment attached='bottom'>
           <button

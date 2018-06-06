@@ -2,7 +2,7 @@
  * Created by suzanne on 5/31/18.
  */
 import React, {Component} from 'react'
-import {Segment, Item,Button, Accordion, Icon} from 'semantic-ui-react'
+import {Segment, Item,Button, Accordion, Icon, Radio, Form } from 'semantic-ui-react'
 
 class ResourceInfo extends Component {
 
@@ -16,6 +16,7 @@ class ResourceInfo extends Component {
     this.handleSaveClick = this.handleSaveClick.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
   }
+
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -33,6 +34,7 @@ class ResourceInfo extends Component {
 
   handleSaveClick(){
     console.log('Save Button Clicked, ' + this.props.resource.name)
+    console.log(this.props.resource.type)
     this.setState({isEditing: false})
   }
 
@@ -63,15 +65,16 @@ class ResourceInfo extends Component {
                 <Item.Content>
                   <Item.Header>Name</Item.Header>
                   <Item.Meta>{this.props.resource.name} </Item.Meta>
+                  <Item.Meta>slug: {this.props.resource.friendly}</Item.Meta>
                 </Item.Content>
               </Item>
 
-              <Item >
-                <Item.Content>
-                  <Item.Header>URL Friendly</Item.Header>
-                  <Item.Meta>{this.props.resource.friendly} </Item.Meta>
-                </Item.Content>
-              </Item>
+              {/*<Item >*/}
+                {/*<Item.Content>*/}
+                  {/*<Item.Header>URL Friendly</Item.Header>*/}
+                  {/*<Item.Meta>{this.props.resource.friendly} </Item.Meta>*/}
+                {/*</Item.Content>*/}
+              {/*</Item>*/}
 
               <Item >
                 <Item.Content>
@@ -104,6 +107,7 @@ class ResourceInfo extends Component {
           </Accordion.Content>
         </Accordion>
         <Button
+          type="button"
           style={{marginTop: '15px' }}
           className="ui basic button blue"
           onClick={this.toggleEdit}>Edit</Button>
@@ -129,25 +133,43 @@ class ResourceInfo extends Component {
                   <Item.Header>Name</Item.Header>
                   <Item.Meta>
                     <input name="name" type="text" value={this.props.resource.name} size={80} onChange={this.props.handleChange} onBlur ={this.props.slugify} />
-                  </Item.Meta>
-                </Item.Content>
-              </Item>
-
-              <Item>
-                <Item.Content>
-                  <Item.Header>URL Friendly</Item.Header>
-                  <Item.Meta>
                     {this.props.resource.friendly}
                   </Item.Meta>
                 </Item.Content>
               </Item>
+
+              {/*<Item>*/}
+                {/*<Item.Content>*/}
+                  {/*<Item.Header>URL Friendly</Item.Header>*/}
+                  {/*<Item.Meta>*/}
+                    {/*{this.props.resource.friendly}*/}
+                  {/*</Item.Meta>*/}
+                {/*</Item.Content>*/}
+              {/*</Item>*/}
 
 
               <Item>
                 <Item.Content>
                   <Item.Header>Type (Calculator or Reference)</Item.Header>
                   <Item.Meta>
-                    <input name="type" type="text" value={this.props.resource.type} size={80} onChange={this.props.handleChange}/>
+
+                        <Radio
+                          label='Calculator'
+                          name='radioGroup'
+                          value='Calculator'
+                          checked={this.props.resource.type === 'Calculator'}
+                          onChange={this.props.handleType}
+                        />
+
+                        <Radio
+                          label='Reference'
+                          name='radioGroup'
+                          value='Reference'
+                          checked={this.props.resource.type === 'Reference'}
+                          onChange={this.props.handleType}
+                        />
+
+                    {/*<input name="type" type="text" value={this.props.resource.type} size={80} onChange={this.props.handleChange}/>*/}
                   </Item.Meta>
                 </Item.Content>
               </Item>
@@ -191,7 +213,6 @@ class ResourceInfo extends Component {
           style={{marginTop: '15px' }}
           className="ui basic button green"
           onClick={this.handleSaveClick}>Update</Button>
-
       </Segment>
     )
   }
