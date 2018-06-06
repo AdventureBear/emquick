@@ -178,7 +178,9 @@ class NewResourceForm extends Component {
             ]
           }
         ],
-        "pagebody":    ""
+        "pagebody":    "",
+
+
       }
 
     this.handleChange = this.handleChange.bind(this)

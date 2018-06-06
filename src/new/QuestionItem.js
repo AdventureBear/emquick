@@ -122,7 +122,7 @@ class QuestionItem extends Component {
             handleOption = {this.props.handleOption}
           />
 
-          <Button className="ui basic green button" onClick={this.handleSaveClick}>Save</Button>
+          <Button className="ui basic green button" onClick={this.handleSaveClick}>Update</Button>
         </Accordion.Content>
 
       </div>

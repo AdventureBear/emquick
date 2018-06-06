@@ -33,7 +33,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   app.use(express.static('public'))
 }
-
 //SERVER & DB
 const port = process.env.PORT || 8080
 //const mongo_url = process.env.MONGO_URI
