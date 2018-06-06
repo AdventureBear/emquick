@@ -52,7 +52,7 @@ class App extends Component {
       <Container >
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/' component={About}/>
           <Route path='/categories' component={Categories}/>
           <Route path='/new' component={NewReference}/>
           <Route path='/about'
