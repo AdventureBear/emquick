@@ -15,7 +15,7 @@ class Navbar extends Component {
       <Container>
       <Menu fixed='top' inverted>
         <Container>
-          <Menu.Item as='a' href="/" header>
+          <Menu.Item as='a' href="/about" header>
             EM Quick
           </Menu.Item>
 
