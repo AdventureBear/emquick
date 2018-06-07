@@ -71,6 +71,7 @@ export async function createResource(resource){
           throw err
         }
       }
+      // console.log(resp.json())
       return resp.json()
     })
 }

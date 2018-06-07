@@ -13,7 +13,13 @@ var resourceSchema = new mongoose.Schema({
   condition: String,
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
-  references: [{ name: String, accessed: { type: Date, default: Date.now } }],
+  references: [{
+    name: String,
+    title: String,
+    author: String,
+    url: String,
+    additional: String,
+    accessed: { type: Date, default: Date.now } }],
   questions: [{
     title: String,
     description: String,

@@ -23,11 +23,24 @@ router.get('/:id', function(req,res){
 
 
 router.post('/', function(req,res){
-  console.log(req.body)
-  res.send("Post function")
-
+  Resource.create(req.body)
+    .then(function(newResource) {
+      res.status(201).json(newResource)
+    })
+    .catch(function(err){
+      res.send(err)
+    })
 })
 
+// exports.createTodo = function(req,res){
+//   db.Todo.create(req.body)
+//     .then(function(newTodo){
+//       res.status(201).json(newTodo)
+//     })
+//     .catch(function(err){
+//       res.send(err)
+//     })
+// }
 
 
 

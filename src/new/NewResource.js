@@ -10,6 +10,7 @@ import ResourceInfo from './ResourceInfo'
 import PageContent from './PageContent'
 import {Segment} from 'semantic-ui-react'
 import References from './References'
+import * as apiCalls  from '../api'
 
 class NewResourceForm extends Component {
   constructor(props) {
@@ -186,6 +187,7 @@ class NewResourceForm extends Component {
           }
         ],
         "pagebody":    "",
+        resources: ""
 
 
       }
@@ -203,10 +205,10 @@ class NewResourceForm extends Component {
   }
 
   async addResource() {
-    console.log("New resource to be added: " + this.state.name)
+    console.log(Object.keys(this.state))
 
-    // let newResource = await apiCalls.createResource(resource)
-    // this.setState({todos: [...this.state.todos, newTodo ]})
+    let newResource = await apiCalls.createResource(this.state)
+    this.setState({todos: [...this.state.resources, newResource ]})
   }
 
   handleChange(e) {

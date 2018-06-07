@@ -41,10 +41,9 @@ if (process.env.NODE_ENV === 'production') {
 
 //SERVER & DB
 const port = process.env.PORT || 8080
-//const mongo_url = process.env.MONGO_URI
-const mlab_url = process.env.MLAB_URI
-mongoose.connect(mlab_url)
-
+// const db_url = process.env.MONGO_URI
+const db_url = process.env.MLAB_URI
+mongoose.connect(db_url)
 
 //ROUTES
 app.use('/api/resources/', resourceRoutes)
