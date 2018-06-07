@@ -11,7 +11,7 @@ class ResourceInfo extends Component {
     super(props)
     this.state = {
       isEditing: false,
-      activeIndex: 0
+      activeIndex: -1
     }
     this.handleSaveClick = this.handleSaveClick.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
