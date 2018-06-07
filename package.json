@@ -33,5 +33,9 @@
   "devDependencies": {
     "concurrently": "^3.5.1",
     "dotenv": "^5.0.1"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "6.0.0"
   }
 }
