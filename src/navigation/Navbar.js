@@ -15,12 +15,12 @@ class Navbar extends Component {
       <Container>
       <Menu fixed='top' inverted>
         <Container>
-          <Menu.Item as='a' href="/about" header>
+          <Menu.Item as='a' href="/" header>
             EM Quick
           </Menu.Item>
 
-          <Menu.Item href = "/about" as='a'>About</Menu.Item>
-          <Menu.Item href = "/categories" as='a'>Categories</Menu.Item>
+          {/*<Menu.Item href = "/about" as='a'>About</Menu.Item>*/}
+          {/*<Menu.Item href = "/categories" as='a'>Categories</Menu.Item>*/}
           <Menu.Item as={ Link }  to='/topics'>
             <Icon name='heartbeat' />
             Topics

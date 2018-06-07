@@ -4,8 +4,8 @@
 import React, {Component} from 'react'
 import { Container } from 'semantic-ui-react'
 import Navbar from './navigation/Navbar'
-import Home from './pages/Home'
-import Categories from './categories/Categories'
+// import Home from './pages/Home'
+// import Categories from './categories/Categories'
 import Topics from './topics/Topics'
 // import Topic from './topics/Topic'
 import About from './pages/About'
@@ -53,7 +53,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path='/' component={About}/>
-          <Route path='/categories' component={Categories}/>
+          {/*<Route path='/categories' component={Categories}/>*/}
           <Route path='/new' component={NewReference}/>
           <Route path='/about'
                  render={(props) => <About resources={this.state.resources} {...props} />}/>

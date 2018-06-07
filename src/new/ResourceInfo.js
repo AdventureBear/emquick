@@ -2,7 +2,7 @@
  * Created by suzanne on 5/31/18.
  */
 import React, {Component} from 'react'
-import {Segment, Item,Button, Accordion, Icon, Radio, Form } from 'semantic-ui-react'
+import {Segment, Item,Button, Accordion, Icon, Radio } from 'semantic-ui-react'
 
 class ResourceInfo extends Component {
 

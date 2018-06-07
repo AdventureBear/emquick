@@ -26,20 +26,39 @@ export async function getResources () {
         }
       }
       return resp.json()
-
-
     })
     }
-
-
-
-
 
 
 export async function getOneResource (id) {
   const getURL = API_URL + id
   console.log("API is fetching " + getURL)
   return fetch(getURL)
+    .then(resp => {
+      if (!resp.ok) {
+        if (resp.status >= 400 && resp.status < 500) {
+          return resp.json().then(data => {
+            let err = {errorMessage: data.message}
+            throw err
+          })
+        } else {
+          let err = {errorMessage: 'Please try again later, the server is not responding'}
+          throw err
+        }
+      }
+      return resp.json()
+    })
+}
+
+export async function createResource(resource){
+  const postURL = API_URL
+  return  fetch(postURL, {
+    method: 'post',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+    body: JSON.stringify({resource: resource})
+  })
     .then(resp => {
       if (!resp.ok) {
         if (resp.status >= 400 && resp.status < 500) {

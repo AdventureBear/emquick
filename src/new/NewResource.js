@@ -9,7 +9,7 @@ import Question from './Question'
 import ResourceInfo from './ResourceInfo'
 import PageContent from './PageContent'
 import {Segment} from 'semantic-ui-react'
-
+import References from './References'
 
 class NewResourceForm extends Component {
   constructor(props) {
@@ -142,8 +142,15 @@ class NewResourceForm extends Component {
         "type":        "Calculator",
         "field":       "Trauma",
         "condition":   "TBI",
-        "references":  [{"name": ""},
-          {"name": ""}],
+        "references":  [
+          {
+            "title": "Glasgow Coma Score",
+            "url": "http://www.glasgowcomascale.org/",
+            "author": "Graham Teasdale",
+            "dateAccessed": "June 6, 2018",
+            "additional": ""
+          },
+         ],
         "questions":   [{
           "title":       "Eyes",
           "description": "Eye Opening ",
@@ -185,11 +192,21 @@ class NewResourceForm extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handleReferenceChange = this.handleReferenceChange.bind(this)
 
     // this.handleNewOption = this.handleNewOption(this)
     // this.handleOptionChange = this.handleOptionChange(this)
     this.addNewQuestion = this.addNewQuestion.bind(this)
+    this.addNewReference = this.addNewReference.bind(this)
     this.addNewOption = this.addNewOption.bind(this)
+    this.addResource=this.addResource.bind(this)
+  }
+
+  async addResource() {
+    console.log("New resource to be added: " + this.state.name)
+
+    // let newResource = await apiCalls.createResource(resource)
+    // this.setState({todos: [...this.state.todos, newTodo ]})
   }
 
   handleChange(e) {
@@ -199,6 +216,15 @@ class NewResourceForm extends Component {
   handleTypeChange = (e, { value }) => {
     console.log(value)
     this.setState({ type: value })
+  }
+
+  handleReferenceChange = (i) => (e) => {
+    const name = e.target.name
+    const references = this.state.references.map((reference, j) => {
+      if (j === i ) reference[name] = e.target.value
+      return reference;
+    })
+    this.setState({references})
   }
 
   handleQuestionChange = (i) => (e) => {
@@ -225,6 +251,19 @@ class NewResourceForm extends Component {
     this.setState({friendly: slug})
 
   }
+
+  addNewReference() {
+      const newReference =  {
+        "title": "",
+        "author": "",
+        "url": "",
+        "additional": "",
+        "dateAccessed": ""
+      }
+      this.setState((prevState) => {
+        return {references: [...prevState.references, newReference]};
+      })
+    }
 
   addNewQuestion()  {
     const newQuestion =  {"title": "",
@@ -265,7 +304,7 @@ class NewResourceForm extends Component {
 
   render () {
 
-    const resource = {...this.state}
+    // const resource = {...this.state}
     // console.log(resource)
     const resourceData =  (this.state.type==="Calculator") ?
         <Question
@@ -296,11 +335,19 @@ class NewResourceForm extends Component {
 
           {resourceData}
 
+          <References
+            references = {this.state.references}
+            handleReference = {this.handleReferenceChange}
+            handleType = {this.handleTypeChange}
+            addReference = {this.addNewReference}
+          />
+
           <Segment attached='bottom'>
           <button
-            type="submit"
+            type="button"
             className="ui basic button green"
             style={{alignSelf: 'flex-end', marginRight: 0}}
+            onClick={this.addResource}
           >
             SAVE
           </button>

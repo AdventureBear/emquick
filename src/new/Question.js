@@ -53,14 +53,14 @@ class Question extends Component {
         )}
       </Accordion>
         <div>
-        <button
+        <Button
           type="button"
                 style={{marginTop: '15px' }}
                 onClick={this.props.addQuestion}
                 className="ui button basic green"
         >
           Add Question
-        </button>
+        </Button>
         </div>
       </Segment>
 

@@ -61,9 +61,6 @@ app.get("/*", function (req,res){
   });
 
 
-
-
-
 const server = app.listen(port, function(req,res){
   console.log("EMQuick server started on port " + port + "...")
   console.log(process.env.NODE_ENV)
