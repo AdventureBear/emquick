@@ -135,62 +135,91 @@ class NewResourceForm extends Component {
     //   ],
     //   'pagebody': ''
     // }
+    // this.state=
+    //   {
+    //     "name":        "Glascow Coma Score",
+    //     "friendly":    "glascow-coma-score",
+    //     "description": "The Scale was described in 1974 by Graham Teasdale and Bryan Jennett (Assessment of coma and impaired consciousness. A practical scale. Lancet 1974; 2:81-4.) as a way to communicate about the level of consciousness of patients with an acute brain injury.\n\nThe findings using the scale guide initial decision making and monitor trends in responsiveness that are important in signaling the need for new actions.",
+    //     "type":        "Calculator",
+    //     "field":       "Trauma",
+    //     "condition":   "TBI",
+    //     "references":  [
+    //       {
+    //         "title": "Glasgow Coma Score",
+    //         "url": "http://www.glasgowcomascale.org/",
+    //         "author": "Graham Teasdale",
+    //         "dateAccessed": "June 6, 2018",
+    //         "additional": ""
+    //       },
+    //      ],
+    //     "questions":   [{
+    //       "title":       "Eyes",
+    //       "description": "Eye Opening ",
+    //       "options":     [
+    //         {"value": "4", "description": "Spontaneous"},
+    //         {"value": "3", "description": "To Sound"},
+    //         {"value": "2", "description": "To Pressure"},
+    //         {"value": "1", "description": "None"}
+    //       ]
+    //     },
+    //       {
+    //         "title":       "Verbal Response",
+    //         "description": "",
+    //         "options":     [
+    //           {"value": "5", "description": "Oriented"},
+    //           {"value": "4", "description": "Confused"},
+    //           {"value": "3", "description": "Words"},
+    //           {"value": "2", "description": "Sounds"},
+    //           {"value": "1", "description": "None"}
+    //         ]
+    //       },
+    //       {
+    //         "title":       "Motor Response",
+    //         "description": "",
+    //         "options":     [
+    //           {"value": "6", "description": "Obey Commands"},
+    //           {"value": "5", "description": "Localising"},
+    //           {"value": "4", "description": "Normal Flexion"},
+    //           {"value": "3", "description": "Abnormal Flexion"},
+    //           {"value": "2", "description": "Extension"},
+    //           {"value": "1", "description": "None"}
+    //         ]
+    //       }
+    //     ],
+    //     "pagebody":    "",
+    //     resources: ""
+    //
+    //
+    //   }
+
+
     this.state=
-      {
-        "name":        "Glascow Coma Score",
-        "friendly":    "glascow-coma-score",
-        "description": "The Scale was described in 1974 by Graham Teasdale and Bryan Jennett (Assessment of coma and impaired consciousness. A practical scale. Lancet 1974; 2:81-4.) as a way to communicate about the level of consciousness of patients with an acute brain injury.\n\nThe findings using the scale guide initial decision making and monitor trends in responsiveness that are important in signaling the need for new actions.",
-        "type":        "Calculator",
-        "field":       "Trauma",
-        "condition":   "TBI",
-        "references":  [
-          {
-            "title": "Glasgow Coma Score",
-            "url": "http://www.glasgowcomascale.org/",
-            "author": "Graham Teasdale",
-            "dateAccessed": "June 6, 2018",
-            "additional": ""
-          },
-         ],
-        "questions":   [{
-          "title":       "Eyes",
-          "description": "Eye Opening ",
-          "options":     [
-            {"value": "4", "description": "Spontaneous"},
-            {"value": "3", "description": "To Sound"},
-            {"value": "2", "description": "To Pressure"},
-            {"value": "1", "description": "None"}
-          ]
-        },
-          {
-            "title":       "Verbal Response",
+        {
+          "name":        "",
+          "friendly":    "",
+          "description": "",
+          "type":        "",
+          "field":       "",
+          "condition":   "",
+          "references":  [
+            {
+              "title": "",
+              "url": "",
+              "author": "",
+              "dateAccessed": "",
+              "additional": ""
+            },
+           ],
+          "questions":   [{
+            "title":       "",
             "description": "",
             "options":     [
-              {"value": "5", "description": "Oriented"},
-              {"value": "4", "description": "Confused"},
-              {"value": "3", "description": "Words"},
-              {"value": "2", "description": "Sounds"},
-              {"value": "1", "description": "None"}
+              {"value": "", "description": ""},
             ]
-          },
-          {
-            "title":       "Motor Response",
-            "description": "",
-            "options":     [
-              {"value": "6", "description": "Obey Commands"},
-              {"value": "5", "description": "Localising"},
-              {"value": "4", "description": "Normal Flexion"},
-              {"value": "3", "description": "Abnormal Flexion"},
-              {"value": "2", "description": "Extension"},
-              {"value": "1", "description": "None"}
-            ]
-          }
-        ],
-        "pagebody":    "",
-        resources: ""
-
-
-      }
+          }],
+          "pagebody":    "",
+          "resources": ""
+        }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
@@ -207,7 +236,7 @@ class NewResourceForm extends Component {
    addResource() {
     console.log(Object.keys(this.state))
     let newResource =  apiCalls.createResource(this.state)
-    // this.setState({todos: [...this.state.resources, newResource ]})
+    this.setState({resources: [...this.state.resources, newResource ]})
   }
 
   handleChange(e) {

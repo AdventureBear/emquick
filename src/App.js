@@ -37,9 +37,10 @@ class App extends Component {
 
   async loadResources () {
     payload = await apiCalls.getResources()
-    allResources = payload.resources
+    allResources = payload
     console.log(allResources)
     this.setState({resources: allResources.resources})
+    console.log(this.state)
   }
 
   handleSearchChange = (searchText) => {
@@ -51,18 +52,18 @@ class App extends Component {
 
 
   searchResources(searchString){
-    return allResources.filter((resource) => {
+    return allResources.resources.filter((resource) => {
         if (resource.name.toLowerCase().includes(searchString.toLowerCase())) {
           console.log(searchString + " found in " + resource.name + " in Name field ")
           return true
         }
         if (resource.pagebody && resource.pagebody.includes(searchString)) {
-          console.log(searchString + " found in " + resource.name + " Pagebody ")
+          console.log(searchString + " found in " + resource.pagebody + " Pagebody ")
 
           return true
         }
         if ((resource.description) && resource.description.includes(searchString)){
-          console.log(searchString + " found in " + resource.name + " Description ")
+          console.log(searchString + " found in " + resource.description + " Description ")
 
           return true
         }

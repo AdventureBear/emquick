@@ -3,46 +3,31 @@
  */
 import React, {Component} from 'react'
 import Topic from './Topic'
-// import Article from '../articles/Article'
-//import topics from '../data/resources.json'
+
 import { Container, Header } from 'semantic-ui-react'
 import {
   Route,
   Link,
 } from 'react-router-dom'
-import * as apiCalls from '../api'
+
 
 
 class Topics extends Component  {
-  constructor (props) {
-    super(props)
-    this.state = {
-      resources: []
-    }
+
+  componentWillReceiveProps() {
+    console.log('componentWillReceiveProps in Topics', this.props.resources);
   }
-
-  componentWillMount () {
-    this.loadResources()
-  }
-
-  async loadResources () {
-    let resources = await apiCalls.getResources()
-    this.setState(resources)
-  }
-
-
 
   render () {
     const ThisTopic = (props) => {
       return (
-        <Topic resources={this.state.resources}
+        <Topic resources={this.props.resources}
           {...props}
         />
       )
     }
 
-    const resources = this.state.resources
-    const resourceListing = resources.map(({name, friendly, _id}) => (
+    const resourceListing = this.props.resources.map(({name, friendly, _id}) => (
       <li key={_id}>
         <Link to={`${this.props.match.url}/${friendly}`}>{name}</Link>
       </li>
