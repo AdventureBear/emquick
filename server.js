@@ -55,9 +55,16 @@ app.get("/api", function (req,res){
 })
 
 
-app.get("/*", function (req,res){
-  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-  });
+app.get("/api/resources/*", function (req,res){
+  console.log("Index page sent")
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'), function(err) {
+    if(err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
+
 
 
 const server = app.listen(port, function(req,res){

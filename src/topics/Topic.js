@@ -10,9 +10,15 @@ import Resource from '../calculators/Resource'
 
 
 class Topic extends Component  {
+  componentWillLoad () {
+    console.log("Hi from will load")
+    console.log(this.props)
+  }
+
   render () {
     const val = this.props.match.params.friendly
     console.log(val)
+    console.log(this.props)
     const resource = this.props.resources.find(({ friendly}) => friendly === val)
     // const resource = this.props.resources.find(({ _id }) => _id === id)
     if (resource === undefined) {
@@ -27,6 +33,11 @@ class Topic extends Component  {
     return (
       <Container text style={{marginTop: '7em'}}>
         {page}
+        <div className="ui right rail">
+          <div className="ui segment">
+            Right Rail Content
+          </div>
+        </div>
       </Container>
     )
   }
