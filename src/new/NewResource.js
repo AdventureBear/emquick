@@ -204,11 +204,10 @@ class NewResourceForm extends Component {
     this.addResource=this.addResource.bind(this)
   }
 
-  async addResource() {
+   addResource() {
     console.log(Object.keys(this.state))
-
-    let newResource = await apiCalls.createResource(this.state)
-    this.setState({todos: [...this.state.resources, newResource ]})
+    let newResource =  apiCalls.createResource(this.state)
+    // this.setState({todos: [...this.state.resources, newResource ]})
   }
 
   handleChange(e) {

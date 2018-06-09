@@ -23,7 +23,9 @@ router.get('/:id', function(req,res){
 
 
 router.post('/', function(req,res){
-  Resource.create(req.body)
+  console.log(req.body.resource)
+
+  Resource.create(req.body.resource)
     .then(function(newResource) {
       res.status(201).json(newResource)
     })

@@ -13,13 +13,10 @@ import NewReference from './new/NewResource'
 import * as apiCalls from './api'
 
 
-import {
-  Route,
-  Switch
-} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 // import FindArticle from './articles/FindArticle'
 
-//test
+let payload = [], allResources  = []
 
 class App extends Component {
 
@@ -28,18 +25,54 @@ class App extends Component {
     this.state = {
       resources: []
     }
+
+    this.handleSearchChange = this.handleSearchChange.bind(this)
+    this.searchResources = this.searchResources.bind(this)
   }
+
 
   componentWillMount () {
     this.loadResources()
   }
 
   async loadResources () {
-    let resources = await apiCalls.getResources()
-    this.setState(resources)
+    payload = await apiCalls.getResources()
+    allResources = payload.resources
+    console.log(allResources)
+    this.setState({resources: allResources.resources})
+  }
+
+  handleSearchChange = (searchText) => {
+    console.log(searchText)
+    this.setState({
+      resources: this.searchResources(searchText)
+    })
+  }
+
+
+  searchResources(searchString){
+    return allResources.filter((resource) => {
+        if (resource.name.toLowerCase().includes(searchString.toLowerCase())) {
+          console.log(searchString + " found in " + resource.name + " in Name field ")
+          return true
+        }
+        if (resource.pagebody && resource.pagebody.includes(searchString)) {
+          console.log(searchString + " found in " + resource.name + " Pagebody ")
+
+          return true
+        }
+        if ((resource.description) && resource.description.includes(searchString)){
+          console.log(searchString + " found in " + resource.name + " Description ")
+
+          return true
+        }
+        return false
+      }
+    )
   }
 
   render () {
+
     // const FindTopic = (props) => {
     //   return (
     //     <Topic resources={this.state.resources}
@@ -50,7 +83,10 @@ class App extends Component {
 
     return (
       <Container >
-        <Navbar />
+        <Navbar
+           resources = {this.state.resources}
+           handleSearch = {this.handleSearchChange}
+        />
         <Switch>
           <Route exact path='/' component={About}/>
           {/*<Route path='/categories' component={Categories}/>*/}
