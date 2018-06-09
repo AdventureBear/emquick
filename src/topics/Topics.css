@@ -1,0 +1,25 @@
+.resource-listing{
+    list-style: none;
+    /*border: solid 1px #d0e9cb;*/
+
+}
+
+.resource-listing li {
+    padding: 12px 30px;
+    vertical-align: middle;
+}
+
+
+.resource-listing li:nth-child(odd)
+{
+    background-color: #F7F7F7;
+}
+
+
+.resource-listing li:hover {
+    background-color: #d0e9cb;
+    color: white;
+    cursor: pointer;
+}
+
+

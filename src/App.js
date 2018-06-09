@@ -7,7 +7,7 @@ import Navbar from './navigation/Navbar'
 // import Home from './pages/Home'
 // import Categories from './categories/Categories'
 import Topics from './topics/Topics'
-// import Topic from './topics/Topic'
+import Topic from './topics/Topic'
 import About from './pages/About'
 import NewReference from './new/NewResource'
 import * as apiCalls from './api'
@@ -94,12 +94,11 @@ class App extends Component {
           <Route path='/new' component={NewReference}/>
           <Route path='/about'
                  render={(props) => <About resources={this.state.resources} {...props} />}/>
+          <Route path='/topics/:friendly'
+                 render={(props) => <Topic resources={this.state.resources} {...props} />}/>
           <Route path='/topics'
-                 render={(props) => <Topics resources={this.state.resources} {...props} />}
-          >
-            {/*<Route path='/topics/:friendly'*/}
-                 {/*render={(props) => <Topic resources={this.state.resources} {...props} />}/>*/}
-          </Route>
+               render={(props) => <Topics resources={this.state.resources} {...props} />}/>
+
         </Switch>
       </Container>
     )

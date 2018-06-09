@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import Topic from './Topic'
+import './Topics.css'
 
 import { Container, Header } from 'semantic-ui-react'
 import {
@@ -27,20 +28,21 @@ class Topics extends Component  {
       )
     }
 
-    const resourceListing = this.props.resources.map(({name, friendly, _id}) => (
+    const resourceListing = this.props.resources.map(({name, type, friendly, _id}) => (
       <li key={_id}>
+        {type==="Reference" ? <i className="file alternate outline icon"></i> :<i className="calculator icon"></i> }
         <Link to={`${this.props.match.url}/${friendly}`}>{name}</Link>
       </li>
     ))
 
     return (
       <Container text style={{marginTop: '7em'}}>
-        <Header as='h1'>Topics</Header>
-        <ul>
+        <Header as='p'>Choose a topic below, or search for your topic in the Navigation bar...</Header>
+        <ul className="resource-listing">
           {resourceListing}
         </ul>
 
-          <Route path={`${this.props.match.path}/:friendly`}  render={ThisTopic} />
+          {/*<Route path={`${this.props.match.path}/:friendly`}  render={ThisTopic} />*/}
 
       </Container>
     )

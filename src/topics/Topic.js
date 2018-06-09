@@ -25,7 +25,7 @@ class Topic extends Component  {
       <Resource resource={resource} />
 
     return (
-      <Container>
+      <Container text style={{marginTop: '7em'}}>
         {page}
       </Container>
     )
