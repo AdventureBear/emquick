@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //ES6
+import {Segment, Button } from 'semantic-ui-react'
 
 
 import './ResourceControl.css'
@@ -57,16 +58,7 @@ class ResourceControl extends Component {
 
         return (
             <div className='component-resourcecontrol'>
-                {/*<button*/}
-                  {/*onClick={this.handlePrevClick}*/}
-                {/*>Prev*/}
-                {/*</button>*/}
 
-                {/*<button*/}
-                  {/*type="button"*/}
-                  {/*onClick={this.handleNextClick}*/}
-                {/*>Next*/}
-                {/*</button>*/}
               {controls}
               <button
                 type="button"

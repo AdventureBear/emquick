@@ -50,12 +50,25 @@ app.use('/api/resources/', resourceRoutes)
 
 //seedDB()
 
-app.get("/api", function (req,res){
-  res.json({api: "This is your api"})
-})
 
 
-app.get("/api/resources/*", function (req,res){
+
+// app.get("/api", function (req,res){
+//   res.json({api: "This is your api"})
+// })
+
+
+// app.get("/api/resources/*", function (req,res){
+//   console.log("Index page sent")
+//   res.sendFile(path.resolve(__dirname, 'build', 'index.html'), function(err) {
+//     if(err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
+
+
+app.get("/*", function (req,res){
   console.log("Index page sent")
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'), function(err) {
     if(err) {
@@ -63,9 +76,6 @@ app.get("/api/resources/*", function (req,res){
     }
   })
 })
-
-
-
 
 const server = app.listen(port, function(req,res){
   console.log("EMQuick server started on port " + port + "...")

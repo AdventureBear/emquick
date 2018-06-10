@@ -5,7 +5,8 @@ import React, {Component} from 'react'
 import { Container } from 'semantic-ui-react'
 import Navbar from './navigation/Navbar'
 // import Home from './pages/Home'
-// import Categories from './categories/Categories'
+import Categories from './categories/Categories'
+import Category from './categories/Category'
 import Topics from './topics/Topics'
 import Topic from './topics/Topic'
 import About from './pages/About'
@@ -90,7 +91,10 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' component={About}/>
-          {/*<Route path='/categories' component={Categories}/>*/}
+          <Route path='/categories/:field'
+                 render={(props) => <Category resources={this.state.resources} {...props} />}/>
+          <Route path='/categories'
+                 render={(props) => <Categories resources={this.state.resources} {...props} />}/>
           <Route path='/new' component={NewReference}/>
           <Route path='/about'
                  render={(props) => <About resources={this.state.resources} {...props} />}/>

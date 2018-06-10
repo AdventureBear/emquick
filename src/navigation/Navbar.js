@@ -30,7 +30,7 @@ class Navbar extends Component {
           </Menu.Item>
 
           {/*<Menu.Item href = "/about" as='a'>About</Menu.Item>*/}
-          {/*<Menu.Item href = "/categories" as='a'>Categories</Menu.Item>*/}
+          <Menu.Item href = "/categories" as='a'>Categories</Menu.Item>
           <Menu.Item as={ Link }  to='/topics'>
             <Icon name='heartbeat' />
             Topics

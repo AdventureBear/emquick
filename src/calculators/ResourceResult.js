@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //ES6
+import { Rail, Segment } from 'semantic-ui-react'
 
 
 import './ResourceResult.css'
@@ -11,19 +12,28 @@ class ResourceResult extends Component {
           return (<li key={i}><a href={ref.name}>{ref.name}</a></li>)
         })
         return (
-            <div className="Container" >
-              <div className='component-resourceresult'>
 
-                <h3>Score: {this.props.score}</h3>
-              </div>
-              <div>
+          <Rail close position='right'>
+            {/*<div className="Container" >*/}
+
+              {/*<Rail attached internal position='right'>*/}
+
+
+              <Segment>
+
+                <p>Score:<b> {this.props.score}</b></p>
+              </Segment>
+
+              <Segment>
                  <h3>References:</h3>
                     <ul>
                       {references}
                     </ul>
-              </div>
+              </Segment>
 
-            </div>
+            {/*</div>*/}
+          </Rail>
+
         )
     }
 }

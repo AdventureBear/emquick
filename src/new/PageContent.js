@@ -5,6 +5,7 @@
 import React, {Component} from 'react'
 import {Segment, Button, Item } from 'semantic-ui-react'
 
+
 class PageContent extends Component {
   constructor (props) {
     super(props)

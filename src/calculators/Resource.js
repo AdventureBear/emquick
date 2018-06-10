@@ -5,6 +5,7 @@ import ResourceBody from './ResourceBody'
 import ResourceControl from './ResourceControl'
 import ResourceResult from './ResourceResult'
 import PropTypes from 'prop-types' //ES6
+import { Container, Segment, Rail } from 'semantic-ui-react'
 
 import './Resource.css'
 
@@ -69,10 +70,9 @@ class Resource extends Component {
   render(){
     // const resourceType = this.props.resource.type
     const page = (
-      <div className='component-resource'>
-        <ResourceDescription
-          name={this.props.resource.name}
-        />
+      <Segment className='component-resource'>
+
+
         <ResourceBody
           question={this.props.resource.questions[this.state.question]}
           handleSelection={this.handleSelection}
@@ -88,14 +88,20 @@ class Resource extends Component {
           score={((this.state.scores.length > 0) ? this.state.scores.reduce((a, x) => a + x) : 0) }
           references = {this.props.resource.references}
         />
-      </div>
+
+      </Segment>
     )
 
 
     return (
-      <div>
+      <Container >
+        <ResourceDescription
+          name={this.props.resource.name}
+        />
         {page}
-      </div>
+
+
+      </Container>
       )
   }
 }

@@ -2,57 +2,68 @@
  * Created by suzanne on 5/19/18.
  */
 
-import React from 'react'
+import React, { Component } from 'react'
 import Category from './Category'
 import { Container, Header } from 'semantic-ui-react'
 import categories from '../data/categories.json'
-import resources from '../data/resources.json'
 import {
   Route,
   Link,
 } from 'react-router-dom'
 
-const Categories =({match})=> {
 
 
+class Categories extends Component {
 
-  const cats = categories.map(({name, id}) => {
+  groupBy = (objectArray, property) => {
+    return objectArray.reduce(function (acc, obj) {
+      var key = obj[property];
+      if (!acc[key]) {
+        acc[key] = 0;
+      }
+      acc[key] += 1;
+      return acc;
+    }, {});
+  }
 
-    const articles = resources.filter(function(element) {
-      console.log((element.field.toLowerCase()), (name.toLowerCase()))
-      return element.field.toLowerCase() === name.toLowerCase()
+  render () {
+    let groupedFields = this.groupBy(this.props.resources, 'field');
+    const groupedCats = (Object.keys(groupedFields))
+    console.log("Grouped Fields: " + groupedCats)
+
+    const cats = groupedCats.map((cat, i) => {
+      console.log(cat, groupedFields[cat])
+
+      // const articles = this.props.resources.filter(function (element) {
+      //   console.log((element.field.toLowerCase()), (name.toLowerCase()))
+      //   return element.field.toLowerCase() === name.toLowerCase()
+      // })
+      // console.log(articles.length)
+      return (
+        <li >
+          <Link to={`${this.props.match.url}/${cat.toLowerCase()}`}>{cat} [{groupedFields[cat]}]</Link>
+        </li>
+      )
     })
 
-    console.log(articles.length)
-
+    // const articles = resources.filter(function(element) {
+    //   return element.field.toLowerCase() === match.params.category.toLowerCase()
+    // })
 
     return (
-      <li key={id}>
-        <Link to={`${match.url}/${name.toLowerCase()}`}>{name} [{articles.length}]</Link>
-      </li>
-    )
-  })
-
-
-
-  // const articles = resources.filter(function(element) {
-  //   return element.field.toLowerCase() === match.params.category.toLowerCase()
-  // })
-
-  return (
-      <Container text style={{ marginTop: '7em' }}>
+      <Container text style={{marginTop: '7em'}}>
         <Header as='h1'>Categories</Header>
         <ul>
           {cats}
           {/*{categories.map(({name, id}) => (*/}
-            {/*<li key={id}>*/}
-              {/*<Link to={`${match.url}/${name.toLowerCase()}`}>{name}</Link>*/}
-            {/*</li>*/}
+          {/*<li key={id}>*/}
+          {/*<Link to={`${match.url}/${name.toLowerCase()}`}>{name}</Link>*/}
+          {/*</li>*/}
           {/*))}*/}
         </ul>
-        <Route path={`${match.path}/:category`} component={Category}/>
+        {/*<Route path={`${this.props.match.path}/:category`} component={Category}/>*/}
       </Container>
-  )
+    )
+  }
 }
-
 export default Categories

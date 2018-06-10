@@ -11,6 +11,7 @@ import PageContent from './PageContent'
 import {Segment} from 'semantic-ui-react'
 import References from './References'
 import * as apiCalls  from '../api'
+import Markdown from './Markdown'
 
 class NewResourceForm extends Component {
   constructor(props) {
