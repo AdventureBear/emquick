@@ -12,10 +12,14 @@ import ResourceResult from './ResourceResult'
 
 import './Resource.css'
 
+const log = require('../helpers/logger')('Resource')
+
 class Resource extends Component {
   constructor(props) {
     super(props)
-    const arr = Array(this.props.resource.questions.length).fill(0)
+    const arr = this.props.resource.questions
+      ? Array(this.props.resource.questions.length).fill(0)
+      : [0]
     this.state = {
       selectionMade: false,
       scores: arr,
@@ -26,6 +30,10 @@ class Resource extends Component {
     this.handlePrev = this.handlePrev.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handleSelection = this.handleSelection.bind(this)
+  }
+
+  componentDidMount() {
+    log.info('component mounted with these props:', this.props)
   }
 
   handleNext = (prevState) => {
@@ -64,6 +72,8 @@ class Resource extends Component {
 
   render() {
     // const resourceType = this.props.resource.type
+    log.info('component will try to render with these props:', this.props)
+
     const page = (
       <Segment className="component-resource">
         <ResourceBody

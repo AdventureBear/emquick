@@ -6,20 +6,38 @@ import { Container } from 'semantic-ui-react'
 import ReferencePage from '../articles/ReferencePage'
 import Resource from '../calculators/Resource'
 
+const log = require('../helpers/logger')('Topic')
+
 class Topic extends Component {
-  componentWillLoad() {
-    console.log('Hi from will load')
-    console.log(this.props)
+  componentDidMount() {
+    log.info('component mounted with these props:', this.props)
+  }
+
+  componentWillReceiveProps() {
+    // console.log('Hi from will load')
+    // console.log(this.props)
   }
 
   render() {
+    log.info('component will try to render with these props:', this.props)
     const val = this.props.match.params.friendly
-    console.log(val)
-    console.log(this.props)
-    const resource = this.props.resources.find(({ friendly }) => friendly === val)
+
+    /**
+     * this is the issue here. You cannot use object destructuring
+     * in an array callback. The first argument passed in will be the item
+     * at the current index
+     */
+    // const resource = this.props.resources.find(({ friendly }) => friendly === val)
+    const resource = this.props.resources.find(r => r.friendly === val) || []
     // const resource = this.props.resources.find(({ _id }) => _id === id)
-    if (resource === undefined) {
-      console.log(`No match found for id: ${val}`)
+
+    /**
+     * here you check for undefined, but you don't validate it in the page component
+     * in react, it's better if we ALWAYS return something. Even if it's just an empty
+     * array, like I did in the resource const. This way you always have something to render
+     */
+    if (resource.length) {
+      log.info(`No match found for id: ${val}`)
     }
 
     const page =
