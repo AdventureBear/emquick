@@ -5,7 +5,7 @@ import ResourceBody from './ResourceBody'
 import ResourceControl from './ResourceControl'
 import ResourceResult from './ResourceResult'
 import PropTypes from 'prop-types' //ES6
-import { Container, Segment, Rail } from 'semantic-ui-react'
+import { Container, Segment } from 'semantic-ui-react'
 
 import './Resource.css'
 
@@ -107,7 +107,7 @@ class Resource extends Component {
 }
 
 Resource.propTypes = {
-  references: PropTypes.object
+  resource: PropTypes.object
 };
 
 export default Resource

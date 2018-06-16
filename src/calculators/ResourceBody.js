@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //ES6
-import {Container } from 'semantic-ui-react'
+// import {Container } from 'semantic-ui-react'
 
 
 import './ResourceBody.css'

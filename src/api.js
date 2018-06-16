@@ -11,44 +11,59 @@ if (process.env.NODE_ENV === 'production' ){
 
 
 
-export async function getResources () {
-  return fetch(API_URL)
-    .then(resp => {
-      if (!resp.ok) {
-        if (resp.status >= 400 && resp.status < 500) {
-          return resp.json().then(data => {
-            let err = {errorMessage: data.message}
-            throw err
-          })
-        } else {
-          let err = {errorMessage: 'Please try again later, the server is not responding'}
-          throw err
-        }
-      }
-      return resp.json()
-    })
-    }
+// export async function getResources () {
+//   return fetch(API_URL)
+//     .then(resp => {
+//       if (!resp.ok) {
+//         if (resp.status >= 400 && resp.status < 500) {
+//           return resp.json().then(data => {
+//             let err = {errorMessage: data.message}
+//             throw err
+//           })
+//         } else {
+//           let err = {errorMessage: 'Please try again later, the server is not responding'}
+//           throw err
+//         }
+//       }
+//       return resp.json()
+//     })
+//     }
 
-
-export async function getOneResource (id) {
-  const getURL = API_URL + id
-  console.log("API is fetching " + getURL)
-  return fetch(getURL)
-    .then(resp => {
-      if (!resp.ok) {
-        if (resp.status >= 400 && resp.status < 500) {
-          return resp.json().then(data => {
-            let err = {errorMessage: data.message}
-            throw err
-          })
-        } else {
-          let err = {errorMessage: 'Please try again later, the server is not responding'}
-          throw err
-        }
-      }
-      return resp.json()
-    })
+// export  function getResources () {
+//   fetch(API_URL)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (myJson) {
+//       console.log(myJson);
+//     });
+// }
+export function getResources () {
+  fetch(API_URL)
+    .then(response => response.json())
+    .then(json => json)
 }
+
+//
+// export async function getOneResource (id) {
+//   const getURL = API_URL + id
+//   console.log("API is fetching " + getURL)
+//   return fetch(getURL)
+//     .then(resp => {
+//       if (!resp.ok) {
+//         if (resp.status >= 400 && resp.status < 500) {
+//           return resp.json().then(data => {
+//             let err = {errorMessage: data.message}
+//             throw err
+//           })
+//         } else {
+//           let err = {errorMessage: 'Please try again later, the server is not responding'}
+//           throw err
+//         }
+//       }
+//       return resp.json()
+//     })
+// }
 
 export async function createResource(resource){
   const postURL = API_URL
@@ -71,7 +86,6 @@ export async function createResource(resource){
           throw err
         }
       }
-      // console.log(resp.json())
       return resp.json()
     })
 }

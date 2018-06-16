@@ -2,31 +2,19 @@
  * Created by suzanne on 5/19/18.
  */
 import React, {Component} from 'react'
-import Topic from './Topic'
+// import Topic from './Topic'
 import './Topics.css'
-
+import PropTypes from 'prop-types'
 import { Container, Header } from 'semantic-ui-react'
 import {
-  Route,
-  Link,
+  Link
 } from 'react-router-dom'
 
 
 
 class Topics extends Component  {
 
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps in Topics', this.props.resources);
-  }
-
   render () {
-    const ThisTopic = (props) => {
-      return (
-        <Topic resources={this.props.resources}
-          {...props}
-        />
-      )
-    }
 
     const resourceListing = this.props.resources.map(({name, type, friendly, _id}) => (
       <li key={_id}>
@@ -41,14 +29,13 @@ class Topics extends Component  {
         <ul className="resource-listing">
           {resourceListing}
         </ul>
-
-          {/*<Route path={`${this.props.match.path}/:friendly`}  render={ThisTopic} />*/}
-
       </Container>
     )
   }
 }
 
-
+Topics.propTypes = {
+  resources: PropTypes.array
+}
 
 export default Topics

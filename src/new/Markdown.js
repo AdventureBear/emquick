@@ -4,9 +4,9 @@
 
 import React, {Component} from 'react'
 import {Segment, Button, Item } from 'semantic-ui-react'
-import ReactMarkdown from 'react-markdown'
+// import ReactMarkdown from 'react-markdown'
 
-const input = '# This is a header\n\nAnd this is a paragraph'
+// const input = '# This is a header\n\nAnd this is a paragraph'
 
 
 

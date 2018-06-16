@@ -12,14 +12,7 @@ router.get('/', function(req,res){
   })
 })
 
-router.get('/:id', function(req,res){
-  console.log("Im here in the backend API getting " + req.params.id)
-  Resource.findById( req.params.id, function (err, resource) {
-    if (err) console.log(err)
-    // console.log(resource.name)
-    res.json({resource})
-  })
-})
+
 
 
 router.post('/', function(req,res){
@@ -34,15 +27,15 @@ router.post('/', function(req,res){
     })
 })
 
-// exports.createTodo = function(req,res){
-//   db.Todo.create(req.body)
-//     .then(function(newTodo){
-//       res.status(201).json(newTodo)
-//     })
-//     .catch(function(err){
-//       res.send(err)
-//     })
-// }
+router.get('/:id', function(req,res){
+  console.log("Im here in the backend API getting " + req.params.id)
+  Resource.findById( req.params.id, function (err, resource) {
+    if (err) console.log(err)
+    // console.log(resource.name)
+    res.json({resource})
+  })
+})
+
 
 
 

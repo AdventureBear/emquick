@@ -45,8 +45,7 @@ const port = process.env.PORT || 8080
 const db_url = process.env.MLAB_URI
 mongoose.connect(db_url)
 
-//ROUTES
-app.use('/api/resources/', resourceRoutes)
+
 
 //seedDB()
 
@@ -56,8 +55,8 @@ app.use('/api/resources/', resourceRoutes)
 // app.get("/api", function (req,res){
 //   res.json({api: "This is your api"})
 // })
-
-
+//
+//
 // app.get("/api/resources/*", function (req,res){
 //   console.log("Index page sent")
 //   res.sendFile(path.resolve(__dirname, 'build', 'index.html'), function(err) {
@@ -66,7 +65,15 @@ app.use('/api/resources/', resourceRoutes)
 //     }
 //   })
 // })
+//
+// app.use((req, res, next) => {
+//   // const { user = { username: null, }, } = req
+//   console.log(`DEBUG originalUrl: ${req.originalUrl}`)
+//   next()
+// })
 
+//ROUTES
+app.use('/api/resources/', resourceRoutes)
 
 app.get("/*", function (req,res){
   console.log("Index page sent")
@@ -77,9 +84,11 @@ app.get("/*", function (req,res){
   })
 })
 
+
+
+
 const server = app.listen(port, function(req,res){
   console.log("EMQuick server started on port " + port + "...")
-  console.log(process.env.NODE_ENV)
 
 })
 
