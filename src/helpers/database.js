@@ -62,11 +62,11 @@ const establishConnection = async (err) => {
     log.error('could not connect to mongodb: ', { errorMessage: e.message })
   }
 
-  return log.info(`successfully connected to db at: ${db_url}`)
+  return log.info(`successfully connected to db at: mongodb://${hostname}:${port}/${dbname}`)
 }
 
 const initializeDB = async () => {
-  await launchContainer()
+  if (process.env.LAUNCH_DOCKER === true) await launchContainer()
   await waitFor(startupOpts, establishConnection)
 }
 

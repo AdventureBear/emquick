@@ -36,6 +36,7 @@ const containersRunning = async () => {
 const launchContainer = async () => {
   // check if mongo db is already running to not reload service
   if (await containersRunning()) return
+
   log.info('launching docker containers')
   try {
     await execa('docker-compose', ['up', '-d'], { cwd: dockerFile })
@@ -44,4 +45,5 @@ const launchContainer = async () => {
   }
   log.info('database docker container has started. Waiting 1.5 secs for conn to stabilize...')
 }
+
 exports.launchContainer = launchContainer
