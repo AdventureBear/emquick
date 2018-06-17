@@ -66,8 +66,10 @@ const establishConnection = async (err) => {
 }
 
 const initializeDB = async () => {
-  if (process.env.LAUNCH_DOCKER === true) await launchContainer()
-  await waitFor(startupOpts, establishConnection)
+  if (process.env.LAUNCH_DOCKER === true) {
+    await launchContainer()
+    await waitFor(startupOpts, establishConnection)
+  } else await establishConnection()
 }
 
 const teardownDB = async () => {
