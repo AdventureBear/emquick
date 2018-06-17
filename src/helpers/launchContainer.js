@@ -12,14 +12,14 @@ const containersRunning = async () => {
       'inspect',
       '-f',
       '{{.State.Running}}',
-      process.env.DB_NAME,
+      process.env.CONTAINER_NAME,
     ])
 
     databaseClient = await execa('docker', [
       'inspect',
       '-f',
       '{{.State.Running}}',
-      `${process.env.DB_NAME}-client`,
+      `${process.env.CONTAINER_NAME}-client`,
     ])
 
     log.info('found active docker containers')

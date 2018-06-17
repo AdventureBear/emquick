@@ -33,8 +33,11 @@ const shutdownOpts = {
  * Start a mongodb docker container and connect to it
  */
 
-// const db_url = process.env.MONGO_URI
-const db_url = process.env.DB_URL
+const hostname = process.env.DB_HOST
+const port = process.env.DB_PORT
+const dbname = process.env.DB_NAME
+
+const db_url = `mongodb://${hostname}:${port}/${dbname}`
 const dockerFile = findParentDir.sync(__dirname, 'docker-compose.yml')
 
 /**
