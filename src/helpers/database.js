@@ -66,7 +66,7 @@ const establishConnection = async (err) => {
 }
 
 const initializeDB = async () => {
-  if (process.env.LAUNCH_DOCKER === true) {
+  if (process.env.LAUNCH_DOCKER.toLowerCase() === 'true') {
     await launchContainer()
     await waitFor(startupOpts, establishConnection)
   } else await establishConnection()
