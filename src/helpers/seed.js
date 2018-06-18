@@ -3,7 +3,7 @@
  */
 // const mongoose = require('mongoose')
 const log = require('./logger')('seeding db')
-const mongoose = require('mongoose')
+const findParentDir = require('find-parent-dir')
 const resources = require('../data/resources.json')
 
 const removeDocs = async (model) => {
@@ -17,6 +17,7 @@ const removeDocs = async (model) => {
 }
 
 const createDocs = async (resource, model) => {
+  log.info('creating mongodb document for:', resource.name)
   try {
     const createdResource = await model.create(resource)
     log.info(`Created Resource, ${createdResource.name}`)
@@ -25,13 +26,20 @@ const createDocs = async (resource, model) => {
   }
 }
 
-const seedDB = async (model) => {
+const seedDB = async (fileName) => {
   log.info('starting to seed database')
 
-  // retrieve the model instance
-  const modelInstance = mongoose.models[model]
+  let modelInstance
+  try {
+    const modelsParentDir = findParentDir.sync(__dirname, 'models')
 
-  await removeDocs(modelInstance)
+    // retrieve the model instance
+    modelInstance = require(`${modelsParentDir}models/${fileName}`) // eslint-disable-line import/no-dynamic-require, global-require
+
+    await removeDocs(modelInstance)
+  } catch (e) {
+    return log.error('could not load model to seed:', e)
+  }
 
   /**
    * iterate over all the resources and seed our db.
@@ -49,7 +57,7 @@ const seedDB = async (model) => {
     if (resource.id >= 0) await createDocs(resource, modelInstance) // eslint-disable-line no-await-in-loop, max-len
   }
 
-  log.info('finished seeding database')
+  return log.info('finished seeding database')
 }
 
 module.exports = seedDB

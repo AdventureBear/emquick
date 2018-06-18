@@ -23,21 +23,22 @@ class Topic extends Component {
     const val = this.props.match.params.friendly
 
     /**
-     * this is the issue here. You cannot use object destructuring
-     * in an array callback. The first argument passed in will be the item
-     * at the current index
+     * In react, it's better if we ALWAYS return something.
+     * Even if it's just an empty object,
+     * This way you always have something to render.
      */
-    // const resource = this.props.resources.find(({ friendly }) => friendly === val)
-    const resource = this.props.resources.find(r => r.friendly === val) || []
-    // const resource = this.props.resources.find(({ _id }) => _id === id)
+    const resource =
+      this.props.resources.find(({ friendly }) => friendly === val) || {}
 
     /**
-     * here you check for undefined, but you don't validate it in the page component
-     * in react, it's better if we ALWAYS return something. Even if it's just an empty
-     * array, like I did in the resource const. This way you always have something to render
+     * You can then check if it's available for logging
+     * or displaying a message to the user
      */
-    if (resource.length) {
-      log.info(`No match found for id: ${val}`)
+    if (!resource.type) {
+      log.info(
+        `No match found for id: ${val} with these resources:`,
+        this.props.resources,
+      )
     }
 
     const page =

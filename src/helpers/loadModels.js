@@ -14,7 +14,7 @@ const bootstrap = (modelsParentDir, listOfModels) => {
 
   listOfModels.forEach((schema) => {
     const fileName = schema.split('.')[0]
-    require(`${modelsParentDir}/models/${fileName}`) // eslint-disable-line import/no-dynamic-require, global-require
+    require(`${modelsParentDir}models/${fileName}`) // eslint-disable-line import/no-dynamic-require, global-require
 
     // mongoose.model(fileName, newSchema) // eslint-disable-line no-param-reassign
   })

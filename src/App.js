@@ -23,14 +23,6 @@ const log = require('./helpers/logger')('App')
 // let payload = []
 // let allResources = []
 
-let API_URL = ''
-//this could be an env variable as well
-if (process.env.NODE_ENV === 'production' ){
-  API_URL = '/api/resources/'
-} else {
-  API_URL = 'http://localhost:3001/api/resources/'
-}
-
 class App extends Component {
   constructor(props) {
     super(props)
