@@ -76,6 +76,7 @@ class Resource extends Component {
         <ResourceBody
           question={this.props.resource.questions[this.state.question]}
           handleSelection={this.handleSelection}
+
         />
         <ResourceControl
           selectionMade = {this.state.selectionMade}

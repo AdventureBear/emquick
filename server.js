@@ -43,6 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 8080
 // const db_url = process.env.MONGO_URI
 const db_url = process.env.MLAB_URI
+debug.info
 mongoose.connect(db_url)
 
 
