@@ -1,9 +1,10 @@
-/*.component-resource {*/
-   /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: center;*/
+.component-resource {
+   display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*margin-left: -30px;*/
     /*align-items: stretch;*/
     /*margin: 10px 50px 50px 50px;*/
     /*color: #FAF3CE;*/
 
-/*}*/
+}

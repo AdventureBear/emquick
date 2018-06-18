@@ -1,7 +1,13 @@
+.component-resourcebody {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .component-resourcebody ul {
     list-style-type: none;
     margin-top: 5px;
+    margin-left: 50px;
     display: flex;
     justify-content: center;
     flex-direction: column;
