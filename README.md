@@ -29,7 +29,17 @@ I made this for my own use and wish to share it with others.  I hope you find it
 Contributions to development of the app are warmly welcomed, as are contributions to the database of resources, which I"ll be adding to a little at a time. 
 
 ## Contributors
-Contributors will be acknowledged here...
+#####Suzanne Atkinson, MD 
+<https://github.com/AdventureBear>
+
+Founder, Content Creator, Code Maintainer
+
+
+#####JM Mendez 
+<https://github.com/JM-Mendez>
+
+Set up Dev Environment with debugging, logging, docker. Troubleshooting help with React environment
+
 
 
 ## Developers Background
