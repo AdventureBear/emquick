@@ -6,28 +6,34 @@ import { Container } from 'semantic-ui-react'
 import ReferencePage from '../articles/ReferencePage'
 import Resource from '../calculators/Resource'
 
+class Topic extends Component {
+  componentWillLoad() {
+    console.log('Hi from will load')
+    console.log(this.props)
+  }
 
-class Topic extends Component  {
-
-  render () {
+  render() {
     const val = this.props.match.params.friendly
-    const resource = this.props.resources.find(({ friendly}) => friendly === val)
+    console.log(val)
+    console.log(this.props)
+    const resource = this.props.resources.find(({ friendly }) => friendly === val)
+    // const resource = this.props.resources.find(({ _id }) => _id === id)
     if (resource === undefined) {
-      console.log("No match found for id: " + val)
+      console.log(`No match found for id: ${val}`)
     }
 
-    const page = (resource.type==="Reference") ?
-      <ReferencePage resource={resource}/>
-      :
-      <Resource resource={resource} />
+    const page =
+      resource.type === 'Reference' ? (
+        <ReferencePage resource={resource} />
+      ) : (
+        <Resource resource={resource} />
+      )
 
     return (
-      <Container text style={{marginTop: '7em'}}>
+      <Container text style={{ marginTop: '7em' }}>
         {page}
         <div className="ui right rail">
-          <div className="ui segment">
-            Right Rail Content
-          </div>
+          <div className="ui segment">Right Rail Content</div>
         </div>
       </Container>
     )
@@ -35,4 +41,3 @@ class Topic extends Component  {
 }
 
 export default Topic
-
