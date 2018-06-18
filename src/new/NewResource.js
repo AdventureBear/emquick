@@ -1,16 +1,16 @@
 /**
  * Created by suzanne on 5/20/18.
  */
-import React, {Component} from 'react'
-import {Container, Header} from 'semantic-ui-react'
-import './NewResource.css'
+import React, { Component } from 'react'
+import { Container, Header } from 'semantic-ui-react'
 import slugify from 'slugify'
+import './NewResource.css'
 import Question from './Question'
 import ResourceInfo from './ResourceInfo'
 import PageContent from './PageContent'
-import {Segment} from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import References from './References'
-import * as apiCalls  from '../api'
+import * as apiCalls from '../api'
 // import Markdown from './Markdown'
 
 class NewResourceForm extends Component {
@@ -193,34 +193,32 @@ class NewResourceForm extends Component {
     //
     //   }
 
-
-    this.state=
+    this.state = {
+      name: '',
+      friendly: '',
+      description: '',
+      type: '',
+      field: '',
+      condition: '',
+      references: [
         {
-          "name":        "",
-          "friendly":    "",
-          "description": "",
-          "type":        "",
-          "field":       "",
-          "condition":   "",
-          "references":  [
-            {
-              "title": "",
-              "url": "",
-              "author": "",
-              "dateAccessed": "",
-              "additional": ""
-            },
-           ],
-          "questions":   [{
-            "title":       "",
-            "description": "",
-            "options":     [
-              {"value": "", "description": ""},
-            ]
-          }],
-          "pagebody":    "",
-          "resources": ""
-        }
+          title: '',
+          url: '',
+          author: '',
+          dateAccessed: '',
+          additional: '',
+        },
+      ],
+      questions: [
+        {
+          title: '',
+          description: '',
+          options: [{ value: '', description: '' }],
+        },
+      ],
+      pagebody: '',
+      resources: '',
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleTypeChange = this.handleTypeChange.bind(this)
@@ -231,17 +229,17 @@ class NewResourceForm extends Component {
     this.addNewQuestion = this.addNewQuestion.bind(this)
     this.addNewReference = this.addNewReference.bind(this)
     this.addNewOption = this.addNewOption.bind(this)
-    this.addResource=this.addResource.bind(this)
+    this.addResource = this.addResource.bind(this)
   }
 
-   addResource() {
+  addResource() {
     console.log(Object.keys(this.state))
-    let newResource =  apiCalls.createResource(this.state)
-    this.setState({resources: [...this.state.resources, newResource ]})
+    const newResource = apiCalls.createResource(this.state)
+    this.setState({ resources: [...this.state.resources, newResource] })
   }
 
   handleChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleTypeChange = (e, { value }) => {
@@ -249,146 +247,147 @@ class NewResourceForm extends Component {
     this.setState({ type: value })
   }
 
-  handleReferenceChange = (i) => (e) => {
+  handleReferenceChange = i => (e) => {
     const name = e.target.name
     const references = this.state.references.map((reference, j) => {
-      if (j === i ) reference[name] = e.target.value
-      return reference;
+      if (j === i) reference[name] = e.target.value
+      return reference
     })
-    this.setState({references})
+    this.setState({ references })
   }
 
-  handleQuestionChange = (i) => (e) => {
+  handleQuestionChange = i => (e) => {
     const name = e.target.name
     const questions = this.state.questions.map((question, j) => {
-      if (j === i ) question[name] = e.target.value;
-      return question;
+      if (j === i) question[name] = e.target.value
+      return question
     })
-    this.setState({questions})
+    this.setState({ questions })
   }
 
-  handleOptionChange = (qIndex,optIndex) =>  (e) => {
-    const index = Number(e.target.name.split('-')[1]);
-    const name = e.target.name.split('-')[0];
+  handleOptionChange = (qIndex, optIndex) => (e) => {
+    const index = Number(e.target.name.split('-')[1])
+    const name = e.target.name.split('-')[0]
     const options = this.state.questions[qIndex].options.map((option, j) => {
       if (j === index) option[name] = e.target.value
       return option
     })
-    this.setState({options})
+    this.setState({ options })
   }
 
-  slugifyTitle =(e) => {
+  slugifyTitle = (e) => {
     const slug = slugify(e.target.value).toLowerCase()
-    this.setState({friendly: slug})
-
+    this.setState({ friendly: slug })
   }
 
   addNewReference() {
-      const newReference =  {
-        "title": "",
-        "author": "",
-        "url": "",
-        "additional": "",
-        "dateAccessed": ""
-      }
-      this.setState((prevState) => {
-        return {references: [...prevState.references, newReference]};
-      })
+    const newReference = {
+      title: '',
+      author: '',
+      url: '',
+      additional: '',
+      dateAccessed: '',
     }
-
-  addNewQuestion()  {
-    const newQuestion =  {"title": "",
-      "description": "",
-      "options": [
-      {
-        "value": "",
-        "description": ""
-      }],
-      "edit": true,
-    }
-    this.setState((prevState) => {
-      return {questions: [...prevState.questions, newQuestion]};
-    });
+    this.setState(prevState => ({
+      references: [...prevState.references, newReference],
+    }))
   }
 
-  addNewOption(questionNum)  {
-    const newOption =   {
-      "value": "Value",
-      "description": "Description",
-      "edit": true
+  addNewQuestion() {
+    const newQuestion = {
+      title: '',
+      description: '',
+      options: [
+        {
+          value: '',
+          description: '',
+        },
+      ],
+      edit: true,
+    }
+    this.setState(prevState => ({
+      questions: [...prevState.questions, newQuestion],
+    }))
+  }
+
+  addNewOption(questionNum) {
+    const newOption = {
+      value: 'Value',
+      description: 'Description',
+      edit: true,
     }
 
     const questions = this.state.questions.map((question, i) => {
-      if (i===questionNum) {
-        question.options = [...this.state.questions[questionNum].options, newOption]
+      if (i === questionNum) {
+        question.options = [
+          ...this.state.questions[questionNum].options,
+          newOption,
+        ]
       }
       return question
     })
-    this.setState({questions});
+    this.setState({ questions })
   }
 
   handleNewOption(j) {
-    let stateCopy = Object.assign({}, this.state)
+    const stateCopy = Object.assign({}, this.state)
     stateCopy.questions[j].options = [...stateCopy.questions[j].options, '']
-    this.setState({stateCopy})
+    this.setState({ stateCopy })
   }
 
-  render () {
-
+  render() {
     // const resource = {...this.state}
     // console.log(resource)
-    const resourceData =  (this.state.type==="Calculator") ?
+    const resourceData =
+      this.state.type === 'Calculator' ? (
         <Question
-          questions = {this.state.questions}
-          handleQuestion = {this.handleQuestionChange}
-          handleOption = {this.handleOptionChange}
-          addQuestion = {this.addNewQuestion}
-          addOption = {this.addNewOption}
-           />
-          :
-          <PageContent
-            pagebody = {this.state.pagebody}
-            handleChange = {this.handleChange}
-          />
+          questions={this.state.questions}
+          handleQuestion={this.handleQuestionChange}
+          handleOption={this.handleOptionChange}
+          addQuestion={this.addNewQuestion}
+          addOption={this.addNewOption}
+        />
+      ) : (
+        <PageContent
+          pagebody={this.state.pagebody}
+          handleChange={this.handleChange}
+        />
+      )
 
-
-    return(
+    return (
       <Container text style={{ marginTop: '5em' }}>
-        <Header as='h1'>Add New Resource</Header>
-        <form className="resource-form" autoComplete="off" >
-
+        <Header as="h1">Add New Resource</Header>
+        <form className="resource-form" autoComplete="off">
           <ResourceInfo
-            resource = {this.state}
-            handleChange = {this.handleChange}
-            slugify = {this.slugifyTitle}
-            handleType = {this.handleTypeChange}
+            resource={this.state}
+            handleChange={this.handleChange}
+            slugify={this.slugifyTitle}
+            handleType={this.handleTypeChange}
           />
 
           {resourceData}
 
           <References
-            references = {this.state.references}
-            handleReference = {this.handleReferenceChange}
-            handleType = {this.handleTypeChange}
-            addReference = {this.addNewReference}
+            references={this.state.references}
+            handleReference={this.handleReferenceChange}
+            handleType={this.handleTypeChange}
+            addReference={this.addNewReference}
           />
 
-          <Segment attached='bottom'>
-          <button
-            type="button"
-            className="ui basic button green"
-            style={{alignSelf: 'flex-end', marginRight: 0}}
-            onClick={this.addResource}
-          >
-            SAVE
-          </button>
+          <Segment attached="bottom">
+            <button
+              type="button"
+              className="ui basic button green"
+              style={{ alignSelf: 'flex-end', marginRight: 0 }}
+              onClick={this.addResource}
+            >
+              SAVE
+            </button>
           </Segment>
         </form>
       </Container>
-
     )
   }
-
 }
 
 export default NewResourceForm
