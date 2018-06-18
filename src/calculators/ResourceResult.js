@@ -1,46 +1,46 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types' //ES6
-import { Rail, Segment } from 'semantic-ui-react'
+/* eslint-disable
+react/prefer-stateless-function, react/no-array-index-key
+*/
 
+import React, { Component } from 'react'
+// import PropTypes from 'prop-types' //ES6
+import { Rail, Segment } from 'semantic-ui-react'
 
 import './ResourceResult.css'
 
 class ResourceResult extends Component {
+  render() {
+    const references = this.props.references.map((ref, i) => (
+      <li key={i}>
+        <a href={ref.name}>{ref.name}</a>
+      </li>
+    ))
+    return (
+      <Rail close position="right">
+        {/* <div className="Container" > */}
 
-    render(){
-        const references = this.props.references.map((ref, i) => {
-          return (<li key={i}><a href={ref.name}>{ref.name}</a></li>)
-        })
-        return (
+        {/* <Rail attached internal position='right'> */}
 
-          <Rail close position='right'>
-            {/*<div className="Container" >*/}
+        <Segment>
+          <p>
+            Score:<b> {this.props.score}</b>
+          </p>
+        </Segment>
 
-              {/*<Rail attached internal position='right'>*/}
+        <Segment>
+          <h3>References:</h3>
+          <ul>{references}</ul>
+        </Segment>
 
-
-              <Segment>
-
-                <p>Score:<b> {this.props.score}</b></p>
-              </Segment>
-
-              <Segment>
-                 <h3>References:</h3>
-                    <ul>
-                      {references}
-                    </ul>
-              </Segment>
-
-            {/*</div>*/}
-          </Rail>
-
-        )
-    }
+        {/* </div> */}
+      </Rail>
+    )
+  }
 }
 
-ResourceResult.propTypes = {
-    score: PropTypes.number,
-    references: PropTypes.array
-};
+// ResourceResult.propTypes = {
+//   score: PropTypes.number,
+//   references: PropTypes.array,
+// }
 
 export default ResourceResult

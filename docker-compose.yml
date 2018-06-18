@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  MONGO:
+    image: mongo:latest
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - '${DB_PORT}:27017'
+    volumes:
+      - ./docker/mongodb_data:/data/db
+  mongo_client:
+    image: mongoclient/mongoclient
+    container_name: ${CONTAINER_NAME}-client
+    ports:
+      - "${MONGO_ADMIN}:3000"
+    environment:
+      # set root url to docker contained instance
+      MONGO_URL: 'mongodb://MONGO:27017/${DB_NAME}'
+      STARTUP_DELAY: 2
+    depends_on:
+      - MONGO

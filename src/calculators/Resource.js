@@ -1,114 +1,115 @@
+/* eslint-disable
+no-unused-vars, no-shadow, prefer-destructuring
+*/
 import React, { Component } from 'react'
 // import ReferencePage from '../articles/ReferencePage'
+import { Container, Segment, Rail } from 'semantic-ui-react'
 import ResourceDescription from './ResourceDescription'
 import ResourceBody from './ResourceBody'
 import ResourceControl from './ResourceControl'
 import ResourceResult from './ResourceResult'
-import PropTypes from 'prop-types' //ES6
-import { Container, Segment } from 'semantic-ui-react'
+// import PropTypes from 'prop-types' //ES6
 
 import './Resource.css'
 
+const log = require('../helpers/logger')('Resource')
+
 class Resource extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    let arr = Array(this.props.resource.questions.length).fill(0)
+    const arr = this.props.resource.questions
+      ? Array(this.props.resource.questions.length).fill(0)
+      : [0]
     this.state = {
       selectionMade: false,
       scores: arr,
-      question: 0
+      question: 0,
     }
-    //console.log("Scores length: ", this.state.scores.length)
+    // console.log("Scores length: ", this.state.scores.length)
     this.handleNext = this.handleNext.bind(this)
     this.handlePrev = this.handlePrev.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handleSelection = this.handleSelection.bind(this)
   }
 
+  componentDidMount() {
+    log.info('component mounted with these props:', this.props)
+  }
 
   handleNext = (prevState) => {
-    if (this.state.question < this.props.resource.questions.length-1) {
-      console.log("Next Question")
-      this.setState((prevState) => {
-        return {question: prevState.question + 1,
-            selectionMade: false
-        }
-      })
+    if (this.state.question < this.props.resource.questions.length - 1) {
+      console.log('Next Question')
+      this.setState(prevState => ({
+        question: prevState.question + 1,
+        selectionMade: false,
+      }))
     } else {
-      console.log("No more Questions!")
+      console.log('No more Questions!')
     }
   }
 
-
   handlePrev = (prevState) => {
-    if (this.state.question < 1 ) {
-      console.log("At Beginning")
-
+    if (this.state.question < 1) {
+      console.log('At Beginning')
     } else {
-      console.log("Previous Question...")
-      this.setState((prevState) => {
-        return {question: prevState.question - 1}
-      })
+      console.log('Previous Question...')
+      this.setState(prevState => ({ question: prevState.question - 1 }))
     }
   }
 
   handleReset = () => {
-    let arr = Array(this.props.resource.questions.length).fill(0)
+    const arr = Array(this.props.resource.questions.length).fill(0)
     this.setState({ question: 0, scores: arr })
   }
 
-  handleSelection= (score) => {
-
-    console.log("Clicked Selection: " + score)
-    let scores = this.state.scores
-    scores[this.state.question] = Number.parseInt(score,10)
-    this.setState({scores: scores, selectionMade: true})
-    console.log("Question number: " + this.state.question)
-
+  handleSelection = (score) => {
+    console.log(`Clicked Selection: ${score}`)
+    const scores = this.state.scores
+    scores[this.state.question] = Number.parseInt(score, 10)
+    this.setState({ scores, selectionMade: true })
+    console.log(`Question number: ${this.state.question}`)
   }
 
-  render(){
+  render() {
     // const resourceType = this.props.resource.type
+    log.info('component will try to render with these props:', this.props)
+
     const page = (
-      <Segment className='component-resource'>
-
-
+      <Segment className="component-resource">
         <ResourceBody
           question={this.props.resource.questions[this.state.question]}
           handleSelection={this.handleSelection}
 
         />
         <ResourceControl
-          selectionMade = {this.state.selectionMade}
+          selectionMade={this.state.selectionMade}
           handleNext={this.handleNext}
           handlePrev={this.handlePrev}
           handleReset={this.handleReset}
         />
         <ResourceResult
-          selectionMade = {this.state.selectionMade}
-          score={((this.state.scores.length > 0) ? this.state.scores.reduce((a, x) => a + x) : 0) }
-          references = {this.props.resource.references}
+          selectionMade={this.state.selectionMade}
+          score={
+            this.state.scores.length > 0
+              ? this.state.scores.reduce((a, x) => a + x)
+              : 0
+          }
+          references={this.props.resource.references}
         />
-
       </Segment>
     )
 
-
     return (
-      <Container >
-        <ResourceDescription
-          name={this.props.resource.name}
-        />
+      <Container>
+        <ResourceDescription name={this.props.resource.name} />
         {page}
-
-
       </Container>
-      )
+    )
   }
 }
 
-Resource.propTypes = {
-  resource: PropTypes.object
-};
+// Resource.propTypes = {
+//   references: PropTypes.object,
+// }
 
 export default Resource
