@@ -1,6 +1,6 @@
 /* eslint-disable
-react/sort-comp, import/first, react/no-unused-state
-*/
+ react/sort-comp, import/first, react/no-unused-state
+ */
 
 /**
  * Created by suzanne on 5/19/18.
@@ -9,7 +9,6 @@ import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
 import { Route, Switch } from 'react-router-dom'
 import Navbar from './navigation/Navbar'
-// import Home from './pages/Home'
 import Categories from './categories/Categories'
 import Category from './categories/Category'
 import Topics from './topics/Topics'
@@ -17,11 +16,10 @@ import Topic from './topics/Topic'
 import About from './pages/About'
 import NewReference from './new/NewResource'
 import * as apiCalls from './api'
-// import FindArticle from './articles/FindArticle'
 const log = require('./helpers/logger')('App')
 
 // let payload = []
-// let allResources = []
+let allResources = []
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +32,6 @@ class App extends Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.searchResources = this.searchResources.bind(this)
-    // this.loadResources = this.loadResources.bind(this)
   }
 
   componentDidMount() {
@@ -68,10 +65,9 @@ class App extends Component {
     }
 
     // move the final return here to make eslint happy
+    allResources = payload.resources
     return this.setState({ resources: payload.resources })
   }
-
-
 
   handleSearchChange = (searchText) => {
     this.setState({
@@ -80,27 +76,24 @@ class App extends Component {
   }
 
   searchResources(searchString) {
-    // return allResources.resources.filter((resource) => {
-    //   if (resource.name.toLowerCase().includes(searchString.toLowerCase())) {
-    //     console.log(`${searchString} found in ${resource.name} in Name field `)
-    //     return true
-    //   }
-    //   if (resource.pagebody && resource.pagebody.includes(searchString)) {
-    //     console.log(`${searchString} found in ${resource.pagebody} Pagebody `)
-    //     return true
-    //   }
-    //   if (resource.description && resource.description.includes(searchString)) {
-    //     console.log(`${searchString} found in ${resource.description} Description `)
-    //     return true
-    //   }
-    //   return false
-    // })
+    return allResources.filter((resource) => {
+      if (resource.name.toLowerCase().includes(searchString.toLowerCase())) {
+        console.log(`${searchString} found in ${resource.name} in Name field `)
+        return true
+      }
+      if (resource.pagebody && resource.pagebody.includes(searchString)) {
+        console.log(`${searchString} found in ${resource.pagebody} Pagebody `)
+        return true
+      }
+      if (resource.description && resource.description.includes(searchString)) {
+        console.log(`${searchString} found in ${resource.description} Description `)
+        return true
+      }
+      return false
+    })
   }
 
   render() {
-    const FindTopic = props => (
-      <Topic resources={this.state.resources} {...props} />
-    )
 
     return (
       <Container>
