@@ -4,7 +4,7 @@
  */
 
 // set environment variables
-import 'dotenv/config'
+//import 'dotenv/config'
 import enableDebugger from './helpers/enableDebugger'
 
 if (process.env.REACT_APP_DEBUG) enableDebugger()

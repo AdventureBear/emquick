@@ -2,3 +2,7 @@
     /*margin: 10px 50px 70px 50px;*/
     /*width: 80%;*/
 /*}*/
+
+.reference-list {
+    white-space: pre-wrap;
+}

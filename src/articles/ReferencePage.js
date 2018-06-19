@@ -2,6 +2,7 @@
 react/prefer-stateless-function, react/no-array-index-key
 */
 import React, { Component } from 'react'
+import moment from 'moment'
 import { Segment, Container } from 'semantic-ui-react'
 // import PropTypes from 'prop-types' //ES6
 
@@ -9,35 +10,62 @@ import './ReferencePage.css'
 
 class ReferencePage extends Component {
   render() {
-    const references = this.props.resource.references.map((r, i) => (
-      <Segment attached key={i}>
-        <h4>Reference {i}</h4>
-        <div>
-          <em>Title:</em> {`${r.title}\n`}
-          <em>Author(s)</em>: {`${r.author}\n`}
-          <em>Additional Info:</em> {`${r.additional}\n`}
-          <em>URL:</em> {`${r.url}\n`}
-          <em>Accessed:</em> {`${r.dateAccessed}\n`}
+
+    const references = this.props.resource.references.map((r, i) =>
+      (
+
+        <div className='reference-list' key={i} style={{ marginTop: '1em' }}>
+          <tr><th  colspan="2"><strong><em>Reference #{i+1}</em></strong></th></tr>
+
+            {(r.url && r.url != 'NA') ?
+              <tr><td width="30%"><strong>Title:</strong></td><td width="70%"><a href={r.url} target='_blank'>{`${r.title}\n`}</a></td></tr>
+              :
+              <tr><td><strong>Title</strong>:</td><td>{`${r.title}\n`}</td></tr>
+              }
+
+          <tr><td><strong>Author(s)</strong>:</td> <td>{`${r.author}\n`}</td></tr>
+          {r.additional ?
+            (<tr>
+              <td><strong>Additional Info:</strong></td>
+              <td>{`${r.additional}\n`}</td>
+            </tr>)
+              :
+            <tr> <td><strong>Accessed:</strong></td> <td>{r.accessed}</td></tr>
+          }
+
         </div>
-      </Segment>
     ))
     return (
-      <Container className="component-referencepage">
-        <Segment.Group>
-          <Segment attached="top">
-            <h3>{this.props.resource.name}</h3>
+      <div  className="component-referencepage">
+            <h2>{this.props.resource.name}</h2>
             <p>
               <strong>Description</strong>
             </p>
             <p>{this.props.resource.description}</p>
-          </Segment>
-          <Segment
-            attached
+
+        {/*<Segment.Group>*/}
+          {/*<Segment*/}
+            {/*attached = "top"*/}
+            {/*dangerouslySetInnerHTML={{ __html: this.props.resource.pagebody }}*/}
+          {/*/>*/}
+          {/*<Segment.Group>{references}</Segment.Group>*/}
+        {/*</Segment.Group>*/}
+
+
+          <div
             dangerouslySetInnerHTML={{ __html: this.props.resource.pagebody }}
-          />
-          <Segment.Group>{references}</Segment.Group>
-        </Segment.Group>
-      </Container>
+          ></div>
+          <div style={{ marginTop: '2em' }}>
+            <h3>References</h3>
+              <table>
+                <tbody>
+                 {references}
+                </tbody>
+              </table>
+            </div>
+      </div>
+
+
     )
   }
 }
