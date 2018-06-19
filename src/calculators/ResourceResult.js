@@ -10,11 +10,18 @@ import './ResourceResult.css'
 
 class ResourceResult extends Component {
   render() {
-    const references = this.props.references.map((ref, i) => (
-      <li key={i}>
-        <a href={ref.name}>{ref.name}</a>
-      </li>
-    ))
+    const references =
+         this.props.references
+           ?
+            (
+            this.props.references.map((ref, i) => (
+              <li key={i}>
+                <a href={ref.name}>{ref.name}</a>
+              </li>
+            ))
+            )
+           :
+           []
     return (
       <Rail close position="right">
         {/* <div className="Container" > */}

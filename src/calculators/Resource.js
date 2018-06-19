@@ -77,24 +77,40 @@ class Resource extends Component {
     const page = (
       <Segment className="component-resource">
         <ResourceBody
-          question={this.props.resource.questions[this.state.question]}
+          question={
+            this.props.resource.questions
+              ? this.props.resource.questions[this.state.question]
+              : {}
+          }
           handleSelection={this.handleSelection}
 
         />
         <ResourceControl
-          selectionMade={this.state.selectionMade}
+          selectionMade={
+            this.state.selectionMade
+            ? this.state.selectionMade
+              : {}
+          }
           handleNext={this.handleNext}
           handlePrev={this.handlePrev}
           handleReset={this.handleReset}
         />
         <ResourceResult
-          selectionMade={this.state.selectionMade}
+          selectionMade={
+            this.state.selectionMade
+              ? this.state.selectionMade
+              : {}
+          }
           score={
             this.state.scores.length > 0
               ? this.state.scores.reduce((a, x) => a + x)
               : 0
           }
-          references={this.props.resource.references}
+          references={
+            this.props.resource
+            ? this.props.resource.references
+              : {}
+          }
         />
       </Segment>
     )

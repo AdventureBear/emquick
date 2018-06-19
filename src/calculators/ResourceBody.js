@@ -14,7 +14,10 @@ class ResourceBody extends Component {
     this.props.handleSelection(e.target.dataset.value)
   }
   render() {
-    const questions = this.props.question.options.map((option, i) => (
+    const questions =
+           this.props.question.options ?
+            (
+            this.props.question.options.map((option, i) => (
       <li data-value={option.value} key={i}>
         <span
           className="val"
@@ -32,6 +35,8 @@ class ResourceBody extends Component {
         </span>
       </li>
     ))
+            )
+    : []
     return (
       <div className="component-resourcebody">
         <h2>{this.props.question.title}</h2>

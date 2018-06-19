@@ -9,6 +9,12 @@ import Resource from '../calculators/Resource'
 const log = require('../helpers/logger')('Topic')
 
 class Topic extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      propsIsEmpty: true
+    }
+  }
   componentDidMount() {
     log.info('component mounted with these props:', this.props)
   }
@@ -42,11 +48,12 @@ class Topic extends Component {
     }
 
     const page =
-      resource.type === 'Reference' ? (
-        <ReferencePage resource={resource} />
-      ) : (
-        <Resource resource={resource} />
-      )
+          resource.type === 'Reference' ? (
+            <ReferencePage resource={resource} />
+          ) : (
+            <Resource resource={resource} />
+          )
+
 
     return (
       <Container text style={{ marginTop: '7em' }}>

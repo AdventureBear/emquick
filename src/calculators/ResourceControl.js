@@ -20,32 +20,40 @@ class ResourceControl extends Component {
 
   render() {
     const selectionMade = this.props.selectionMade
-    const controls = selectionMade ? (
-      <div>
-        <button type="button" onClick={this.handlePrevClick}>
-          Prev
-        </button>
 
-        <button type="button" onClick={this.handleNextClick}>
-          Next
-        </button>
-      </div>
-    ) : (
-      <div>
-        <button type="button" onClick={this.handlePrevClick}>
-          Prev
-        </button>
 
-        <button
-          disabled
-          className="disabled"
-          type="button"
-          onClick={this.handleNextClick}
-        >
-          Next
-        </button>
-      </div>
-    )
+    const controls =
+
+      selectionMade != {} ? (
+        selectionMade ? (
+          <div>
+            <button type="button" onClick={this.handlePrevClick}>
+              Prev
+            </button>
+
+            <button type="button" onClick={this.handleNextClick}>
+              Next
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button type="button" onClick={this.handlePrevClick}>
+              Prev
+            </button>
+
+            <button
+              disabled
+              className="disabled"
+              type="button"
+              onClick={this.handleNextClick}
+            >
+              Next
+            </button>
+          </div>
+        )
+      )
+        :
+        {}
 
     return (
       <div className="component-resourcecontrol">
