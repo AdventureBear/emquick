@@ -26,6 +26,33 @@ class App extends Component {
     super(props)
     this.state = {
       resources: [],
+      blankResource: {
+        _id: '15218',
+        name: '',
+        friendly: '',
+        description: '',
+        type: 'calculator',
+        field: '',
+        condition: '',
+        references: [
+          {
+            title: '',
+            url: '',
+            author: '',
+            dateAccessed: '',
+            additional: '',
+          },
+        ],
+        questions: [
+          {
+            title: '',
+            description: '',
+            options: [{ value: '', description: '' }],
+          },
+        ],
+        pagebody: '',
+        resources: ''
+      },
       // this prop tracks any error codes from the server
       errorLoading: '',
     }
