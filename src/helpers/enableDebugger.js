@@ -10,7 +10,12 @@ const levels = {
 }
 
 const level = process.env.REACT_APP_DEBUG_LEVEL
-const namespaces = process.env.REACT_APP_DEBUG.split(/,?\s+/g)
+
+const namespaces = process.env.REACT_APP_DEBUG
+  ? process.env.REACT_APP_DEBUG.split(/,?\s+/g)
+  : ''
+//
+// const namespaces = process.env.REACT_APP_DEBUG.split(/,?\s+/g)
 
 const filterLevel = ns =>
   Object.keys(levels).reduce((str, nextLevel) => {

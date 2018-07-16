@@ -7,7 +7,10 @@
 //import 'dotenv/config'
 import enableDebugger from './helpers/enableDebugger'
 
-if (process.env.REACT_APP_DEBUG) enableDebugger()
+
+if (process.env.NODE_ENV === 'development' && process.env.REACT_APP_DEBUG)
+  enableDebugger()
+// if (process.env.REACT_APP_DEBUG) enableDebugger()
 
 import React from 'react'
 import ReactDOM from 'react-dom'
