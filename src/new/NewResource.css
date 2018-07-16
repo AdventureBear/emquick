@@ -2,7 +2,7 @@ label { display: block; }
 
 input[type=text], textarea {
     width: 100%;
-    padding: 4px 4px;
+    padding: 6px 6px;
     margin: 0px 0 0px 0px;
     display: inline-block;
     background-color: rgba(192, 198, 255, 0.36);
@@ -66,4 +66,17 @@ button.right {
 
 a:hover, a:active {
 
+}
+
+.ui.items>.item {
+    margin: 0 0 0 0;
+}
+
+.ui.text.container {
+    line-height: 1em;
+}
+
+.ui.styled.accordion .content {
+    margin: 0;
+    padding: .5em 1em 1em;
 }

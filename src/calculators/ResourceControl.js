@@ -24,7 +24,7 @@ class ResourceControl extends Component {
 
     const controls =
 
-      selectionMade != {} ? (
+      selectionMade !== {} ? (
         selectionMade ? (
           <div>
             <button type="button" onClick={this.handlePrevClick}>

@@ -15,11 +15,12 @@ class QuestionItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isEditing: false,
+      isEditing: true,
     }
     this.toggleEdit = this.toggleEdit.bind(this)
     this.handleSaveClick = this.handleSaveClick.bind(this)
     this.handleOptionClick = this.handleOptionClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
 
   async handleOptionClick() {
@@ -32,8 +33,13 @@ class QuestionItem extends Component {
   }
 
   handleSaveClick() {
-    console.log(`Save Button Clicked, ${this.props.question.name}`)
+    console.log(`Save Button Clicked, ${this.props.questionNum}`)
     this.setState({ isEditing: false })
+  }
+
+  handleDeleteClick(){
+    console.log(`Delete Button Clicked, ${this.props.questionNum}`)
+    this.props.deleteQuestion(this.props.questionNum)
   }
 
   handleClick = (e, titleProps) => {
@@ -42,7 +48,7 @@ class QuestionItem extends Component {
   }
 
   render() {
-    if (this.state.isEditing || this.props.question.edit) {
+    if (this.state.isEditing ) {
       return this.renderEdit()
     }
     return this.renderDisplay()
@@ -63,10 +69,15 @@ class QuestionItem extends Component {
         <Accordion.Content
           active={this.props.activeIndex.activeIndex === this.props.questionNum}
         >
+          <h3>Title</h3>
+          <p>{this.props.question.title}</p>
+
+          <h3>Description</h3>
           <p>{this.props.question.description}</p>
+
           <h3 className="inline">Options</h3>{' '}
           <span onClick={this.handleOptionClick} className="new">
-            New Option
+            Add Option
           </span>
           <div className="options">
             <Options
@@ -74,12 +85,23 @@ class QuestionItem extends Component {
               question={this.props.question}
               questionNum={this.props.questionNum}
               handleOption={this.props.handleOption}
+              deleteOption={this.props.deleteOption}
             />
           </div>
-          <Button className="ui basic button blue" onClick={this.toggleEdit}>
+          <Button
+            type="button"
+            className="ui basic button blue"
+            onClick={this.toggleEdit}
+          >
             Edit
           </Button>
-          <Button className="ui basic button red">Delete</Button>
+          <Button
+            type="button"
+            className="ui basic button red"
+            onClick={this.handleDeleteClick}
+          >
+            Delete
+          </Button>
         </Accordion.Content>
       </div>
     )
@@ -120,19 +142,26 @@ class QuestionItem extends Component {
             onChange={this.props.handleQuestion(this.props.questionNum)}
           />
 
-          <h3>Options</h3>
+          <h3 className="inline">Options</h3>{' '}
+          <span onClick={this.handleOptionClick} className="new">
+            Add Option
+          </span>
+
           <Options
             isEditing={this.state.isEditing}
             question={this.props.question}
             questionNum={this.props.questionNum}
             handleOption={this.props.handleOption}
+            deleteOption={this.props.deleteOption}
           />
 
           <Button
+            type="button"
+            style={{ marginTop: '15px' }}
             className="ui basic green button"
             onClick={this.handleSaveClick}
           >
-            Update
+            Update Question
           </Button>
         </Accordion.Content>
       </div>

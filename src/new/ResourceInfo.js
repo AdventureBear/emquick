@@ -14,13 +14,14 @@ import {
   Icon,
   Radio,
 } from 'semantic-ui-react'
+const log = require('../helpers/logger')('ResourceInfo')
 
 class ResourceInfo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isEditing: false,
-      activeIndex: -1,
+      isEditing: true,
+      activeIndex: 0,
     }
     this.handleSaveClick = this.handleSaveClick.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
@@ -40,8 +41,7 @@ class ResourceInfo extends Component {
   }
 
   handleSaveClick() {
-    console.log(`Save Button Clicked, ${this.props.resource.name}`)
-    console.log(this.props.resource.type)
+    log.info(`Save Button Clicked, ${this.props.resource.name}`)
     this.setState({ isEditing: false })
   }
 
@@ -75,13 +75,6 @@ class ResourceInfo extends Component {
                   <Item.Meta>slug: {this.props.resource.friendly}</Item.Meta>
                 </Item.Content>
               </Item>
-
-              {/* <Item > */}
-              {/* <Item.Content> */}
-              {/* <Item.Header>URL Friendly</Item.Header> */}
-              {/* <Item.Meta>{this.props.resource.friendly} </Item.Meta> */}
-              {/* </Item.Content> */}
-              {/* </Item> */}
 
               <Item>
                 <Item.Content>
@@ -139,7 +132,13 @@ class ResourceInfo extends Component {
             onClick={this.handleClick}
           >
             <Icon name="dropdown" />
-            {this.props.resource.name}
+            {
+              (this.props.resource.name) !== ""
+              ?
+              this.props.resource.name
+              :
+              "New Resource Name"
+            }
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <Item.Group>
@@ -150,6 +149,7 @@ class ResourceInfo extends Component {
                     <input
                       name="name"
                       type="text"
+                      placeholder="New Resource Name"
                       value={this.props.resource.name}
                       size={80}
                       onChange={this.props.handleChange}
@@ -160,19 +160,28 @@ class ResourceInfo extends Component {
                 </Item.Content>
               </Item>
 
-              {/* <Item> */}
-              {/* <Item.Content> */}
-              {/* <Item.Header>URL Friendly</Item.Header> */}
-              {/* <Item.Meta> */}
-              {/* {this.props.resource.friendly} */}
-              {/* </Item.Meta> */}
-              {/* </Item.Content> */}
-              {/* </Item> */}
+               {/*<Item>*/}
+               {/*<Item.Content>*/}
+               {/*<Item.Header>URL Friendly</Item.Header>*/}
+               {/*<Item.Meta>*/}
+               {/*{this.props.resource.friendly}*/}
+               {/*</Item.Meta>*/}
+               {/*</Item.Content>*/}
+               {/*</Item>*/}
 
               <Item>
                 <Item.Content>
                   <Item.Header>Type (Calculator or Reference)</Item.Header>
                   <Item.Meta>
+
+                    <Radio
+                      label="Reference"
+                      name="radioGroup"
+                      value="Reference"
+                      checked={this.props.resource.type === 'Reference' || this.props.resource.type=== "" }
+                      onChange={this.props.handleType}
+                    />
+
                     <Radio
                       label="Calculator"
                       name="radioGroup"
@@ -180,22 +189,6 @@ class ResourceInfo extends Component {
                       checked={this.props.resource.type === 'Calculator'}
                       onChange={this.props.handleType}
                     />
-
-                    <Radio
-                      label="Reference"
-                      name="radioGroup"
-                      value="Reference"
-                      checked={this.props.resource.type === 'Reference'}
-                      onChange={this.props.handleType}
-                    />
-
-                    {/* <input
-                      name="type"
-                      type="text"
-                      value={this.props.resource.type}
-                      size={80}
-                      onChange={this.props.handleChange}
-                    /> */}
                   </Item.Meta>
                 </Item.Content>
               </Item>
@@ -207,6 +200,7 @@ class ResourceInfo extends Component {
                     <input
                       name="field"
                       type="text"
+                      placeholder="Neurology, Cardiology, Trauma, Infectious Disease, ... "
                       value={this.props.resource.field}
                       size={80}
                       onChange={this.props.handleChange}
@@ -222,6 +216,7 @@ class ResourceInfo extends Component {
                     <input
                       name="condition"
                       type="text"
+                      placeholder="Name of Condition or Disease"
                       value={this.props.resource.condition}
                       size={80}
                       onChange={this.props.handleChange}
@@ -236,11 +231,12 @@ class ResourceInfo extends Component {
                   <Item.Description>
                     <textarea
                       name="description"
+                      placeholder="Brief Description (2-3 Sentences)"
                       rows="2"
                       cols="80"
                       value={this.props.resource.description}
                       onChange={this.props.handleChange}
-                    />
+                    ></textarea>
                   </Item.Description>
                 </Item.Content>
               </Item>

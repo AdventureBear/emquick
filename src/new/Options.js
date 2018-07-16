@@ -30,6 +30,7 @@ class Options extends Component {
               option={opt}
               optionNum={j}
               handleOption={this.props.handleOption}
+              deleteOption={this.props.deleteOption}
             />
           ))}
         </tbody>

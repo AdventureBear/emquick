@@ -36,7 +36,7 @@ class Categories extends Component {
       // })
       // console.log(articles.length)
       return (
-        <li>
+        <li key={cat}>
           <Link to={`${this.props.match.url}/${cat.toLowerCase()}`}>
             {cat} [{groupedFields[cat]}]
           </Link>

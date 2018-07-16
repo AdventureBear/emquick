@@ -4,19 +4,20 @@
 import React, { Component } from 'react'
 import { Segment, Accordion, Button } from 'semantic-ui-react'
 import ReferenceItem from './ReferenceItem'
+const log = require('../helpers/logger')('References')
 
 class References extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeIndex: -1,
+      activeIndex: 0,
     }
   }
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps
     const { activeIndex } = this.state
-    console.log(activeIndex, index)
+    log.info("ActiveIndex: " + activeIndex, "Index: " + index)
     const newIndex = activeIndex === index ? -1 : index
     this.setState({ activeIndex: newIndex })
   }
@@ -42,6 +43,7 @@ class References extends Component {
                 reference={r}
                 handleClick={this.handleClick}
                 handleReference={this.props.handleReference}
+                removeReference ={this.props.removeReference}
               />
             </div>
           ))}
@@ -54,7 +56,7 @@ class References extends Component {
             onClick={this.props.addReference}
             className="ui button basic green"
           >
-            Add Reference
+            Add New Reference
           </Button>
         </div>
       </Segment>

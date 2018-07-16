@@ -9,29 +9,36 @@ react/sort-comp
 import React, { Component } from 'react'
 import { Accordion, Icon, Button } from 'semantic-ui-react'
 
+const log = require('../helpers/logger')('ReferenceItem')
+
 class ReferenceItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isEditing: false,
+      isEditing: true,
     }
 
     this.toggleEdit = this.toggleEdit.bind(this)
     this.handleSaveClick = this.handleSaveClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
 
   handleClick = (e, titleProps) => {
-    console.log('clicked title')
+    log.info('Clicked title')
     this.props.handleClick(e, titleProps)
   }
 
   toggleEdit() {
-    console.log('Changing editing state to true')
+    log.info('Changing editing state to true')
     this.setState({ isEditing: true })
   }
 
+  handleDeleteClick() {
+    log.info('Delete Button Clicked')
+    this.props.removeReference(this.props.refNum)
+  }
   handleSaveClick() {
-    console.log('Save Button Clicked')
+    log.info('Update Button Clicked')
     this.setState({ isEditing: false })
   }
 
@@ -71,6 +78,15 @@ class ReferenceItem extends Component {
             className="ui button basic green"
           >
             Edit
+          </Button>
+
+          <Button
+            type="button"
+            style={{ marginTop: '15px' }}
+            onClick={this.handleDeleteClick}
+            className="ui button basic red"
+          >
+            Remove
           </Button>
         </Accordion.Content>
       </div>

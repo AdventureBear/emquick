@@ -11,6 +11,7 @@ import PageContent from './PageContent'
 import { Segment } from 'semantic-ui-react'
 import References from './References'
 import * as apiCalls from '../api'
+const log = require('../helpers/logger')('NewResource')
 // import Markdown from './Markdown'
 
 class NewResourceForm extends Component {
@@ -194,30 +195,32 @@ class NewResourceForm extends Component {
     //   }
 
     this.state = {
-      name: '',
-      friendly: '',
-      description: '',
-      type: '',
-      field: '',
-      condition: '',
-      references: [
-        {
-          title: '',
-          url: '',
-          author: '',
-          dateAccessed: '',
-          additional: '',
-        },
-      ],
-      questions: [
-        {
-          title: '',
-          description: '',
-          options: [{ value: '', description: '' }],
-        },
-      ],
-      pagebody: '',
-      resources: '',
+      resource: {
+        name:        '',
+        friendly:    '',
+        description: '',
+        type:        '',
+        field:       '',
+        condition:   '',
+        references:  [
+          {
+            title:        '',
+            url:          '',
+            author:       '',
+            dateAccessed: '',
+            additional:   '',
+          },
+        ],
+        questions:   [
+          {
+            title:       '',
+            description: '',
+            options:     [{value: '', description: ''}],
+          },
+        ],
+        pagebody:    ''
+      },
+      resources:   ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -228,29 +231,44 @@ class NewResourceForm extends Component {
     // this.handleOptionChange = this.handleOptionChange(this)
     this.addNewQuestion = this.addNewQuestion.bind(this)
     this.addNewReference = this.addNewReference.bind(this)
+    this.removeReference = this.removeReference.bind(this)
     this.addNewOption = this.addNewOption.bind(this)
     this.addResource = this.addResource.bind(this)
+    this.deleteOption = this.deleteOption.bind(this)
+    this.deleteQuestion = this.deleteQuestion.bind(this)
   }
 
   addResource() {
-    console.log(Object.keys(this.state))
-    const newResource = apiCalls.createResource(this.state)
+    console.log(Object.keys(this.state.resource))
+    const newResource = apiCalls.createResource(this.state.resource)
     this.setState({ resources: [...this.state.resources, newResource] })
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+
+    let resource = this.state.resource
+    const name = e.target.name
+    const value = e.target.value
+    log.info("Updating state: " + name + ": " + value)
+    resource[name] = value
+    this.setState({ resource })
   }
 
   handleTypeChange = (e, { value }) => {
+    let resource = this.state.resource
     console.log(value)
-    this.setState({ type: value })
+    resource.type = value
+    this.setState({ resource })
   }
 
   handleReferenceChange = i => (e) => {
     const name = e.target.name
-    const references = this.state.references.map((reference, j) => {
-      if (j === i) reference[name] = e.target.value
+    const references = this.state.resource.references.map((reference, j) => {
+      if (j === i) {
+        reference[name] = e.target.value
+        log.info("Updating Reference: " + name + ": " + e.target.value)
+      }
+
       return reference
     })
     this.setState({ references })
@@ -258,8 +276,9 @@ class NewResourceForm extends Component {
 
   handleQuestionChange = i => (e) => {
     const name = e.target.name
-    const questions = this.state.questions.map((question, j) => {
+    const questions = this.state.resource.questions.map((question, j) => {
       if (j === i) question[name] = e.target.value
+      log.info("Updating Question " + name + ": " + e.target.value)
       return question
     })
     this.setState({ questions })
@@ -268,8 +287,9 @@ class NewResourceForm extends Component {
   handleOptionChange = (qIndex, optIndex) => (e) => {
     const index = Number(e.target.name.split('-')[1])
     const name = e.target.name.split('-')[0]
-    const options = this.state.questions[qIndex].options.map((option, j) => {
+    const options = this.state.resource.questions[qIndex].options.map((option, j) => {
       if (j === index) option[name] = e.target.value
+      log.info("Updating Option " + index + ", " + name + ": " + e.target.value)
       return option
     })
     this.setState({ options })
@@ -277,7 +297,9 @@ class NewResourceForm extends Component {
 
   slugifyTitle = (e) => {
     const slug = slugify(e.target.value).toLowerCase()
-    this.setState({ friendly: slug })
+    log.info("Updating slug: " + slug)
+    const newState = {...this.state.resource, friendly: slug}
+    this.setState({ ...this.state, resource: newState })
   }
 
   addNewReference() {
@@ -288,9 +310,23 @@ class NewResourceForm extends Component {
       additional: '',
       dateAccessed: '',
     }
-    this.setState(prevState => ({
-      references: [...prevState.references, newReference],
-    }))
+
+    let references = [...this.state.resource.references, newReference]
+    log.info("Adding references number " + references.length )
+
+    const newState = {...this.state.resource, references: references}
+    this.setState({ ...this.state, resource: newState })
+    log.info(this.state.resource)
+  }
+
+
+  removeReference(refNum) {
+    log.info("Removing reference: " + refNum)
+    const newReferences = this.state.resource.references
+    newReferences.splice(refNum, 1)
+    log.info(this.state.resource.references, newReferences)
+    const newState = {...this.state.resource, references: newReferences}
+    this.setState({ ...this.state, resource: newState })
   }
 
   addNewQuestion() {
@@ -305,9 +341,16 @@ class NewResourceForm extends Component {
       ],
       edit: true,
     }
-    this.setState(prevState => ({
-      questions: [...prevState.questions, newQuestion],
-    }))
+    let questions = [...this.state.resource.questions, newQuestion]
+    log.info("Adding question number " + questions.length )
+
+    const newState = {...this.state.resource, questions: questions}
+    this.setState({ ...this.state, resource: newState })
+    log.info(this.state.resource)
+
+    // this.setState(prevState => ({
+    //   questions: [...prevState.questions, newQuestion],
+    // }))
   }
 
   addNewOption(questionNum) {
@@ -317,10 +360,10 @@ class NewResourceForm extends Component {
       edit: true,
     }
 
-    const questions = this.state.questions.map((question, i) => {
+    const questions = this.state.resource.questions.map((question, i) => {
       if (i === questionNum) {
         question.options = [
-          ...this.state.questions[questionNum].options,
+          ...this.state.resource.questions[questionNum].options,
           newOption,
         ]
       }
@@ -330,26 +373,46 @@ class NewResourceForm extends Component {
   }
 
   handleNewOption(j) {
-    const stateCopy = Object.assign({}, this.state)
-    stateCopy.questions[j].options = [...stateCopy.questions[j].options, '']
+    const stateCopy = Object.assign({}, this.state.resource)
+    stateCopy.resource.questions[j].options = [...stateCopy.resource.questions[j].options, '']
     this.setState({ stateCopy })
   }
+
+  deleteOption(questionNum, optionNum) {
+    log.info(`Deleting option ${optionNum} for question ${questionNum}`)
+    let questionsCopy = this.state.resource.questions
+    // const questionCopy = this.state.resource.questions[questionNum]
+    questionsCopy[questionNum].options.splice(optionNum, 1)
+    console.log(questionsCopy)
+     this.setState({...this.state.resource, questions: questionsCopy })
+  }
+
+  deleteQuestion(questionNum){
+    log.info(`Deleting question ${questionNum}`)
+    let questionsCopy = this.state.resource.questions
+    questionsCopy.splice(questionNum, 1)
+    console.log(questionsCopy)
+    this.setState({...this.state.resource, questions: questionsCopy })
+  }
+
 
   render() {
     // const resource = {...this.state}
     // console.log(resource)
     const resourceData =
-      this.state.type === 'Calculator' ? (
+      this.state.resource.type === 'Calculator' ? (
         <Question
-          questions={this.state.questions}
+          questions={this.state.resource.questions}
           handleQuestion={this.handleQuestionChange}
+          deleteQuestion={this.deleteQuestion}
+          deleteOption={this.deleteOption}
           handleOption={this.handleOptionChange}
           addQuestion={this.addNewQuestion}
           addOption={this.addNewOption}
         />
       ) : (
         <PageContent
-          pagebody={this.state.pagebody}
+          pagebody={this.state.resource.pagebody}
           handleChange={this.handleChange}
         />
       )
@@ -359,7 +422,7 @@ class NewResourceForm extends Component {
         <Header as="h1">Add New Resource</Header>
         <form className="resource-form" autoComplete="off">
           <ResourceInfo
-            resource={this.state}
+            resource={this.state.resource}
             handleChange={this.handleChange}
             slugify={this.slugifyTitle}
             handleType={this.handleTypeChange}
@@ -368,10 +431,11 @@ class NewResourceForm extends Component {
           {resourceData}
 
           <References
-            references={this.state.references}
+            references={this.state.resource.references}
             handleReference={this.handleReferenceChange}
             handleType={this.handleTypeChange}
             addReference={this.addNewReference}
+            removeReference ={this.removeReference}
           />
 
           <Segment attached="bottom">

@@ -10,7 +10,7 @@ class Question extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeIndex: -1,
+      activeIndex: 0,
     }
   }
 
@@ -44,8 +44,10 @@ class Question extends Component {
                 question={q}
                 handleClick={this.handleClick}
                 handleQuestion={this.props.handleQuestion}
+                deleteQuestion={this.props.deleteQuestion}
                 handleOption={this.props.handleOption}
                 addOption={this.props.addOption}
+                deleteOption={this.props.deleteOption}
               />
             </div>
           ))}

@@ -12,18 +12,19 @@ class OptionItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      editingOption: false,
+      editingOption: true,
     }
     this.editOption = this.editOption.bind(this)
     this.saveOption = this.saveOption.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
     // this.handleChange = this.handleChange.bind(this)
   }
 
   render() {
     if (
-      this.props.isEditing ||
-      this.state.editingOption ||
-      this.props.option.edit
+      // this.props.isEditing ||
+      this.state.editingOption //||
+      // this.props.option.edit
     ) {
       return this.renderEdit()
     }
@@ -31,19 +32,23 @@ class OptionItem extends Component {
   }
 
   editOption() {
-    console.log(`edit icon pressed for option${this.props.optionNum}`)
+    console.log(`edit icon pressed for option ${this.props.optionNum}`)
     this.setState({
       editingOption: true,
     })
   }
 
+  handleDeleteClick() {
+    console.log(`Delete icon pressed for option ${this.props.optionNum}`)
+    this.props.deleteOption(this.props.questionNum, this.props.optionNum)
+  }
   // handleChange(){
   //   console.log("Option edited")
   //   this.props.handleOption(this.props.questionNum, this.props.optionNum)
   // }
 
   saveOption() {
-    console.log('save icon pressed for option: ')
+    console.log(`Save icon pressed for option ${this.props.optionNum}`)
     this.setState({
       editingOption: false,
     })
@@ -84,7 +89,9 @@ class OptionItem extends Component {
           </div>
         </td>
         <td>
-          <i className="large  delete icon" />
+          <div onClick={this.handleDeleteClick}>
+            <i className="large  delete icon" />
+          </div>
         </td>
       </tr>
     )
@@ -102,7 +109,9 @@ class OptionItem extends Component {
           </div>
         </td>
         <td>
-          <i className="large  delete icon" />
+          <div onClick={this.handleDeleteClick}>
+            <i className="large  delete icon" />
+          </div>
         </td>
       </tr>
     )
