@@ -35,7 +35,7 @@
   "scripts": {
     "client": "cross-var check-node-version --node $npm_package_engines_node && react-scripts start",
     "server": "cross-var check-node-version --node $npm_package_engines_node && nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
