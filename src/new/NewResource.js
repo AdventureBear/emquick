@@ -245,7 +245,6 @@ class NewResourceForm extends Component {
   }
 
   handleChange(e) {
-
     let resource = this.state.resource
     const name = e.target.name
     const value = e.target.value

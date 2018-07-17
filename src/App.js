@@ -27,7 +27,6 @@ class App extends Component {
     this.state = {
       resources: [],
       blankResource: {
-        _id: '15218',
         name: '',
         friendly: '',
         description: '',
@@ -50,8 +49,7 @@ class App extends Component {
             options: [{ value: '', description: '' }],
           },
         ],
-        pagebody: '',
-        resources: ''
+        pagebody: ''
       },
       // this prop tracks any error codes from the server
       errorLoading: '',
