@@ -4,9 +4,8 @@ const findParentDir = require('find-parent-dir')
 const execa = require('execa')
 const waitFor = require('wait-on')
 const mongoose = require('mongoose')
-const seed = require('./seed')
-const loadModels = require('./loadModels')
-
+// const seed = require('./seed')
+// const loadModels = require('./loadModels')
 const log = require('./logger')('database')
 
 /**
@@ -57,7 +56,7 @@ const establishConnection = async (err) => {
      * if we need to seed, split the string into individal vars
      * and seed each model in the forEach callback
      */
-    if (process.env.SEED) process.env.SEED.split(/,?\s+/g).forEach(seed)
+    // if (process.env.SEED) process.env.SEED.split(/,?\s+/g).forEach(seed)
   } catch (e) {
     log.error('could not connect to mongodb: ', { errorMessage: e.message })
   }

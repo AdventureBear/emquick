@@ -48,15 +48,6 @@ class ReferencePage extends Component {
             </p>
             <p>{this.props.resource.description}</p>
 
-        {/*<Segment.Group>*/}
-          {/*<Segment*/}
-            {/*attached = "top"*/}
-            {/*dangerouslySetInnerHTML={{ __html: this.props.resource.pagebody }}*/}
-          {/*/>*/}
-          {/*<Segment.Group>{references}</Segment.Group>*/}
-        {/*</Segment.Group>*/}
-
-
           <div
             dangerouslySetInnerHTML={{ __html: this.props.resource.pagebody }}
           ></div>

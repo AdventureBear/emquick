@@ -53,10 +53,10 @@ let cleanUp
  */
 
 // launch mongo docker instance
-if (isDev) {
+// if (isDev) {
   log.info('initializing database')
   initializeDB()
-}
+// }
 
 
 // START SERVER
