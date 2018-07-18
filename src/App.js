@@ -8,6 +8,7 @@
 import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
 import { Route, Switch } from 'react-router-dom'
+import slugify from 'slugify'
 import Navbar from './navigation/Navbar'
 import Categories from './categories/Categories'
 import Category from './categories/Category'
@@ -16,7 +17,9 @@ import Topic from './topics/Topic'
 import About from './pages/About'
 import NewReference from './new/NewResource'
 import * as apiCalls from './api'
+
 const log = require('./helpers/logger')('App')
+
 
 // let payload = []
 let allResources = []
@@ -26,7 +29,7 @@ class App extends Component {
     super(props)
     this.state = {
       resources: [],
-      blankResource: {
+      resource: {
         name: '',
         friendly: '',
         description: '',
@@ -57,6 +60,19 @@ class App extends Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.searchResources = this.searchResources.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handleReferenceChange = this.handleReferenceChange.bind(this)
+
+    // this.handleNewOption = this.handleNewOption(this)
+    // this.handleOptionChange = this.handleOptionChange(this)
+    this.addNewQuestion = this.addNewQuestion.bind(this)
+    this.addNewReference = this.addNewReference.bind(this)
+    this.removeReference = this.removeReference.bind(this)
+    this.addNewOption = this.addNewOption.bind(this)
+    this.addResource = this.addResource.bind(this)
+    this.deleteOption = this.deleteOption.bind(this)
+    this.deleteQuestion = this.deleteQuestion.bind(this)
   }
 
   componentDidMount() {
@@ -118,8 +134,171 @@ class App extends Component {
     })
   }
 
-  render() {
+  addResource() {
+  console.log(this.state.resource)
+  const slug = this.state.resource.friendly
+  const redirectURL = `/topics/${slug}`
+  const newResource = apiCalls.createResource(this.state.resource)
+    const makeRedirect = async () => {
+      this.setState({resources: [...this.state.resources, newResource]})
+      return "done"
+    }
+    makeRedirect()
+    this.props.history.push(redirectURL)
 
+}
+
+
+  handleChange(e) {
+  let resource = this.state.resource
+  const name = e.target.name
+  const value = e.target.value
+  log.info("Updating state: " + name + ": " + value)
+  resource[name] = value
+  this.setState({ resource })
+}
+
+  handleTypeChange = (e, { value }) => {
+  let resource = this.state.resource
+  console.log(value)
+  resource.type = value
+  this.setState({ resource })
+}
+
+  handleReferenceChange = i => (e) => {
+  const name = e.target.name
+  const references = this.state.resource.references.map((reference, j) => {
+    if (j === i) {
+      reference[name] = e.target.value
+      log.info("Updating Reference: " + name + ": " + e.target.value)
+    }
+
+    return reference
+  })
+  this.setState({ references })
+}
+
+  handleQuestionChange = i => (e) => {
+  const name = e.target.name
+  const questions = this.state.resource.questions.map((question, j) => {
+    if (j === i) question[name] = e.target.value
+    log.info("Updating Question " + name + ": " + e.target.value)
+    return question
+  })
+  this.setState({ questions })
+}
+
+  handleOptionChange = (qIndex, optIndex) => (e) => {
+  const index = Number(e.target.name.split('-')[1])
+  const name = e.target.name.split('-')[0]
+  const options = this.state.resource.questions[qIndex].options.map((option, j) => {
+    if (j === index) option[name] = e.target.value
+    log.info("Updating Option " + index + ", " + name + ": " + e.target.value)
+    return option
+  })
+  this.setState({ options })
+}
+
+  slugifyTitle = (e) => {
+  const slug = slugify(e.target.value).toLowerCase()
+  log.info("Updating slug: " + slug)
+  const newState = {...this.state.resource, friendly: slug}
+  this.setState({ ...this.state, resource: newState })
+}
+
+  addNewReference() {
+  const newReference = {
+    title: '',
+    author: '',
+    url: '',
+    additional: '',
+    dateAccessed: '',
+  }
+
+  let references = [...this.state.resource.references, newReference]
+  log.info("Adding references number " + references.length )
+
+  const newState = {...this.state.resource, references: references}
+  this.setState({ ...this.state, resource: newState })
+  log.info(this.state.resource)
+}
+
+  removeReference(refNum) {
+  log.info("Removing reference: " + refNum)
+  const newReferences = this.state.resource.references
+  newReferences.splice(refNum, 1)
+  log.info(this.state.resource.references, newReferences)
+  const newState = {...this.state.resource, references: newReferences}
+  this.setState({ ...this.state, resource: newState })
+}
+
+  addNewQuestion() {
+  const newQuestion = {
+    title: '',
+    description: '',
+    options: [
+      {
+        value: '',
+        description: '',
+      },
+    ],
+    edit: true,
+  }
+  let questions = [...this.state.resource.questions, newQuestion]
+  log.info("Adding question number " + questions.length )
+
+  const newState = {...this.state.resource, questions: questions}
+  this.setState({ ...this.state, resource: newState })
+  log.info(this.state.resource)
+
+  // this.setState(prevState => ({
+  //   questions: [...prevState.questions, newQuestion],
+  // }))
+}
+
+  addNewOption(questionNum) {
+  const newOption = {
+    value: 'Value',
+    description: 'Description',
+    edit: true,
+  }
+
+  const questions = this.state.resource.questions.map((question, i) => {
+    if (i === questionNum) {
+      question.options = [
+        ...this.state.resource.questions[questionNum].options,
+        newOption,
+      ]
+    }
+    return question
+  })
+  this.setState({ questions })
+}
+
+  handleNewOption(j) {
+  const stateCopy = Object.assign({}, this.state.resource)
+  stateCopy.resource.questions[j].options = [...stateCopy.resource.questions[j].options, '']
+  this.setState({ stateCopy })
+}
+
+  deleteOption(questionNum, optionNum) {
+    log.info(`Deleting option ${optionNum} for question ${questionNum}`)
+    let questionsCopy = this.state.resource.questions
+  // const questionCopy = this.state.resource.questions[questionNum]
+    questionsCopy[questionNum].options.splice(optionNum, 1)
+    console.log(questionsCopy)
+    this.setState({...this.state.resource, questions: questionsCopy })
+  }
+
+  deleteQuestion(questionNum){
+  log.info(`Deleting question ${questionNum}`)
+  let questionsCopy = this.state.resource.questions
+  questionsCopy.splice(questionNum, 1)
+  console.log(questionsCopy)
+  this.setState({...this.state.resource, questions: questionsCopy })
+}
+
+  render() {
     return (
       <Container>
         <Navbar
@@ -128,37 +307,75 @@ class App extends Component {
         />
         <Switch>
           <Route exact path="/" component={About} />
+
           <Route
             path="/categories/:field"
             render={props => (
-              <Category resources={this.state.resources} {...props} />
+              <Category
+                resources={this.state.resources}
+                {...props} />
             )}
           />
+
           <Route
             path="/categories"
             render={props => (
-              <Categories resources={this.state.resources} {...props} />
+              <Categories
+                resources={this.state.resources}
+                {...props} />
             )}
           />
-          <Route path="/new" component={NewReference} />
+
+          <Route
+            path="/new"
+            render={(props) => (
+              <NewReference
+                resource = {this.state.resource}
+                handleChange={this.handleChange}
+                slugifyTitle={this.slugifyTitle}
+                handleQuestionChange={this.handleQuestionChange}
+                deleteQuestion={this.deleteQuestion}
+                deleteOption={this.deleteOption}
+                handleOptionChange={this.handleOptionChange}
+                addNewQuestion={this.addNewQuestion}
+                addNewOption={this.addNewOption}
+                handleReferenceChange={this.handleReferenceChange}
+                handleTypeChange={this.handleTypeChange}
+                addNewReference={this.addNewReference}
+                removeReference ={this.removeReference}
+                addResource={this.addResource}
+                {...props}
+              />
+            )}
+          />
+
           <Route
             path="/about"
             render={props => (
-              <About resources={this.state.resources} {...props} />
+              <About
+                resources={this.state.resources}
+                {...props} />
             )}
           />
+
           <Route
             path="/topics/:friendly"
             render={props => (
-              <Topic resources={this.state.resources} {...props} />
+              <Topic
+                resources={this.state.resources}
+                {...props} />
             )}
           />
+
           <Route
             path="/topics"
             render={props => (
-              <Topics resources={this.state.resources} {...props} />
+              <Topics
+                resources={this.state.resources}
+                {...props} />
             )}
           />
+
         </Switch>
       </Container>
     )
