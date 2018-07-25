@@ -17,11 +17,13 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 import App from './App'
-import { withRouter } from 'react-router'
+
 // import Root from './Root'
 // import App from './App';
 import registerServiceWorker from './registerServiceWorker'
 
+
+import { withRouter } from 'react-router'
 const AppWithRouter = withRouter(App)
 
 ReactDOM.render(

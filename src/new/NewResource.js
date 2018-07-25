@@ -237,6 +237,8 @@ class NewResourceForm extends Component {
     //   this.deleteOption = this.deleteOption.bind(this)
     //   this.deleteQuestion = this.deleteQuestion.bind(this)
   }
+
+
   //
   // addResource() {
   //   console.log(Object.keys(this.state.resource))
