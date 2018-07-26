@@ -33,6 +33,7 @@
     "wait-on": "^2.1.0"
   },
   "scripts": {
+    "docs": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material",
     "client": "cross-var check-node-version --node $npm_package_engines_node && react-scripts start",
     "server": "cross-var check-node-version --node $npm_package_engines_node && nodemon server.js",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",

@@ -1,0 +1,27 @@
+site_name: emquick
+
+theme:
+  name: 'material'
+  feature:
+    tabs: true
+
+pages:
+  - 'Quickstart': quickstart.md
+  - 'Getting Started': getting_started.md
+  - 'Troubleshooting': troubleshooting.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.mark
+  - pymdownx.betterem:
+      smart_enable: all
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
