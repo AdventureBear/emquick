@@ -4,8 +4,8 @@ const findParentDir = require('find-parent-dir')
 const execa = require('execa')
 const waitFor = require('wait-on')
 const mongoose = require('mongoose')
-// const seed = require('./seed')
-// const loadModels = require('./loadModels')
+const seed = require('./seed')
+const loadModels = require('./loadModels')
 const log = require('./logger')('database')
 
 /**
@@ -44,7 +44,7 @@ const dockerFile = findParentDir.sync(__dirname, 'docker-compose.yml')
  * an arrowed curried function so we can pass in the model to seed
  * https://medium.com/@kbrainwave/currying-in-javascript-ce6da2d324fe
  */
-const establishConnection = async (err) => {
+const establishConnection = async err => {
   if (err) return err
 
   try {
@@ -56,12 +56,16 @@ const establishConnection = async (err) => {
      * if we need to seed, split the string into individal vars
      * and seed each model in the forEach callback
      */
-    // if (process.env.SEED) process.env.SEED.split(/,?\s+/g).forEach(seed)
+    if (process.env.SEED && process.env.MODELS) {
+      process.env.MODELS.split(/,?\s+/g).forEach(seed)
+    }
   } catch (e) {
     log.error('could not connect to mongodb: ', { errorMessage: e.message })
   }
 
-  return log.info(`successfully connected to db at: mongodb://${hostname}:${port}/${dbname}`)
+  return log.info(
+    `successfully connected to db at: mongodb://${hostname}:${port}/${dbname}`
+  )
 }
 
 const initializeDB = async () => {
@@ -73,7 +77,7 @@ const initializeDB = async () => {
 
 const teardownDB = async () => {
   await execa('docker-compose', ['down'], { cwd: dockerFile })
-  await waitFor(shutdownOpts, (err) => {
+  await waitFor(shutdownOpts, err => {
     if (err) {
       log.error('database docker container could not be stopped: ', { err })
     }
