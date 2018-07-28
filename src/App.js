@@ -101,8 +101,8 @@ class App extends Component {
        * if we have a bad response, use this loading state to
        * render a message to the user and exit early
        */
-      if (!payload.ok) return this.setState({ errorLoading: payload.status })
-
+      // if (!payload.ok) return this.setState({ errorLoading: payload.status })
+      if ('ok' in payload === false || !payload.ok) return this.setState({ errorLoading: payload.status })
       // otherwise we have a valid response
       if (this.state.errorLoading) {
         // reset the error var here if it's present
