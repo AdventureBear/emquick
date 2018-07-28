@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types' //ES6
 import './ReferencePage.css'
 
-const log = require('../helpers/logger')('ReferencePage')
+// const log = require('../helpers/logger')('ReferencePage')
 class ReferencePage extends Component {
 
 

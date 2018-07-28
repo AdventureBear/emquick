@@ -19,7 +19,7 @@ import NewReference from './new/NewResource'
 import * as apiCalls from './api'
 
 const log = require('./helpers/logger')('App')
-let redirectURL
+// let redirectURL
 
 // let payload = []
 let allResources = []
@@ -80,11 +80,11 @@ class App extends Component {
     this.loadResources()
   }
 
-  componentDidUpdate() {
-    this.state.redirectNew ?
-    this.props.history.push(redirectURL)
-      : null
-  }
+  // componentDidUpdate() {
+  //   this.state.redirectNew ?
+  //   this.props.history.push(redirectURL)
+  //     : null
+  // }
 
   async loadResources() {
     // allResources = payload
@@ -144,7 +144,7 @@ class App extends Component {
   addResource() {
   console.log(this.state.resource)
   const slug = this.state.resource.friendly
-  redirectURL = `/topics/${slug}`
+  // redirectURL = `/topics/${slug}`
   const newResource = apiCalls.createResource(this.state.resource)
   const makeRedirect = async () => {
     await this.setState({
@@ -155,7 +155,7 @@ class App extends Component {
       return "done"
   }
 
-  makeRedirect()
+  // makeRedirect()
 }
 
 
