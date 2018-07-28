@@ -1,0 +1,96 @@
+Arguments: 
+  /Users/NJHRFilms/.nvs/node/8.9.4/x64/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run docs
+
+PATH: 
+  /Users/NJHRFilms/.nvs/node/8.9.4/x64/bin:/Users/NJHRFilms/.nvs:/Users/NJHRFilms/bin:/usr/local/bin:/Users/NJHRFilms/.yarn/bin:/Users/NJHRFilms/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/opt/X11/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.9.4
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "emquick",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "ajv": "^6.5.0",
+      "body-parser": "^1.18.3",
+      "connect-flash": "^0.1.1",
+      "cors": "^2.8.4",
+      "debug": "^3.1.0",
+      "debug-logger": "^0.4.1",
+      "detect-node": "^2.0.3",
+      "execa": "^0.10.0",
+      "express": "^4.16.3",
+      "express-graceful-exit": "^0.4.1",
+      "find-parent-dir": "^0.3.0",
+      "install": "^0.11.0",
+      "method-override": "^2.3.10",
+      "mongoose": "^5.1.4",
+      "morgan": "^1.9.0",
+      "nodemon": "^1.17.5",
+      "npm": "^6.1.0",
+      "passport": "^0.4.0",
+      "react": "^16.4.0",
+      "react-dom": "^16.4.0",
+      "react-markdown": "^3.3.2",
+      "react-router-dom": "^4.3.1",
+      "react-scripts": "1.1.4",
+      "react-semantic-ui": "^0.2.0",
+      "semantic-ui-react": "^0.80.2",
+      "slugify": "^1.3.0",
+      "supports-color": "^5.4.0",
+      "wait-on": "^2.1.0"
+    },
+    "scripts": {
+      "docs": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material",
+      "client": "cross-var check-node-version --node $npm_package_engines_node && react-scripts start",
+      "server": "cross-var check-node-version --node $npm_package_engines_node && nodemon server.js",
+      "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+      "build": "react-scripts build",
+      "test": "react-scripts test --env=jsdom",
+      "eject": "react-scripts eject"
+    },
+    "devDependencies": {
+      "babel-eslint": "^8.2.3",
+      "check-node-version": "^3.2.0",
+      "concurrently": "^3.5.1",
+      "cross-var": "^1.1.0",
+      "dotenv": "^5.0.1",
+      "eslint": "4.19.1",
+      "eslint-config-airbnb": "^16.1.0",
+      "prettier": "1.13.5",
+      "prettier-eslint": "^8.8.1"
+    },
+    "engines": {
+      "node": "8.9.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 125
+  Command: sh
+  Arguments: -c docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+  Directory: /Users/NJHRFilms/Documents/FCC/emquick-master
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)

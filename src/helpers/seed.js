@@ -6,7 +6,7 @@ const log = require('./logger')('seeding db')
 const findParentDir = require('find-parent-dir')
 const resources = require('../data/resources.json')
 
-const removeDocs = async (model) => {
+const removeDocs = async model => {
   log.info('attempting to remove docs')
   try {
     await model.remove({})
@@ -26,7 +26,7 @@ const createDocs = async (resource, model) => {
   }
 }
 
-const seedDB = async (fileName) => {
+const seedDB = async fileName => {
   log.info('starting to seed database')
 
   let modelInstance
